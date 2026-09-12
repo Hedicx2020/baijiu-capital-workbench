@@ -872,3 +872,122 @@
   .view-timeline li { grid-template-columns: 52px 1fr; padding: 7px 0; }
   .view-timeline small { grid-column: 2; }
 }
+
+/* Blueprint module dividers (产业分析 / 资本市场 页内模块分节带) */
+.module-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 8px 18px;
+  margin: 32px 0 16px;
+  padding: 13px 18px 12px;
+  background: linear-gradient(135deg, var(--accent-deep), var(--accent));
+  color: #fff;
+  border-radius: var(--radius);
+  scroll-margin-top: calc(var(--topbar-height) + var(--demo-height) + 12px);
+}
+
+.module-head .eyebrow { color: rgba(255, 255, 255, .72); }
+.module-head h2 { margin: 3px 0 0; font-size: 15px; letter-spacing: .02em; }
+.module-head > span { font-family: var(--font-mono); font-size: 9px; opacity: .85; }
+
+/* In-page sub navigation */
+.page-subnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 4px;
+}
+
+.page-subnav button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 34px;
+  padding: 0 13px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--paper);
+  color: var(--ink-2);
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.page-subnav button .mono { color: var(--accent); font-size: 9px; }
+.page-subnav button:hover { border-color: var(--accent); color: var(--accent); }
+
+/* DEMO virtual-data panels */
+.panel.is-demo-panel { border-style: dashed; border-color: #cdb271; background: #fffdf7; }
+.panel.is-demo-panel .blueprint-note { color: #715d34; }
+.is-demo-panel .band-table tbody td,
+.is-demo-panel .band-table tbody th { color: #4a3f22; }
+
+/* Clickable blueprint tree branches (总揽页) */
+button.tree-branch-head { width: 100%; text-align: left; font: inherit; color: inherit; cursor: pointer; }
+button.tree-branch-head:hover { border-color: var(--accent); }
+button.tree-branch-head:hover strong { color: var(--accent); }
+button.tree-branch-head::after {
+  content: "进入 →";
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--accent);
+}
+
+/* Channel survey tables */
+.survey-table td { white-space: normal; min-width: 128px; }
+.survey-table td:first-of-type { min-width: 150px; }
+
+/* Market page valuation / fund holding / demo grids */
+.market-demo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.market-demo-grid .panel { padding: 14px 16px; }
+.market-demo-grid .panel .panel-topline { margin-bottom: 10px; }
+.market-demo-grid .band-table td { white-space: nowrap; font-family: var(--font-mono); }
+
+#valuation-grid .track-list span,
+#fundholding-grid .track-list span { font-family: var(--font-mono); }
+#fundholding-grid .track-list span.neg { color: #a8331f; }
+
+/* Sentiment page: viewpoint cards and executive voices */
+.viewpoint-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.viewpoint-card { padding: 14px 16px; }
+.viewpoint-card .panel-topline { margin-bottom: 8px; }
+.viewpoint-card h3 { margin: 0 0 6px; font-size: 12px; }
+.viewpoint-card p { margin: 0; color: var(--ink-2); font-size: 10px; line-height: 1.6; }
+.viewpoint-card footer { margin-top: 10px; }
+
+.voice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.voice-card { padding: 14px 16px; }
+.voice-card .panel-topline { margin-bottom: 8px; }
+.voice-quote {
+  margin: 0 0 10px;
+  color: var(--ink-2);
+  font-family: var(--font-editorial);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.news-list li span:last-child { color: var(--ink-1); }
+
+@media (max-width: 1024px) {
+  .market-demo-grid { grid-template-columns: 1fr; }
+  .viewpoint-grid { grid-template-columns: 1fr; }
+  .voice-grid { grid-template-columns: 1fr; }
+}

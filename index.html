@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
-  <meta name="description" content="面向机构投资者的白酒研究工作台：投资框架学习、长中短期指标跟踪、产业逻辑、核心数据、观点变化与公司六问。">
+  <meta name="description" content="白酒资本市场分析工具：总揽、产业分析、产业比较、资本市场与舆情跟踪五个页面，按跟踪体系蓝图组织数据。">
   <link rel="icon" href="data:,">
-  <title>AI 白酒研究教练｜数据接入版</title>
-  <link rel="stylesheet" href="styles.css?v=20260821.9">
-  <link rel="stylesheet" href="data-styles.css?v=20260821.9">
+  <title>白酒资本市场分析工具｜总揽</title>
+  <link rel="stylesheet" href="styles.css?v=20260904.3">
+  <link rel="stylesheet" href="data-styles.css?v=20260904.3">
 </head>
 <body data-theme="light" data-reading-mode="coach" data-density="comfortable">
   <a class="skip-link" href="#main-content">跳到主要内容</a>
@@ -16,7 +16,7 @@
   <div class="demo-banner" role="status">
     <span class="demo-led" aria-hidden="true"></span>
     <strong>已接入数据</strong>
-    <span>价格 08-15 · 调研 08-09 · 财报/估值/持仓已接本地库 · 标注 DEMO 处为模拟 · 非实时行情</span>
+    <span id="demo-banner-dates">价格 08-15 · 调研 08-09 · 中报总结 09-03 · 财报/估值/持仓已接本地库 · 标注 DEMO 处为模拟 · 非实时行情</span>
     <button class="text-button" type="button" data-open-drawer="data-boundary">查看来源与边界</button>
   </div>
 
@@ -26,9 +26,9 @@
         <button class="icon-button mobile-only" id="menu-toggle" type="button" aria-label="打开导航" aria-expanded="false">
           <span class="menu-lines" aria-hidden="true"></span>
         </button>
-        <button class="wordmark" type="button" data-nav="home" aria-label="返回行业首页">
-          <span class="wordmark-cn">白酒研究</span>
-          <span class="wordmark-en">AI RESEARCH COACH</span>
+        <button class="wordmark" type="button" data-nav="home" aria-label="返回总揽页">
+          <span class="wordmark-cn">白酒资本市场分析工具</span>
+          <span class="wordmark-en">CAPITAL MARKET ANALYSIS</span>
         </button>
       </div>
 
@@ -36,7 +36,7 @@
         <span class="live-dot" aria-hidden="true"></span>
         <span class="mono">DATA</span>
         <span class="divider">/</span>
-        <span>2026.08.15 / 价格已接入</span>
+        <span id="topbar-date">2026.08.15 / 价格已接入</span>
       </div>
 
       <div class="topbar-actions">
@@ -57,39 +57,47 @@
     <aside class="sidebar" id="sidebar" aria-label="主要导航">
       <div class="terminal-path">
         <span class="terminal-dot" aria-hidden="true"></span>
-        <span class="mono" id="route-label">~/industry/today</span>
+        <span class="mono" id="route-label">~/overview</span>
       </div>
       <nav class="side-nav">
         <button class="nav-item is-active" type="button" data-nav="home">
           <span class="nav-index">01</span>
-          <span class="nav-copy"><strong>研究总览</strong><small>RESEARCH OVERVIEW</small></span>
+          <span class="nav-copy"><strong>总揽</strong><small>OVERVIEW</small></span>
         </button>
-        <button class="nav-item" type="button" data-nav="chain">
+        <button class="nav-item" type="button" data-nav="industry">
           <span class="nav-index">02</span>
-          <span class="nav-copy"><strong>行业分析框架</strong><small>ANALYSIS FRAMEWORK</small></span>
+          <span class="nav-copy"><strong>产业分析</strong><small>INDUSTRY ANALYSIS</small></span>
         </button>
-        <button class="nav-item" type="button" data-nav="data">
+        <button class="nav-item" type="button" data-nav="compare">
           <span class="nav-index">03</span>
-          <span class="nav-copy"><strong>核心数据跟踪</strong><small>CORE DATA MONITOR</small></span>
+          <span class="nav-copy"><strong>产业比较</strong><small>INDUSTRY COMPARISON</small></span>
         </button>
-        <button class="nav-item" type="button" data-nav="opinions">
+        <button class="nav-item" type="button" data-nav="market">
           <span class="nav-index">04</span>
-          <span class="nav-copy"><strong>专家观点演化</strong><small>VIEW EVOLUTION</small></span>
+          <span class="nav-copy"><strong>资本市场</strong><small>CAPITAL MARKET</small></span>
         </button>
-        <button class="nav-item" type="button" data-nav="company">
+        <button class="nav-item" type="button" data-nav="sentiment">
           <span class="nav-index">05</span>
-          <span class="nav-copy"><strong>公司对比</strong><small>COMPANY COMPARE</small></span>
+          <span class="nav-copy"><strong>舆情跟踪</strong><small>SENTIMENT TRACKING</small></span>
+        </button>
+        <button class="nav-item" type="button" data-nav="llm">
+          <span class="nav-index">06</span>
+          <span class="nav-copy"><strong>模型配置</strong><small>LLM SETTINGS</small></span>
+        </button>
+        <button class="nav-item" type="button" data-nav="upload">
+          <span class="nav-index">07</span>
+          <span class="nav-copy"><strong>材料上传</strong><small>SELLER INBOX</small></span>
         </button>
       </nav>
 
       <div class="sidebar-guide">
-        <span class="eyebrow">RESEARCH PATH</span>
+        <span class="eyebrow">BLUEPRINT PATH</span>
         <ol>
-          <li class="is-current">研究总览</li>
-          <li>分析框架</li>
-          <li>数据验证</li>
-          <li>观点变化</li>
-          <li>公司比较</li>
+          <li class="is-current">总揽</li>
+          <li>产业分析</li>
+          <li>产业比较</li>
+          <li>资本市场</li>
+          <li>舆情跟踪</li>
         </ol>
       </div>
       <button class="sidebar-help" type="button" data-open-drawer="data-boundary">
@@ -104,48 +112,125 @@
       <section class="page is-active" id="page-home" data-page="home" aria-labelledby="home-title">
         <div class="page-heading">
           <div>
-            <span class="page-kicker"><span class="mono">01</span> / RESEARCH OVERVIEW</span>
-            <h1 id="home-title">白酒行业研究总览</h1>
-            <p>先回答行业处在什么位置，再展示分析框架、核心数据、观点变化与公司差异。</p>
+            <span class="page-kicker"><span class="mono">01</span> / OVERVIEW</span>
+            <h1 id="home-title">总揽：白酒资本市场分析工具</h1>
+            <p>先回答行业处在什么位置，再按产业分析、产业比较、资本市场、舆情跟踪四个分支展开。</p>
           </div>
           <div class="heading-meta">
             <span>数据截至</span>
-            <strong class="mono">2026-08-15</strong>
+            <strong class="mono" id="home-asof">2026-08-15</strong>
             <span class="status-tag demo">MIXED SOURCES</span>
           </div>
         </div>
 
         <section class="function-map" aria-labelledby="function-map-title">
           <div class="function-map-head">
-            <div><span class="eyebrow">RESEARCH WORKSPACE</span><h2 id="function-map-title">四类核心研究功能</h2></div>
-            <p>从框架理解到数据验证、观点变化与公司比较，形成一条完整研究路径。</p>
+            <div><span class="eyebrow">RESEARCH WORKSPACE</span><h2 id="function-map-title">四大核心功能模块</h2></div>
+            <p>结构对齐「白酒资本市场分析工具」蓝图：产业分析、产业比较、资本市场、舆情跟踪。</p>
           </div>
           <div class="function-map-grid">
-            <button type="button" data-nav="chain">
-              <span class="function-code">01 / FRAMEWORK</span>
-              <strong>行业分析框架</strong>
-              <p>行业如何运转，现在处于周期哪个环节？</p>
-              <small>产业链 · 价格体系 · 三类反馈循环</small><b>进入 →</b>
+            <button type="button" data-nav="industry">
+              <span class="function-code">01 / INDUSTRY</span>
+              <strong>产业分析</strong>
+              <p>宏观环境如何影响需求，产业趋势处于什么位置？</p>
+              <small>宏观分析 · 长期趋势研判 · 中短期数据跟踪 · 调研情况</small><b>进入 →</b>
             </button>
-            <button type="button" data-nav="data">
-              <span class="function-code">02 / DATA</span>
-              <strong>核心数据跟踪</strong>
-              <p>哪些指标正在变化，确认阈值与证伪条件是什么？</p>
-              <small>批价 · 库存 · 动销 · 回款 · 补库</small><b>进入 →</b>
+            <button type="button" data-nav="compare">
+              <span class="function-code">02 / COMPARE</span>
+              <strong>产业比较</strong>
+              <p>国内外企业在同一口径下，差异体现在哪里？</p>
+              <small>产品结构 · 品牌建设 · 渠道情况 · 财务状况等</small><b>进入 →</b>
             </button>
-            <button type="button" data-nav="opinions">
-              <span class="function-code">03 / VIEWS</span>
-              <strong>专家观点演化</strong>
-              <p>谁改变了判断，改变了什么，为什么？</p>
-              <small>原子命题 · 共识分歧 · 兑现跟踪</small><b>进入 →</b>
+            <button type="button" data-nav="market">
+              <span class="function-code">03 / MARKET</span>
+              <strong>资本市场</strong>
+              <p>分析师改变了什么判断，资金行为是否验证？</p>
+              <small>观点汇总 · 目标价/盈利预测 · 估值 · 持仓 · 资金流</small><b>进入 →</b>
             </button>
-            <button type="button" data-nav="company">
-              <span class="function-code">04 / COMPARE</span>
-              <strong>公司对比</strong>
-              <p>三家公司在同一口径下，差异体现在哪里？</p>
-              <small>产品 · 渠道 · 现金流 · 策略 · 风险</small><b>进入 →</b>
+            <button type="button" data-nav="sentiment">
+              <span class="function-code">04 / SENTIMENT</span>
+              <strong>舆情跟踪</strong>
+              <p>行业在讨论什么，公司在发布什么？</p>
+              <small>行业观点 · 高管声音 · 企业新闻 · 重要公告等</small><b>进入 →</b>
             </button>
           </div>
+        </section>
+
+        <section class="section-block" aria-labelledby="blueprint-title">
+          <div class="section-title-row">
+            <div><span class="section-index">MAP</span><h2 id="blueprint-title">功能结构蓝图与接入状态</h2></div>
+            <span class="micro-note">茅台数字化汇报 S3 · 点击分支进入对应页面</span>
+          </div>
+          <div class="blueprint-tree panel" aria-label="白酒资本市场分析工具模块树">
+            <div class="tree-root"><strong>白酒资本市场分析工具</strong><span>蓝图来源：茅台数字化汇报 S3 · 节点标注网页接入状态，DEMO 为虚拟示例数据</span></div>
+            <div class="tree-branches">
+              <div class="tree-branch">
+                <button class="tree-branch-head" type="button" data-nav="industry"><strong>产业分析</strong><b class="track-state is-full">已接入</b></button>
+                <ul class="tree-nodes">
+                  <li><div class="tree-node"><strong>宏观分析</strong><b class="track-state is-full">本地库</b></div></li>
+                  <li>
+                    <div class="tree-node"><strong>产业研判</strong><b class="track-state is-full">已接入</b></div>
+                    <ul class="tree-leaves">
+                      <li><span>长期趋势研判</span><b class="track-state is-full">框架复盘</b></li>
+                      <li><span>中短期数据跟踪</span><b class="track-state is-full">Excel+调研</b></li>
+                      <li><span>调研情况</span><b class="track-state is-full">周度表</b></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="tree-branch">
+                <button class="tree-branch-head" type="button" data-nav="compare"><strong>产业比较</strong><b class="track-state is-partial">部分接入</b></button>
+                <ul class="tree-nodes">
+                  <li>
+                    <div class="tree-node"><strong>国内外企业</strong><b class="track-state is-partial">A股16家</b></div>
+                    <ul class="tree-leaves">
+                      <li><span>产品结构</span><b class="track-state is-full">三价+系列酒</b></li>
+                      <li><span>品牌建设</span><b class="track-state demo-badge">DEMO 虚拟</b></li>
+                      <li><span>渠道情况</span><b class="track-state is-partial">周度调研</b></li>
+                      <li><span>财务状况等</span><b class="track-state is-full">本地财报库</b></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="tree-branch">
+                <button class="tree-branch-head" type="button" data-nav="market"><strong>资本市场</strong><b class="track-state is-partial">部分接入</b></button>
+                <ul class="tree-nodes">
+                  <li>
+                    <div class="tree-node"><strong>分析师观点跟踪</strong><b class="track-state is-partial">部分</b></div>
+                    <ul class="tree-leaves">
+                      <li><span>报告观点汇总</span><b class="track-state is-full">观点矩阵</b></li>
+                      <li><span>目标价预测</span><b class="track-state demo-badge">DEMO 虚拟</b></li>
+                      <li><span>盈利和收入预测</span><b class="track-state demo-badge">DEMO 虚拟</b></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="tree-node"><strong>市场交易分析</strong><b class="track-state is-partial">部分</b></div>
+                    <ul class="tree-leaves">
+                      <li><span>估值</span><b class="track-state is-full">08-18</b></li>
+                      <li><span>机构持仓情况</span><b class="track-state is-full">重仓06-30</b></li>
+                      <li><span>交易活跃度 / 大宗交易</span><b class="track-state demo-badge">DEMO 虚拟</b></li>
+                      <li><span>北上资金 / 质押和两融</span><b class="track-state demo-badge">DEMO 虚拟</b></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="tree-branch">
+                <button class="tree-branch-head" type="button" data-nav="sentiment"><strong>舆情跟踪</strong><b class="track-state is-partial">部分接入</b></button>
+                <ul class="tree-nodes">
+                  <li>
+                    <div class="tree-node"><strong>舆情信息</strong><b class="track-state is-partial">部分</b></div>
+                    <ul class="tree-leaves">
+                      <li><span>行业观点</span><b class="track-state is-full">报告+点评</b></li>
+                      <li><span>高管声音</span><b class="track-state demo-badge">DEMO 虚拟</b></li>
+                      <li><span>企业新闻</span><b class="track-state demo-badge">DEMO 虚拟</b></li>
+                      <li><span>重要公告等</span><b class="track-state is-full">巨潮 62 条</b></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <p class="blueprint-note">蓝图的产业链视角工具（覆盖26家上市企业、17000余家生产企业、22万余家渠道企业，企业画像7大类45项信息，支持线索挖掘、风险预警与政策跟踪）属于产业链展业范围，本网页未接入。</p>
         </section>
 
         <div class="hero-grid">
@@ -206,21 +291,21 @@
                 <span class="signal-state is-partial">部分确认</span>
               </li>
             </ol>
-            <button class="secondary-button full" type="button" data-nav="data">进入核心数据跟踪</button>
+            <button class="secondary-button full" type="button" data-nav="industry">进入产业分析 · 中短期数据跟踪</button>
           </article>
         </div>
 
         <section class="section-block overview-kpi-section" aria-labelledby="overview-kpi-title">
           <div class="section-title-row">
             <div><span class="section-index">KPI</span><h2 id="overview-kpi-title">一屏核心指标</h2></div>
-            <span class="micro-note">价格截至08-15 · 产量来自04-22报告</span>
+            <span class="micro-note" id="overview-kpi-note">价格截至08-15 · 产量来自04-22报告</span>
           </div>
           <div class="overview-kpis">
-            <button type="button" data-nav="data"><span>飞天原箱批价</span><strong>1,710元</strong><small>近4周 +3.6% · 3年分位25%</small><b>Excel 08-15</b></button>
-            <button type="button" data-nav="data"><span>普五批价</span><strong>770元</strong><small>近4周 +5.5% · 较出厂价倒挂249元</small><b>Excel 08-15</b></button>
-            <button type="button" data-nav="data"><span>国窖1573批价</span><strong>825元</strong><small>近4周持平 · 较出厂价倒挂125元</small><b>Excel 08-15</b></button>
-            <button type="button" data-nav="data"><span>飞天散瓶批价</span><strong>1,695元</strong><small>原箱/散瓶价差15元</small><b>Excel 08-15</b></button>
-            <button type="button" data-nav="chain"><span>2025白酒产量</span><strong>354.9万千升</strong><small>跨期统计口径有变化，需谨慎比较</small><b>报告 p10</b></button>
+            <button type="button" data-nav="industry"><span>飞天原箱批价</span><strong>1,710元</strong><small>近4周 +3.6% · 3年分位25%</small><b>Excel 08-15</b></button>
+            <button type="button" data-nav="industry"><span>普五批价</span><strong>770元</strong><small>近4周 +5.5% · 较出厂价倒挂249元</small><b>Excel 08-15</b></button>
+            <button type="button" data-nav="industry"><span>国窖1573批价</span><strong>825元</strong><small>近4周持平 · 较出厂价倒挂125元</small><b>Excel 08-15</b></button>
+            <button type="button" data-nav="industry"><span>飞天散瓶批价</span><strong>1,695元</strong><small>原箱/散瓶价差15元</small><b>Excel 08-15</b></button>
+            <button type="button" data-nav="industry"><span>2025白酒产量</span><strong>354.9万千升</strong><small>跨期统计口径有变化，需谨慎比较</small><b>报告 p10</b></button>
           </div>
         </section>
 
@@ -230,19 +315,19 @@
             <span class="micro-note">按价格、渠道、观点三个证据层组织</span>
           </div>
           <div class="change-grid">
-            <button class="change-card" type="button" data-nav="data">
+            <button class="change-card" type="button" data-nav="industry">
               <span class="change-type">PRICE / 价格</span>
               <strong>茅台与普五4周改善</strong>
               <p>飞天原箱约+3.6%，普五约+5.5%，国窖1573持平；普五、国窖仍倒挂。</p>
               <span class="card-foot"><i class="empty-line"></i> Excel · 2026-08-15 <b>→</b></span>
             </button>
-            <button class="change-card" type="button" data-nav="data">
+            <button class="change-card" type="button" data-nav="industry">
               <span class="change-type">CHANNEL / 渠道</span>
               <strong>库存与回款明显分化</strong>
               <p>飞天库存不足2周；五粮液约1个月；国窖2个月+；部分区域回款仅约40%-60%。</p>
               <span class="card-foot"><i class="empty-line"></i> 渠道调研 · 08-03至08-09 <b>→</b></span>
             </button>
-            <button class="change-card" type="button" data-nav="opinions">
+            <button class="change-card" type="button" data-nav="market">
               <span class="change-type">VIEW / 观点</span>
               <strong>“磨底”与“右侧拐点”并存</strong>
               <p>4月深度报告判断磨底；8月周度点评判断右侧拐点已现，价格数据仅部分验证。</p>
@@ -260,7 +345,7 @@
             <div class="status-row status-header" role="row">
               <span role="columnheader">研究维度</span><span role="columnheader">当前状态</span><span role="columnheader">较上期</span><span role="columnheader">历史分位</span><span role="columnheader">新鲜度</span><span role="columnheader">置信度</span><span role="columnheader">下一验证</span>
             </div>
-            <button class="status-row" type="button" role="row" data-dimension="宏观与消费场景"><span>宏观与消费场景</span><span class="dash">总量平稳、价格偏弱</span><span>GDP5.0% / CPI1.0%</span><span>—</span><span>本地库 · 03-31/04-30</span><span>中</span><span>社零 / 宴席 / 商务场景（DEMO待替换）</span></button>
+            <button class="status-row" type="button" role="row" data-dimension="宏观与消费场景"><span>宏观与消费场景</span><span class="dash">总量平稳、价格偏弱</span><span>GDP4.7% / CPI0.5%</span><span>—</span><span>本地库 · 06-30/07-31</span><span>中</span><span>社零 / 宴席 / 商务场景（部分序列待接入）</span></button>
             <button class="status-row" type="button" role="row" data-dimension="终端动销"><span>终端动销</span><span class="dash">分化</span><span>边际改善</span><span>—</span><span>08-09调研</span><span>低</span><span>多区域持续性</span></button>
             <button class="status-row" type="button" role="row" data-dimension="渠道库存"><span>渠道库存</span><span class="dash">承压/分化</span><span>去库不一</span><span>—</span><span>08-09调研</span><span>低</span><span>库存月数持续下降</span></button>
             <button class="status-row" type="button" role="row" data-dimension="渠道现金流与回款"><span>渠道现金流与回款</span><span class="dash">分化</span><span>40%-90%</span><span>—</span><span>08-09调研</span><span>低</span><span>主动加杠杆补库</span></button>
@@ -273,7 +358,7 @@
         <section class="section-block home-chain-section" aria-labelledby="home-chain-title">
           <div class="section-title-row">
             <div><span class="section-index">03</span><h2 id="home-chain-title">白酒行业传导链</h2></div>
-            <button class="text-button" type="button" data-nav="chain">打开完整因果图</button>
+            <button class="text-button" type="button" data-nav="industry">打开完整因果图</button>
           </div>
           <div class="home-chain-row" aria-label="可点击的产业传导链">
             <button type="button" data-node="macro"><span>01</span><strong>宏观与场景</strong><small>需求从哪里来</small></button><i aria-hidden="true">→</i>
@@ -285,33 +370,241 @@
           </div>
         </section>
 
+        <section class="section-block" aria-labelledby="events-title">
+          <div class="section-title-row">
+            <div><span class="section-index">04</span><h2 id="events-title">大事记：股价核心驱动因素</h2></div>
+            <span class="micro-note">中报PPT（2026-09）+ 本地库 + 调研 · 事件按驱动因素分列</span>
+          </div>
+          <div class="review-toolbar events-toolbar">
+            <div class="segmented" role="tablist" aria-label="大事记范围">
+              <button class="is-active" type="button" role="tab" aria-selected="true" data-events-scope="industry">行业</button>
+              <button type="button" role="tab" aria-selected="false" data-events-scope="maotai">贵州茅台</button>
+              <button type="button" role="tab" aria-selected="false" data-events-scope="wuliangye">五粮液</button>
+              <button type="button" role="tab" aria-selected="false" data-events-scope="guojiao">泸州老窖</button>
+            </div>
+            <span class="micro-note">驱动因素分五类：报表 / 供需 / 价格 / 资金 / 改革框架</span>
+          </div>
+          <div class="review-chart-wrap panel" id="events-chart-wrap">
+            <div class="review-chart-head">
+              <span class="eyebrow" id="events-chart-title">中证白酒指数 · 日K · 大事记标注</span>
+              <div class="review-chart-range" role="group" aria-label="时间范围">
+                <button type="button" data-events-range="120">近6月</button>
+                <button class="is-active" type="button" data-events-range="250">近1年</button>
+                <button type="button" data-events-range="0">全部</button>
+              </div>
+            </div>
+            <div class="review-chart-canvas"><canvas id="events-chart" aria-label="股价复盘图：大事记按日期标记在行情上"></canvas></div>
+            <div class="review-chart-tip" id="events-chart-tip" hidden></div>
+            <div class="review-chart-legend">
+              <span><i style="background:#d62728"></i>阳线</span>
+              <span><i style="background:#2e7d32"></i>阴线</span>
+              <span><i style="background:#0d6c44"></i>事件·支撑</span>
+              <span><i style="background:#a8331f"></i>事件·压力</span>
+              <span><i style="background:#8b5e14"></i>事件·中性</span>
+              <span class="micro-note">点击图钉查看事件并定位到大事记条目</span>
+            </div>
+          </div>
+          <ol class="events-list" id="events-list"></ol>
+          <div class="events-panels">
+            <article class="panel events-sub-panel" aria-labelledby="events-fin-title">
+              <div class="panel-topline">
+                <span class="eyebrow" id="events-fin-title">收入利润复盘</span>
+                <span class="status-tag" id="events-fin-tag">行业 · 中报PPT</span>
+              </div>
+              <div class="events-fin-cards" id="events-fin-cards"></div>
+              <p class="events-panel-note" id="events-fin-note"></p>
+              <div class="events-chart-canvas"><canvas id="events-fin-chart" aria-label="收入利润复盘图"></canvas></div>
+              <div class="review-chart-legend" id="events-fin-legend"></div>
+            </article>
+            <article class="panel events-sub-panel" aria-labelledby="events-supply-title">
+              <div class="panel-topline">
+                <span class="eyebrow" id="events-supply-title">供需需求</span>
+                <span class="status-tag" id="events-supply-tag">行业 · 中报PPT拟合</span>
+              </div>
+              <p class="events-panel-note" id="events-supply-summary"></p>
+              <div class="events-chart-canvas" id="events-supply-chart-wrap"><canvas id="events-supply-chart" aria-label="供需需求拟合图：行业动销与收入增速"></canvas></div>
+              <div class="review-chart-legend" id="events-supply-legend"></div>
+              <div class="events-metrics" id="events-supply-metrics"></div>
+              <div class="events-stages" id="events-supply-stages"></div>
+            </article>
+          </div>
+          <p class="blueprint-note">大事记为客观事件与报告观点的时点记录，与下方「复盘历史」的研究判断验证分开管理：前者回答股价由什么驱动，后者回答当时的判断对不对。国海预测类内容（27年价格上行、估值修复两阶段等）均为报告判断，不作为事实。</p>
+        </section>
+
+        <section class="section-block" aria-labelledby="review-title">
+          <div class="section-title-row">
+            <div><span class="section-index">05</span><h2 id="review-title">复盘历史：判断与验证</h2></div>
+            <span class="micro-note">已记录观点对照最新数据 · 行业与个股分列</span>
+          </div>
+          <div class="review-toolbar">
+            <div class="segmented" role="tablist" aria-label="复盘范围">
+              <button class="is-active" id="review-tab-industry" type="button" role="tab" aria-selected="true" aria-controls="review-list" data-review-scope="industry">行业复盘</button>
+              <button id="review-tab-company" type="button" role="tab" aria-selected="false" aria-controls="review-list" data-review-scope="company">个股复盘</button>
+            </div>
+            <div class="review-company-tabs" id="review-company-tabs" role="group" aria-label="选择公司" hidden>
+              <button class="is-active" type="button" data-review-company="maotai">贵州茅台</button>
+              <button type="button" data-review-company="wuliangye">五粮液</button>
+              <button type="button" data-review-company="guojiao">泸州老窖</button>
+            </div>
+            <button class="secondary-button" type="button" id="review-add-toggle" aria-expanded="false">记录新判断</button>
+          </div>
+          <div class="review-chart-wrap panel" id="review-chart-wrap">
+            <div class="review-chart-head">
+              <span class="eyebrow" id="review-chart-title">中证白酒指数 · 日K</span>
+              <div class="review-chart-range" role="group" aria-label="时间范围">
+                <button type="button" data-review-range="120">近6月</button>
+                <button class="is-active" type="button" data-review-range="250">近1年</button>
+                <button type="button" data-review-range="0">全部</button>
+              </div>
+            </div>
+            <div class="review-chart-canvas"><canvas id="review-chart" aria-label="复盘K线图：复盘判断按日期标记在行情上"></canvas></div>
+            <div class="review-chart-tip" id="review-chart-tip" hidden></div>
+            <div class="review-chart-legend">
+              <span><i style="background:#d62728"></i>阳线</span>
+              <span><i style="background:#2e7d32"></i>阴线</span>
+              <span><i style="background:#1c7c46"></i>判断·已兑现</span>
+              <span><i style="background:#1f77b4"></i>判断·部分兑现</span>
+              <span><i style="background:#b3372e"></i>判断·被证伪</span>
+              <span><i style="background:#b58a2a"></i>判断·验证中</span>
+              <span class="micro-note">点击图钉定位到对应复盘条目</span>
+            </div>
+          </div>
+          <form class="review-form panel" id="review-form" hidden>
+            <div class="llm-grid">
+              <label class="llm-field">
+                <span>复盘范围<b>*</b></span>
+                <select id="review-scope-select">
+                  <option value="industry">行业</option>
+                  <option value="maotai">贵州茅台</option>
+                  <option value="wuliangye">五粮液</option>
+                  <option value="guojiao">泸州老窖</option>
+                </select>
+              </label>
+              <label class="llm-field">
+                <span>判断类型</span>
+                <input id="review-type-input" type="text" placeholder="周期判断 / 渠道判断 / 资金行为…">
+              </label>
+              <label class="llm-field llm-field-wide">
+                <span>判断内容<b>*</b></span>
+                <input id="review-claim-input" type="text" placeholder="例如：中秋回款若低于70%，则右侧拐点判断推迟" required>
+              </label>
+              <label class="llm-field">
+                <span>当时依据</span>
+                <input id="review-basis-input" type="text" placeholder="支持这个判断的证据">
+              </label>
+              <label class="llm-field">
+                <span>验证指标<b>*</b></span>
+                <input id="review-verify-input" type="text" placeholder="用什么数据验证这个判断" required>
+              </label>
+            </div>
+            <div class="llm-actions">
+              <button class="primary-small" type="submit">保存到复盘历史</button>
+              <span class="micro-note">保存在本机浏览器，初始状态为「验证中」，可在列表中更新验证结果</span>
+            </div>
+          </form>
+          <ol class="review-list" id="review-list"></ol>
+          <p class="blueprint-note">复盘条目与来源日期一一对应，不做后置改写；「我的记录」保存在本机浏览器，与内置材料分列标注。</p>
+        </section>
+
         <div class="home-bottom-grid">
           <article class="panel compact-panel">
             <div class="panel-topline"><span class="eyebrow">观点版本</span><span class="status-tag demo">3个来源节点</span></div>
             <h2>“磨底”到“右侧拐点”</h2>
             <p>4月深度报告、8月周度点评与8月15日价格验证并列展示，不把单一观点当成事实。</p>
             <div class="view-summary"><span>方向变化</span><span>程度变化</span><span>时间变化</span><span>逻辑变化</span></div>
-            <button class="panel-link" type="button" data-nav="opinions">进入观点版本控制 <span>→</span></button>
+            <button class="panel-link" type="button" data-nav="market">进入资本市场 · 报告观点汇总 <span>→</span></button>
           </article>
           <article class="panel compact-panel">
             <div class="panel-topline"><span class="eyebrow">COMPANY RADAR</span><span class="status-tag demo">多来源已接入</span></div>
             <h2>用六个问题研究公司</h2>
             <div class="company-shortcuts">
-              <button type="button" data-company="贵州茅台" data-nav="company"><strong>贵州茅台</strong><span>批价1710 · 顺价 →</span></button>
-              <button type="button" data-company="五粮液" data-nav="company"><strong>五粮液</strong><span>批价770 · 倒挂249 →</span></button>
-              <button type="button" data-company="泸州老窖" data-nav="company"><strong>泸州老窖</strong><span>批价825 · 倒挂125 →</span></button>
+              <button type="button" data-company="贵州茅台" data-nav="compare"><strong>贵州茅台</strong><span>批价1710 · 顺价 →</span></button>
+              <button type="button" data-company="五粮液" data-nav="compare"><strong>五粮液</strong><span>批价770 · 倒挂249 →</span></button>
+              <button type="button" data-company="泸州老窖" data-nav="compare"><strong>泸州老窖</strong><span>批价825 · 倒挂125 →</span></button>
             </div>
           </article>
         </div>
+
+        <section class="section-block" aria-labelledby="source-ledger-title">
+          <div class="section-title-row">
+            <div><span class="section-index">SRC</span><h2 id="source-ledger-title">数据来源与口径</h2></div>
+            <span class="micro-note">同一指标按最新、可追溯口径优先</span>
+          </div>
+          <div class="source-ledger panel">
+            <div><span class="source-kind">价格数据库</span><strong>酒企批价表-260815.xlsx</strong><p>日度批价截至08-15；月度三价体系截至2026-08；系列酒周度截至08-02。作为当前价格主口径。</p></div>
+            <div><span class="source-kind">渠道调研 / 产品需求</span><strong>网页初步想法DOCX</strong><p>库存、动销、回款与渠道政策观察期08-03至08-09，未独立核验；同时定义高频前置与宏观/行业数据获取口径。</p></div>
+            <div><span class="source-kind">行业观点</span><strong>国海证券行业报告</strong><p>报告日04-22；磨底、淡季验证与2027再平衡均属报告判断或预测。</p></div>
+            <div><span class="source-kind">中报总结 / 大事记</span><strong>国海白酒中报总结及茅台观察PPT</strong><p>报告日2026-09；大事记、收入利润复盘与供需拟合（21Q1-26Q2）的主要来源；底部反转三点观察、26H2/27年推演与估值修复两阶段均为报告判断与预测。</p></div>
+            <div><span class="source-kind">历史框架档案</span><strong>2023白酒研究框架PPT</strong><p>华创2023-08；方法论复用（产业变迁、价格带、跟踪体系、选股逻辑），数值为2022-2023口径仅作对照。</p></div>
+            <div><span class="source-kind">跟踪体系蓝图</span><strong>茅台数字化建设汇报PPT</strong><p>定义产业分析、产业比较、资本市场、舆情跟踪四大模块；网页按蓝图组织页面并标注接入状态。</p></div>
+            <aside><strong>口径冲突提醒</strong><p>DOCX周度文字表与嵌入折线端点不一致；网页价格统一采用更新至08-15的Excel，系列酒采用08-02周度列，不静默混用。</p></aside>
+          </div>
+        </section>
       </section>
 
-      <section class="page" id="page-chain" data-page="chain" aria-labelledby="chain-title" hidden>
+      <section class="page" id="page-industry" data-page="industry" aria-labelledby="industry-title" hidden>
         <div class="page-heading">
           <div>
-            <span class="page-kicker"><span class="mono">02</span> / INDUSTRY ANALYSIS FRAMEWORK</span>
-            <h1 id="chain-title">行业分析框架：一条主链，三个反馈循环</h1>
-            <p>点击任一节点，理解它是什么、为什么重要、如何向上下游传导，以及下一步需要验证什么。</p>
+            <span class="page-kicker"><span class="mono">02</span> / INDUSTRY ANALYSIS</span>
+            <h1 id="industry-title">产业分析：宏观环境与产业研判</h1>
+            <p>宏观分析看需求环境；产业研判分三层——长期趋势定方向、中短期数据验状态、调研情况盯渠道。</p>
           </div>
+          <div class="heading-meta"><span class="status-tag demo">价格数据已接入</span><strong class="mono">2026-08-15</strong></div>
+        </div>
+
+        <nav class="page-subnav" aria-label="产业分析页内导航">
+          <button type="button" data-scroll-to="industry-macro"><span class="mono">A</span>宏观分析</button>
+          <button type="button" data-scroll-to="industry-longterm"><span class="mono">B</span>长期趋势研判</button>
+          <button type="button" data-scroll-to="industry-shortterm"><span class="mono">C</span>中短期数据跟踪</button>
+          <button type="button" data-scroll-to="industry-survey"><span class="mono">D</span>调研情况</button>
+        </nav>
+
+        <div class="module-head" id="industry-macro">
+          <div><span class="eyebrow">MODULE A · 宏观分析</span><h2>宏观分析：顺周期行业先看消费者信心</h2></div>
+          <span>本地库 06-30/07-31 · 社零/餐饮/地产/信心为统计局核验（部分序列）</span>
+        </div>
+
+        <div class="macro-block" aria-label="宏观指标数据">
+          <div class="macro-block-head">
+            <span class="source-map-label">宏观指标 · 本地数据库已接入</span>
+            <span class="micro-note">GDP/CPI/M2/PPI/固投为本地库真实值；社零/餐饮收入/地产/消费者信心为统计局已核验值（部分序列，待接入完整月度序列）</span>
+          </div>
+          <div class="macro-grid" id="macro-grid"></div>
+        </div>
+        <div class="source-map panel" aria-label="宏观与行业数据的官方获取口径">
+          <div class="consumption-head"><strong>宏观与行业数据去哪查：官方获取口径</strong><span>来源：网页初步想法DOCX 第一/二部分 · 宏观数值已接本地库，行业数值待接入</span></div>
+          <span class="source-map-label">宏观指标 · 顺周期行业先看消费者信心相关数据</span>
+          <table class="band-table">
+            <thead><tr><th scope="col">指标</th><th scope="col">发布机构</th><th scope="col">官网栏目 / 入口</th><th scope="col">频率</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">GDP</th><td>国家统计局</td><td>stats.gov.cn → 数据查询 → 国民经济核算 → 国内生产总值</td><td>季度</td></tr>
+              <tr><th scope="row">CPI</th><td>国家统计局</td><td>stats.gov.cn → 数据查询 → 价格指数 → 居民消费价格指数</td><td>月度</td></tr>
+              <tr><th scope="row">M2</th><td>中国人民银行</td><td>pbc.gov.cn → 调查统计 → 统计数据 → 货币供应量</td><td>月度</td></tr>
+              <tr><th scope="row">社零总额</th><td>国家统计局</td><td>stats.gov.cn → 数据查询 → 贸易和外经 → 社会消费品零售总额</td><td>月度</td></tr>
+              <tr><th scope="row">PPI</th><td>国家统计局</td><td>stats.gov.cn → 数据查询 → 价格指数 → 工业生产者出厂价格指数</td><td>月度</td></tr>
+              <tr><th scope="row">人口结构</th><td>国家统计局</td><td>stats.gov.cn → 数据查询 → 人口 → 人口数及构成（七普数据在 tjsj/pcsj）</td><td>年度</td></tr>
+              <tr><th scope="row">城镇化率</th><td>国家统计局</td><td>stats.gov.cn → 数据查询 → 人口 → 城镇/乡村人口（住建部亦有常住人口口径）</td><td>年度</td></tr>
+              <tr><th scope="row">人均收入</th><td>国家统计局</td><td>stats.gov.cn → 数据查询 → 人民生活 → 居民人均可支配收入</td><td>季度/年度</td></tr>
+              <tr><th scope="row">地产</th><td>国家统计局</td><td>stats.gov.cn → 数据查询 → 固定资产投资 → 房地产开发投资、商品房销售面积/销售额</td><td>月度</td></tr>
+            </tbody>
+          </table>
+          <span class="source-map-label">行业数据 · 规模 / 产量 / 销量 / 人均饮酒量 / 吨价</span>
+          <table class="band-table">
+            <thead><tr><th scope="col">关注项</th><th scope="col">常用指标 / 口径</th><th scope="col">主要获取来源</th><th scope="col">频率</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">规模</th><td>规上白酒企业销售收入、利润总额、规上企业数量</td><td>中国酒业协会年会/年度报告、协会×机构中期研究报告、国家统计局工企财务数据</td><td>年/半年</td></tr>
+              <tr><th scope="row">产量</th><td>白酒（折65度，商品量），万千升</td><td>国家统计局月度工业生产数据、工信部酿酒行业运行情况</td><td>月/年</td></tr>
+              <tr><th scope="row">销量</th><td>无官方披露，采用CR6销量加和计算</td><td>公司年报 / Wind</td><td>年</td></tr>
+              <tr><th scope="row">人均饮酒量</th><td>人均白酒消费量 ≈ 表观消费量 ÷ 常住人口</td><td>产量 / 协会消费估算 + 统计局人口</td><td>年</td></tr>
+              <tr><th scope="row">吨价</th><td>吨价 = 销售收入 ÷ 销量；行业可用收入 ÷ 产量近似</td><td>协会收入数据 ÷ 统计局产量；公司年报</td><td>年/半年</td></tr>
+            </tbody>
+          </table>
+          <p class="band-note">待补充模块：各价格带规模 / 量价 / 格局，以及安徽、江苏、四川、山东、河南重点省市的规模 / 量价 / 格局——地级市GDP与人口取自政府官网，市场空间与竞争格局需渠道调研（暂可参考云酒头条或酒业家）。</p>
+        </div>
+
+        <div class="module-head" id="industry-longterm">
+          <div><span class="eyebrow">MODULE B · 产业研判</span><h2>长期趋势研判：一条主链，三个反馈循环</h2></div>
+          <span>2023框架PPT历史档案 · 国海报告04-22 · 方法论复用</span>
         </div>
 
         <div class="scenario-bar">
@@ -362,9 +655,24 @@
           <button class="is-active" type="button" data-scenario="repair"><span class="loop-code">LOOP 03</span><strong>修复循环</strong><p>供给收缩与去库先修复现金流，再观察主动补库、批价与渠道利润。</p></button>
         </div>
 
+        <section class="section-block" aria-labelledby="stage-signal-title">
+          <div class="section-title-row">
+            <div><span class="section-index">SIG</span><h2 id="stage-signal-title">当前行业阶段信号：由筑底到回升的节奏推演</h2></div>
+            <span class="micro-note">中报PPT S12 · 国海判断与预测 · 当下关注核心指标</span>
+          </div>
+          <div class="stage-timeline panel" id="stage-timeline" aria-label="行业见底修复节奏推演：四行要素 × 四个阶段"></div>
+          <div class="watch-panel">
+            <div class="watch-panel-head">
+              <strong id="watch-title">当下关注的核心指标</strong>
+              <span class="micro-note" id="watch-note"></span>
+            </div>
+            <div class="watch-grid" id="watch-grid"></div>
+          </div>
+        </section>
+
         <section class="section-block" aria-labelledby="industry-evidence-title">
           <div class="section-title-row">
-            <div><span class="section-index">DATA</span><h2 id="industry-evidence-title">行业结构证据</h2></div>
+            <div><span class="section-index">B1</span><h2 id="industry-evidence-title">行业结构证据</h2></div>
             <span class="micro-note">历史数据与预测严格分开</span>
           </div>
           <div class="industry-evidence-grid">
@@ -386,9 +694,47 @@
           </div>
         </section>
 
+        <section class="section-block" aria-labelledby="production-scene-title">
+          <div class="section-title-row">
+            <div><span class="section-index">B2</span><h2 id="production-scene-title">白酒行业产量与消费场景结构</h2></div>
+            <span class="micro-note">产量为国海报告口径 · 场景结构为华创2024测算 · 年度增速为食饮拟合表</span>
+          </div>
+          <div class="industry-evidence-grid" id="production-cards"></div>
+          <p class="blueprint-note" id="production-note"></p>
+          <div class="scene-grid">
+            <article class="panel">
+              <div class="panel-topline"><span class="eyebrow">规上酒企收入增速 vs 动销增速（年度）</span><span class="status-tag" id="annual-source-tag">食饮拟合表</span></div>
+              <div class="events-chart-canvas"><canvas id="annual-supply-chart" aria-label="年度收入增速与动销增速"></canvas></div>
+              <div class="review-chart-legend">
+                <span><i style="background:#1f77b4"></i>规上酒企收入增速</span>
+                <span><i style="background:#d62728"></i>动销增速（调研拟合）</span>
+                <span class="micro-note" id="annual-note"></span>
+              </div>
+            </article>
+            <article class="panel">
+              <div class="panel-topline"><span class="eyebrow">消费场景结构：2012年前 vs 当前</span><span class="status-tag">华创2024测算</span></div>
+              <div class="scene-bars" id="scene-bars"></div>
+              <ul class="scene-notes" id="scene-notes"></ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="section-block" aria-labelledby="shakeout-title">
+          <div class="section-title-row">
+            <div><span class="section-index">B3</span><h2 id="shakeout-title">渠道出清观察：烟酒店与餐饮店</h2></div>
+            <span class="micro-note">媒体与协会口径未独立核验 · 与本地数据分列</span>
+          </div>
+          <div class="shakeout-grid" id="shakeout-grid"></div>
+          <div class="panel shakeout-essence">
+            <span class="eyebrow" id="shakeout-essence-title">出清本质</span>
+            <p id="shakeout-essence"></p>
+            <small class="micro-note" id="shakeout-essence-source"></small>
+          </div>
+        </section>
+
         <section class="section-block" aria-labelledby="era-title">
           <div class="section-title-row">
-            <div><span class="section-index">04</span><h2 id="era-title">产业变迁：四十年，决胜因素三次切换</h2></div>
+            <div><span class="section-index">B4</span><h2 id="era-title">产业变迁：四十年，决胜因素三次切换</h2></div>
             <span class="micro-note">2023-08华创框架PPT · 历史框架档案</span>
           </div>
           <div class="consumption-track panel" aria-label="白酒产业决胜因素变迁">
@@ -410,7 +756,7 @@
 
         <section class="section-block" aria-labelledby="cycle-title">
           <div class="section-title-row">
-            <div><span class="section-index">05</span><h2 id="cycle-title">周期复盘：两轮周期，同一条传导规律</h2></div>
+            <div><span class="section-index">B5</span><h2 id="cycle-title">周期复盘：两轮周期，同一条传导规律</h2></div>
             <span class="micro-note">2023框架PPT S12 / S17 · 历史复盘，非当前判断</span>
           </div>
           <div class="loop-cards static-cards">
@@ -426,7 +772,7 @@
 
         <section class="section-block" aria-labelledby="band-title">
           <div class="section-title-row">
-            <div><span class="section-index">06</span><h2 id="band-title">价格带格局：四档市场，能力要求不同</h2></div>
+            <div><span class="section-index">B6</span><h2 id="band-title">价格带格局：四档市场，能力要求不同</h2></div>
             <span class="micro-note">规模与格局为2022年历史估测口径</span>
           </div>
           <div class="band-table-wrap panel">
@@ -445,7 +791,7 @@
 
         <section class="section-block" aria-labelledby="stock-title">
           <div class="section-title-row">
-            <div><span class="section-index">07</span><h2 id="stock-title">选股逻辑与困境反转三阶段</h2></div>
+            <div><span class="section-index">B7</span><h2 id="stock-title">选股逻辑与困境反转三阶段</h2></div>
             <span class="micro-note">2023框架PPT S34 · 方法论档案，非投资建议</span>
           </div>
           <div class="panel formula-panel">
@@ -459,16 +805,10 @@
             <div class="static-card"><span class="loop-code">阶段三 · 名闻天下</span><strong>外部拉动销售</strong><p>渠道主动上门，费用推动变为外部拉动，涨价、升级、细分推进；业绩加速，预期不断上调。</p></div>
           </div>
         </section>
-      </section>
 
-      <section class="page" id="page-data" data-page="data" aria-labelledby="data-title" hidden>
-        <div class="page-heading">
-          <div>
-            <span class="page-kicker"><span class="mono">03</span> / CORE DATA MONITOR</span>
-            <h1 id="data-title">核心数据跟踪：从指标到验证阈值</h1>
-            <p>把价格、动销、库存、回款、补库与事件放到同一研究现场，并明确确认阈值与证伪条件。</p>
-          </div>
-          <div class="heading-meta"><span class="status-tag demo">价格数据已接入</span><strong class="mono">2026-08-15</strong></div>
+        <div class="module-head" id="industry-shortterm">
+          <div><span class="eyebrow">MODULE C · 白酒批价</span><h2>中短期数据跟踪：从指标到验证阈值</h2></div>
+          <span>价格Excel 08-15 · 渠道调研08-09 · 确认阈值与证伪条件为研究规则</span>
         </div>
 
         <form class="filter-bar" id="data-filters">
@@ -550,7 +890,7 @@
 
         <section class="section-block" aria-labelledby="monitor-title">
           <div class="section-title-row">
-            <div><span class="section-index">01</span><h2 id="monitor-title">拐点监控仪表盘</h2></div>
+            <div><span class="section-index">C1</span><h2 id="monitor-title">拐点监控仪表盘</h2></div>
             <span class="micro-note">确认阈值与证伪条件均为研究规则，不代表当前已触发</span>
           </div>
           <div class="monitor-table" aria-label="拐点指标监控表">
@@ -565,7 +905,7 @@
 
         <section class="section-block" aria-labelledby="series-title">
           <div class="section-title-row">
-            <div><span class="section-index">02</span><h2 id="series-title">系列酒与次高端批价全景</h2></div>
+            <div><span class="section-index">C2</span><h2 id="series-title">系列酒与次高端批价全景</h2></div>
             <span class="micro-note">Excel周度表 · 截至08-02（系列酒列08-15周未更新）</span>
           </div>
           <div class="series-grid">
@@ -622,7 +962,7 @@
 
         <section class="section-block" aria-labelledby="tracking-title">
           <div class="section-title-row">
-            <div><span class="section-index">03</span><h2 id="tracking-title">指标跟踪体系：长期定方向，中期验报表，短期盯渠道</h2></div>
+            <div><span class="section-index">C3</span><h2 id="tracking-title">指标跟踪体系：长期定方向，中期验报表，短期盯渠道</h2></div>
             <span class="micro-note">2023框架PPT S33 · 已标注网页接入状态</span>
           </div>
           <div class="tracking-grid">
@@ -659,138 +999,11 @@
             <strong>渠道调研的四类偏差</strong>
             <p>口径误差、表述性误差、真实性误差、理解性误差。听其言、观其行，换位思考、逻辑推演——本页所有调研数据标注“未独立核验”即源于此。</p>
           </div>
-          <div class="macro-block" aria-label="宏观指标数据">
-            <div class="macro-block-head">
-              <span class="source-map-label">宏观指标 · 本地数据库已接入</span>
-              <span class="micro-note">GDP/CPI/M2/PPI/固投为本地库真实值；社零、地产为 DEMO 模拟，待官方数据替换</span>
-            </div>
-            <div class="macro-grid" id="macro-grid"></div>
-          </div>
-          <div class="source-map panel" aria-label="宏观与行业数据的官方获取口径">
-            <div class="consumption-head"><strong>宏观与行业数据去哪查：官方获取口径</strong><span>来源：网页初步想法DOCX 第一/二部分 · 宏观数值已接本地库，行业数值待接入</span></div>
-            <span class="source-map-label">宏观指标 · 顺周期行业先看消费者信心相关数据</span>
-            <table class="band-table">
-              <thead><tr><th scope="col">指标</th><th scope="col">发布机构</th><th scope="col">官网栏目 / 入口</th><th scope="col">频率</th></tr></thead>
-              <tbody>
-                <tr><th scope="row">GDP</th><td>国家统计局</td><td>stats.gov.cn → 数据查询 → 国民经济核算 → 国内生产总值</td><td>季度</td></tr>
-                <tr><th scope="row">CPI</th><td>国家统计局</td><td>stats.gov.cn → 数据查询 → 价格指数 → 居民消费价格指数</td><td>月度</td></tr>
-                <tr><th scope="row">M2</th><td>中国人民银行</td><td>pbc.gov.cn → 调查统计 → 统计数据 → 货币供应量</td><td>月度</td></tr>
-                <tr><th scope="row">社零总额</th><td>国家统计局</td><td>stats.gov.cn → 数据查询 → 贸易和外经 → 社会消费品零售总额</td><td>月度</td></tr>
-                <tr><th scope="row">PPI</th><td>国家统计局</td><td>stats.gov.cn → 数据查询 → 价格指数 → 工业生产者出厂价格指数</td><td>月度</td></tr>
-                <tr><th scope="row">人口结构</th><td>国家统计局</td><td>stats.gov.cn → 数据查询 → 人口 → 人口数及构成（七普数据在 tjsj/pcsj）</td><td>年度</td></tr>
-                <tr><th scope="row">城镇化率</th><td>国家统计局</td><td>stats.gov.cn → 数据查询 → 人口 → 城镇/乡村人口（住建部亦有常住人口口径）</td><td>年度</td></tr>
-                <tr><th scope="row">人均收入</th><td>国家统计局</td><td>stats.gov.cn → 数据查询 → 人民生活 → 居民人均可支配收入</td><td>季度/年度</td></tr>
-                <tr><th scope="row">地产</th><td>国家统计局</td><td>stats.gov.cn → 数据查询 → 固定资产投资 → 房地产开发投资、商品房销售面积/销售额</td><td>月度</td></tr>
-              </tbody>
-            </table>
-            <span class="source-map-label">行业数据 · 规模 / 产量 / 销量 / 人均饮酒量 / 吨价</span>
-            <table class="band-table">
-              <thead><tr><th scope="col">关注项</th><th scope="col">常用指标 / 口径</th><th scope="col">主要获取来源</th><th scope="col">频率</th></tr></thead>
-              <tbody>
-                <tr><th scope="row">规模</th><td>规上白酒企业销售收入、利润总额、规上企业数量</td><td>中国酒业协会年会/年度报告、协会×机构中期研究报告、国家统计局工企财务数据</td><td>年/半年</td></tr>
-                <tr><th scope="row">产量</th><td>白酒（折65度，商品量），万千升</td><td>国家统计局月度工业生产数据、工信部酿酒行业运行情况</td><td>月/年</td></tr>
-                <tr><th scope="row">销量</th><td>无官方披露，采用CR6销量加和计算</td><td>公司年报 / Wind</td><td>年</td></tr>
-                <tr><th scope="row">人均饮酒量</th><td>人均白酒消费量 ≈ 表观消费量 ÷ 常住人口</td><td>产量 / 协会消费估算 + 统计局人口</td><td>年</td></tr>
-                <tr><th scope="row">吨价</th><td>吨价 = 销售收入 ÷ 销量；行业可用收入 ÷ 产量近似</td><td>协会收入数据 ÷ 统计局产量；公司年报</td><td>年/半年</td></tr>
-              </tbody>
-            </table>
-            <p class="band-note">待补充模块：各价格带规模 / 量价 / 格局，以及安徽、江苏、四川、山东、河南重点省市的规模 / 量价 / 格局——地级市GDP与人口取自政府官网，市场空间与竞争格局需渠道调研（暂可参考云酒头条或酒业家）。</p>
-          </div>
-        </section>
-
-        <section class="section-block" aria-labelledby="blueprint-title">
-          <div class="section-title-row">
-            <div><span class="section-index">04</span><h2 id="blueprint-title">资本市场跟踪蓝图与网页覆盖</h2></div>
-            <span class="micro-note">茅台数字化汇报材料 · 树状结构已按网页设计系统重绘</span>
-          </div>
-          <div class="blueprint-tree panel" aria-label="白酒资本市场分析工具模块树">
-            <div class="tree-root"><strong>白酒资本市场分析工具</strong><span>蓝图来源：茅台数字化汇报 S3 · 节点标注网页接入状态</span></div>
-            <div class="tree-branches">
-              <div class="tree-branch">
-                <div class="tree-branch-head"><strong>产业分析</strong><b class="track-state is-full">已接入</b></div>
-                <ul class="tree-nodes">
-                  <li><div class="tree-node"><strong>宏观分析</strong><b class="track-state is-full">本地库</b></div></li>
-                  <li>
-                    <div class="tree-node"><strong>产业研判</strong><b class="track-state is-full">已接入</b></div>
-                    <ul class="tree-leaves">
-                      <li><span>长期趋势研判</span><b class="track-state is-full">框架复盘</b></li>
-                      <li><span>中短期数据跟踪</span><b class="track-state is-full">Excel+调研</b></li>
-                      <li><span>调研情况</span><b class="track-state is-full">周度表</b></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-              <div class="tree-branch">
-                <div class="tree-branch-head"><strong>产业比较</strong><b class="track-state is-partial">部分接入</b></div>
-                <ul class="tree-nodes">
-                  <li>
-                    <div class="tree-node"><strong>国内外企业</strong><b class="track-state is-partial">A股16家</b></div>
-                    <ul class="tree-leaves">
-                      <li><span>产品结构</span><b class="track-state is-partial">系列酒价格</b></li>
-                      <li><span>品牌建设</span><b class="track-state">待接入</b></li>
-                      <li><span>渠道情况</span><b class="track-state is-partial">周度调研</b></li>
-                      <li><span>财务状况等</span><b class="track-state is-full">本地财报库</b></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-              <div class="tree-branch">
-                <div class="tree-branch-head"><strong>资本市场</strong><b class="track-state is-partial">部分接入</b></div>
-                <ul class="tree-nodes">
-                  <li>
-                    <div class="tree-node"><strong>分析师观点跟踪</strong><b class="track-state is-partial">部分</b></div>
-                    <ul class="tree-leaves">
-                      <li><span>报告观点汇总</span><b class="track-state is-full">观点页</b></li>
-                      <li><span>目标价预测</span><b class="track-state">待接入</b></li>
-                      <li><span>盈利和收入预测</span><b class="track-state">待接入</b></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div class="tree-node"><strong>市场交易分析</strong><b class="track-state is-partial">部分</b></div>
-                    <ul class="tree-leaves">
-                      <li><span>估值</span><b class="track-state is-full">08-18</b></li>
-                      <li><span>机构持仓情况</span><b class="track-state is-full">重仓06-30</b></li>
-                      <li><span>交易活跃度</span><b class="track-state">待接入</b></li>
-                      <li><span>大宗交易 / 北上资金 / 质押两融</span><b class="track-state">待接入</b></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-              <div class="tree-branch">
-                <div class="tree-branch-head"><strong>舆情跟踪</strong><b class="track-state is-partial">部分接入</b></div>
-                <ul class="tree-nodes">
-                  <li>
-                    <div class="tree-node"><strong>舆情信息</strong><b class="track-state is-partial">部分</b></div>
-                    <ul class="tree-leaves">
-                      <li><span>重要公告</span><b class="track-state is-full">巨潮 62 条</b></li>
-                      <li><span>行业观点 / 高管声音 / 企业新闻</span><b class="track-state">待接入</b></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <p class="blueprint-note">蓝图的产业链视角工具（覆盖26家上市企业、17000余家生产企业、22万余家渠道企业，企业画像7大类45项信息，支持线索挖掘、风险预警与政策跟踪）属于产业链展业范围，本网页未接入。</p>
-        </section>
-
-        <section class="section-block" aria-labelledby="source-ledger-title">
-          <div class="section-title-row">
-            <div><span class="section-index">SRC</span><h2 id="source-ledger-title">数据来源与口径</h2></div>
-            <span class="micro-note">同一指标按最新、可追溯口径优先</span>
-          </div>
-          <div class="source-ledger panel">
-            <div><span class="source-kind">价格数据库</span><strong>酒企批价表-260815.xlsx</strong><p>日度批价截至08-15；月度三价体系截至2026-08；系列酒周度截至08-02。作为当前价格主口径。</p></div>
-            <div><span class="source-kind">渠道调研 / 产品需求</span><strong>网页初步想法DOCX</strong><p>库存、动销、回款与渠道政策观察期08-03至08-09，未独立核验；同时定义高频前置与宏观/行业数据获取口径。</p></div>
-            <div><span class="source-kind">行业观点</span><strong>国海证券行业报告</strong><p>报告日04-22；磨底、淡季验证与2027再平衡均属报告判断或预测。</p></div>
-            <div><span class="source-kind">历史框架档案</span><strong>2023白酒研究框架PPT</strong><p>华创2023-08；方法论复用（产业变迁、价格带、跟踪体系、选股逻辑），数值为2022-2023口径仅作对照。</p></div>
-            <div><span class="source-kind">跟踪体系蓝图</span><strong>茅台数字化建设汇报PPT</strong><p>定义资本市场五模块与产业链工具的完整跟踪范围；网页据此标注各模块接入状态。</p></div>
-            <aside><strong>口径冲突提醒</strong><p>DOCX周度文字表与嵌入折线端点不一致；网页价格统一采用更新至08-15的Excel，系列酒采用08-02周度列，不静默混用。</p></aside>
-          </div>
         </section>
 
         <section class="section-block" aria-labelledby="watchlist-title">
           <div class="section-title-row">
-            <div><span class="section-index">05</span><h2 id="watchlist-title">研究观察清单</h2></div>
+            <div><span class="section-index">C4</span><h2 id="watchlist-title">研究观察清单</h2></div>
             <span class="micro-note">勾选状态仅保存在本机浏览器</span>
           </div>
           <div class="watchlist-grid">
@@ -799,69 +1012,36 @@
             <article class="panel watch-card"><div><span class="mono">REPORTING</span><h3>财报期跟踪</h3></div><label><input type="checkbox" data-watch="q-contract"> 合同负债与回款质量</label><label><input type="checkbox" data-watch="q-cashflow"> 经营现金流与收入质量</label><label><input type="checkbox" data-watch="q-channel"> 经销商数量与渠道费用</label><label><input type="checkbox" data-watch="q-guidance"> 管理层策略与经营指引</label></article>
           </div>
         </section>
-      </section>
 
-      <section class="page" id="page-opinions" data-page="opinions" aria-labelledby="opinions-title" hidden>
-        <div class="page-heading">
-          <div>
-            <span class="page-kicker"><span class="mono">04</span> / EXPERT VIEW EVOLUTION</span>
-            <h1 id="opinions-title">专家观点演化：跟踪“改变了什么”</h1>
-            <p>把专家观点拆成可验证的原子命题，对比方向、程度、时间、逻辑、标的与置信度变化。</p>
-          </div>
-          <div class="heading-meta"><span class="status-tag demo">3个来源版本</span><strong class="mono">04-22 → 08-15</strong></div>
+        <div class="module-head" id="industry-survey">
+          <div><span class="eyebrow">MODULE D · 产业研判</span><h2>调研情况：渠道周度调研表</h2></div>
+          <span>DOCX周度调研 · 观察期08-03至08-09 · 未独立核验</span>
         </div>
 
-        <article class="panel opinion-hero">
-          <div class="panel-topline"><span class="eyebrow">BIGGEST VIEW CHANGE</span><span class="status-tag demo">04-22 → 08-09</span></div>
-          <div class="opinion-shift">
-            <div><span>国海深度报告</span><strong>磨底期</strong><small>报告判断 · 2026-04-22 · p8-p10</small></div>
-            <span class="shift-arrow">→</span>
-            <div><span>周度点评</span><strong>右侧拐点已现</strong><small>渠道调研观点 · 2026-08-09 · 未独立核验</small></div>
-          </div>
-          <div class="opinion-reason-grid">
-            <div><span>触发证据（点评口径）</span><strong>多地动销同比扭转、批价企稳、筹码接近出清</strong></div>
-            <div><span>反向证据（综合）</span><strong>库存与回款分化，普五、国窖仍倒挂</strong></div>
-            <div><span>后续验证</span><strong>主动补库、现金流改善、批价跨区域持续回升</strong></div>
-          </div>
-        </article>
-
-        <section class="section-block" aria-labelledby="matrix-title">
+        <section class="section-block" aria-labelledby="survey-title">
           <div class="section-title-row">
-            <div><span class="section-index">01</span><h2 id="matrix-title">行业共识与分歧矩阵</h2></div>
-            <span class="micro-note">报告观点、周度点评与价格事实分列</span>
+            <div><span class="section-index">D1</span><h2 id="survey-title">七家公司渠道调研对照</h2></div>
+            <span class="micro-note" id="survey-note">网页初步想法DOCX · 周度调研表</span>
           </div>
-          <div class="consensus-matrix" role="table" aria-label="观点与数据验证矩阵">
-            <div class="matrix-row matrix-head" role="row"><span>原子命题</span><span>04-22深度</span><span>08-09点评</span><span>08-15价格</span><span>综合状态</span></div>
-            <div class="matrix-row" role="row"><strong>行业是否见底</strong><button type="button" data-opinion-cell="行业见底 / 04-22深度">磨底期</button><button type="button" data-opinion-cell="行业见底 / 08-09点评">右侧拐点</button><button type="button" data-opinion-cell="行业见底 / 08-15价格">部分验证</button><span class="matrix-consensus">观点分歧</span></div>
-            <div class="matrix-row" role="row"><strong>主流批价走势</strong><button type="button" data-opinion-cell="批价 / 04-22深度">等待企稳</button><button type="button" data-opinion-cell="批价 / 08-09点评">企稳</button><button type="button" data-opinion-cell="批价 / 08-15价格">茅五改善/国平</button><span class="matrix-consensus">部分确认</span></div>
-            <div class="matrix-row" role="row"><strong>渠道库存</strong><button type="button" data-opinion-cell="库存 / 04-22深度">开始去化</button><button type="button" data-opinion-cell="库存 / 08-09调研">1月-4月+</button><button type="button" data-opinion-cell="库存 / 08-15价格">价格不能验证</button><span class="matrix-consensus">仍然分化</span></div>
-            <div class="matrix-row" role="row"><strong>经销商主动补库</strong><button type="button" data-opinion-cell="补库 / 04-22深度">未来条件</button><button type="button" data-opinion-cell="补库 / 08-09调研">未统一确认</button><button type="button" data-opinion-cell="补库 / 08-15价格">价格部分改善</button><span class="matrix-consensus">待确认</span></div>
+          <div class="company-compare-scroll" tabindex="0" aria-label="渠道调研对照表，可横向滑动">
+            <table class="band-table survey-table">
+              <thead><tr><th scope="col">公司</th><th scope="col">库存</th><th scope="col">动销</th><th scope="col">回款</th><th scope="col">渠道政策</th><th scope="col">周度价格（文字口径）</th><th scope="col">调研要点</th></tr></thead>
+              <tbody id="channel-research-tbody"></tbody>
+            </table>
           </div>
+          <p class="blueprint-note">调研数据来自 DOCX 周度表（观察期 2026-08-03 至 08-09），未经独立核验；其中周度价格为调研文字口径，与 Excel 批价主口径分列展示、不混用。调研存在口径、表述性、真实性、理解性四类偏差，使用时应交叉验证。</p>
+          <div class="seller-block" id="seller-survey-block" hidden></div>
         </section>
-
-        <div class="opinion-bottom-grid">
-          <article class="panel timeline-panel">
-            <div class="panel-topline"><span class="eyebrow">VIEW TIMELINE</span><span class="status-tag demo">3个节点</span></div>
-            <h2>行业判断版本时间线</h2>
-            <ol class="view-timeline"><li><time>04-22</time><strong>磨底期</strong><small>国海深度报告</small></li><li><time>08-09</time><strong>右侧拐点已现</strong><small>周度点评/未独核</small></li><li><time>08-15</time><strong>价格部分验证</strong><small>Excel批价数据</small></li></ol>
-          </article>
-          <article class="panel verification-panel">
-            <div class="panel-topline"><span class="eyebrow">CLAIM VERIFICATION</span><span class="mono muted">1 / 3 PARTIAL</span></div>
-            <h2>观点兑现跟踪</h2>
-            <div class="verification-legend"><span>已验证</span><span>部分验证</span><span>待验证</span><span>已证伪</span></div>
-            <p class="empty-copy">价格信号部分验证；现金流与主动补库仍待确认。观点页不建立无条件的“专家排行榜”。</p>
-          </article>
-        </div>
       </section>
 
-      <section class="page" id="page-company" data-page="company" aria-labelledby="company-title" hidden>
+      <section class="page" id="page-compare" data-page="compare" aria-labelledby="compare-title" hidden>
         <div class="page-heading company-heading">
           <div>
-            <span class="page-kicker"><span class="mono">05</span> / COMPANY COMPARISON</span>
-            <h1 id="company-title">公司对比，先统一口径，再看差异</h1>
-            <p>价格、渠道和财务数据按来源日期分列；先横向比较事实，再进入单公司六问，不把混合时点数据合成总分。</p>
+            <span class="page-kicker"><span class="mono">03</span> / INDUSTRY COMPARISON</span>
+            <h1 id="compare-title">产业比较：国内外企业，同一口径看差异</h1>
+            <p>产品结构、品牌建设、渠道情况与财务状况按来源日期分列；先横向比较事实，再进入单公司六问，不把混合时点数据合成总分。</p>
           </div>
-          <div class="heading-meta"><span class="status-tag demo">多来源已接入</span><strong class="mono">08-15 / 08-09 / 04-22</strong></div>
+          <div class="heading-meta"><span class="status-tag demo">多来源已接入</span><strong class="mono">08-15 / 08-09 / 06-30</strong></div>
         </div>
 
         <div class="company-view-toolbar">
@@ -874,7 +1054,7 @@
 
         <section class="company-view-panel" id="company-compare-view" role="tabpanel" aria-labelledby="company-view-compare-tab" data-company-view-panel="compare">
           <div class="section-title-row company-compare-heading">
-            <div><span class="section-index">01–03</span><h2>三家公司同口径对照</h2></div>
+            <div><span class="section-index">01</span><h2>三家公司同口径对照总表</h2></div>
             <span class="micro-note" id="company-compare-note">移动端可横向滑动查看</span>
           </div>
           <div class="company-compare-scroll" tabindex="0" aria-describedby="company-compare-note">
@@ -938,9 +1118,87 @@
             <p>价格、渠道与财务的截止日期不同；网页不把混合时点数据合成总分，并排除报告p20中年份口径冲突的分红率/利润增速字段。</p>
           </div>
 
+          <section class="section-block" aria-labelledby="global-compare-title">
+            <div class="section-title-row">
+              <div><span class="section-index">02</span><h2 id="global-compare-title">国内外企业对标：海外烈酒龙头</h2></div>
+              <span class="micro-note">DEMO 虚拟示例 · 待接入海外财报与行情</span>
+            </div>
+            <div class="panel is-demo-panel band-table-wrap">
+              <div class="panel-topline"><span class="eyebrow">GLOBAL PEERS</span><b class="track-state demo-badge">DEMO 模拟</b></div>
+              <table class="band-table">
+                <thead><tr><th scope="col">公司</th><th scope="col">市场</th><th scope="col">最新财年收入</th><th scope="col">收入同比</th><th scope="col">毛利率</th><th scope="col">PE</th><th scope="col">对标意义</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">帝亚吉欧</th><td>伦敦 / 纽约</td><td>约1,480亿元</td><td>-1.4%</td><td>约61%</td><td>约17倍</td><td>全球烈酒量价与库存周期参照</td></tr>
+                  <tr><th scope="row">保乐力加</th><td>巴黎</td><td>约870亿元</td><td>-3.0%</td><td>约60%</td><td>约15倍</td><td>高端烈酒去库存节奏参照</td></tr>
+                  <tr><th scope="row">人头马君度</th><td>巴黎</td><td>约190亿元</td><td>-18.2%</td><td>约68%</td><td>约14倍</td><td>干邑在华需求变化参照</td></tr>
+                  <tr><th scope="row">百富门</th><td>纽约</td><td>约300亿元</td><td>+0.5%</td><td>约59%</td><td>约20倍</td><td>美国威士忌渠道库存参照</td></tr>
+                </tbody>
+              </table>
+              <p class="blueprint-note">以上四行均为 DEMO 虚拟示例数据，仅演示对标表结构；人民币折算与财年口径未经核验，待接入海外财报与行情数据源后替换。国内 A 股 16 家上市酒企真实数据见下方「财务状况等」。</p>
+            </div>
+          </section>
+
+          <section class="section-block" aria-labelledby="product-structure-title">
+            <div class="section-title-row">
+              <div><span class="section-index">03</span><h2 id="product-structure-title">产品结构：核心单品与价格体系</h2></div>
+              <span class="micro-note">价格Excel 08-15 · 月度终端价2026-08</span>
+            </div>
+            <div class="company-compare-scroll" tabindex="0" aria-label="核心产品价格体系对比，可横向滑动">
+              <table class="band-table listed-table">
+                <thead><tr><th scope="col">公司</th><th scope="col">核心单品</th><th scope="col">出厂价</th><th scope="col">批价</th><th scope="col">终端价</th><th scope="col">价差状态</th><th scope="col">近4周批价</th></tr></thead>
+                <tbody id="product-structure-tbody"></tbody>
+              </table>
+            </div>
+            <div class="panel is-demo-panel band-table-wrap">
+              <div class="panel-topline"><span class="eyebrow">PRODUCT MIX</span><b class="track-state demo-badge">DEMO 模拟</b></div>
+              <table class="band-table">
+                <thead><tr><th scope="col">公司</th><th scope="col">高端（800元以上）收入占比</th><th scope="col">中高端（300-800元）</th><th scope="col">大众（300元以下）</th><th scope="col">系列酒收入增速</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">贵州茅台</th><td>约88%</td><td>约9%</td><td>约3%</td><td>+8.5%</td></tr>
+                  <tr><th scope="row">五粮液</th><td>约76%</td><td>约17%</td><td>约7%</td><td>+4.2%</td></tr>
+                  <tr><th scope="row">泸州老窖</th><td>约71%</td><td>约22%</td><td>约7%</td><td>+6.8%</td></tr>
+                </tbody>
+              </table>
+              <p class="blueprint-note">产品收入结构拆分为 DEMO 虚拟示例数据，用于演示展示形态；待接入年报分产品披露口径后替换。系列酒梯队批价见「产业分析 · 中短期数据跟踪 · 系列酒批价全景」。</p>
+            </div>
+          </section>
+
+          <section class="section-block" aria-labelledby="brand-title">
+            <div class="section-title-row">
+              <div><span class="section-index">04</span><h2 id="brand-title">品牌建设：品牌力与心智占位</h2></div>
+              <span class="micro-note">DEMO 虚拟示例 · 待接入品牌榜单与广宣监测</span>
+            </div>
+            <div class="panel is-demo-panel band-table-wrap">
+              <div class="panel-topline"><span class="eyebrow">BRAND EQUITY</span><b class="track-state demo-badge">DEMO 模拟</b></div>
+              <table class="band-table">
+                <thead><tr><th scope="col">公司</th><th scope="col">品牌力指数（虚拟）</th><th scope="col">高端心智占位</th><th scope="col">广宣费用率</th><th scope="col">数字化触点</th><th scope="col">建设重点</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">贵州茅台</th><td>96 / 100</td><td>极强 · 1500元以上独占</td><td>约2.8%</td><td>i茅台直营 + 巽风</td><td>稳价盘、文化IP</td></tr>
+                  <tr><th scope="row">五粮液</th><td>88 / 100</td><td>强 · 千元价格带龙头</td><td>约5.6%</td><td>专卖店 + 团购</td><td>重锚千元价格带</td></tr>
+                  <tr><th scope="row">泸州老窖</th><td>82 / 100</td><td>较强 · 国窖1573双品牌</td><td>约7.9%</td><td>国窖荟 + 七星盛宴</td><td>低度化与年轻场景</td></tr>
+                </tbody>
+              </table>
+              <p class="blueprint-note">品牌力指数、心智占位与广宣费用率均为 DEMO 虚拟示例；待接入第三方品牌榜单（BrandZ / Brand Finance）、广告监测与公司披露费用明细后替换。定性表述参考国海报告p12-p13与2023框架PPT，不直接构成量化结论。</p>
+            </div>
+          </section>
+
+          <section class="section-block" aria-labelledby="channel-compare-title">
+            <div class="section-title-row">
+              <div><span class="section-index">05</span><h2 id="channel-compare-title">渠道情况：库存、动销、回款与政策</h2></div>
+              <span class="micro-note">渠道调研 08-03至08-09 · 未独立核验</span>
+            </div>
+            <div class="company-compare-scroll" tabindex="0" aria-label="渠道情况对比，可横向滑动">
+              <table class="band-table survey-table">
+                <thead><tr><th scope="col">公司</th><th scope="col">库存</th><th scope="col">动销</th><th scope="col">回款</th><th scope="col">渠道政策</th><th scope="col">调研要点</th></tr></thead>
+                <tbody id="channel-compare-tbody"></tbody>
+              </table>
+            </div>
+            <p class="blueprint-note">渠道数据来自 DOCX 周度调研表（未独立核验）；区域收入结构为 DEMO 随机模拟（见对照总表「区域与消费场景」行），待年报分地区口径替换。七家公司完整调研见「产业分析 · 调研情况」。</p>
+          </section>
+
           <section class="section-block" aria-labelledby="listed-title">
             <div class="section-title-row">
-              <div><span class="section-index">04</span><h2 id="listed-title">上市酒企总览（A股 16 家）</h2></div>
+              <div><span class="section-index">06</span><h2 id="listed-title">财务状况等：上市酒企总览（A股 16 家）</h2></div>
               <span class="micro-note" id="listed-note">本地财报库 · 估值库 · 基金重仓</span>
             </div>
             <div class="company-compare-scroll" tabindex="0" aria-label="上市酒企总览表，可横向滑动">
@@ -951,21 +1209,7 @@
                 <tbody id="listed-tbody"></tbody>
               </table>
             </div>
-            <p class="blueprint-note">港股（珍酒李渡等）待接入；收入与利润为单季度口径，估值截至 2026-08-18，重仓为 2026-06-30 基金重仓口径。来源：本地库 ashare_stock_income_q / ashare_stock_value / fund_keystock。</p>
-          </section>
-
-          <section class="section-block" aria-labelledby="ann-title">
-            <div class="section-title-row">
-              <div><span class="section-index">05</span><h2 id="ann-title">近期公告与事件</h2></div>
-              <span class="micro-note" id="ann-note">巨潮资讯 · 近三个月</span>
-            </div>
-            <div class="ann-filter" id="ann-filter" role="group" aria-label="按公司筛选公告">
-              <button class="is-active" type="button" data-ann-filter="all">全部</button>
-              <button type="button" data-ann-filter="600519">贵州茅台</button>
-              <button type="button" data-ann-filter="000858">五粮液</button>
-              <button type="button" data-ann-filter="000568">泸州老窖</button>
-            </div>
-            <ol class="ann-list panel" id="ann-list"></ol>
+            <p class="blueprint-note">港股（珍酒李渡等）待接入；收入与利润为单季度口径，估值截至 2026-08-18，重仓为 2026-06-30 基金重仓口径。来源：本地库 ashare_stock_income_q / ashare_stock_value / fund_keystock。单公司季度财务三图见「单公司六问」视图。</p>
           </section>
         </section>
 
@@ -1035,16 +1279,530 @@
             </div>
             <div class="fin-chart-grid" id="fin-chart-grid"></div>
           </section>
+
+          <section class="section-block" aria-labelledby="maotai-split-title" id="maotai-split-section">
+            <div class="section-title-row">
+              <div><span class="section-index">08</span><h2 id="maotai-split-title">个股拆分：茅台独家</h2></div>
+              <span class="micro-note" id="maotai-split-note">茅台及可比公司经营状况梳理（2026-09）· 测算口径已标注</span>
+            </div>
+            <div class="events-fin-cards" id="maotai-split-kpis"></div>
+            <div class="split-tables" id="maotai-split-tables"></div>
+          </section>
+        </section>
+      </section>
+
+      <section class="page" id="page-market" data-page="market" aria-labelledby="market-title" hidden>
+        <div class="page-heading">
+          <div>
+            <span class="page-kicker"><span class="mono">04</span> / CAPITAL MARKET</span>
+            <h1 id="market-title">资本市场：观点跟踪与交易行为验证</h1>
+            <p>上半部分跟踪分析师观点、目标价与盈利预测；下半部分用估值、持仓与资金数据验证交易行为。</p>
+          </div>
+          <div class="heading-meta"><span class="status-tag demo">观点 / 估值 / 持仓已接入 · 六家</span><strong class="mono">04-22 → 09-08</strong></div>
+        </div>
+
+        <nav class="page-subnav" aria-label="资本市场页内导航">
+          <button type="button" data-scroll-to="market-analyst"><span class="mono">A</span>分析师观点跟踪</button>
+          <button type="button" data-scroll-to="market-target"><span class="mono">A2</span>目标价预测</button>
+          <button type="button" data-scroll-to="market-forecast"><span class="mono">A3</span>盈利和收入预测</button>
+          <button type="button" data-scroll-to="market-trading"><span class="mono">B</span>市场交易分析</button>
+          <button type="button" data-scroll-to="market-media"><span class="mono">C</span>媒体与信息源</button>
+        </nav>
+
+        <div class="module-head" id="market-analyst">
+          <div><span class="eyebrow">MODULE A · 分析师观点跟踪</span><h2>报告观点汇总：跟踪“改变了什么”</h2></div>
+          <span>3个来源版本 · 04-22 → 08-15</span>
+        </div>
+
+        <article class="panel opinion-hero">
+          <div class="panel-topline"><span class="eyebrow">BIGGEST VIEW CHANGE</span><span class="status-tag demo">04-22 → 08-09</span></div>
+          <div class="opinion-shift">
+            <div><span>国海深度报告</span><strong>磨底期</strong><small>报告判断 · 2026-04-22 · p8-p10</small></div>
+            <span class="shift-arrow">→</span>
+            <div><span>周度点评</span><strong>右侧拐点已现</strong><small>渠道调研观点 · 2026-08-09 · 未独立核验</small></div>
+          </div>
+          <div class="opinion-reason-grid">
+            <div><span>触发证据（点评口径）</span><strong>多地动销同比扭转、批价企稳、筹码接近出清</strong></div>
+            <div><span>反向证据（综合）</span><strong>库存与回款分化，普五、国窖仍倒挂</strong></div>
+            <div><span>后续验证</span><strong>主动补库、现金流改善、批价跨区域持续回升</strong></div>
+          </div>
+        </article>
+
+        <section class="section-block" aria-labelledby="matrix-title">
+          <div class="section-title-row">
+            <div><span class="section-index">A1</span><h2 id="matrix-title">行业共识与分歧矩阵</h2></div>
+            <span class="micro-note">报告观点、周度点评与价格事实分列</span>
+          </div>
+          <div class="consensus-matrix" role="table" aria-label="观点与数据验证矩阵">
+            <div class="matrix-row matrix-head" role="row"><span>原子命题</span><span>04-22深度</span><span>08-09点评</span><span>08-15价格</span><span>综合状态</span></div>
+            <div class="matrix-row" role="row"><strong>行业是否见底</strong><button type="button" data-opinion-cell="行业见底 / 04-22深度">磨底期</button><button type="button" data-opinion-cell="行业见底 / 08-09点评">右侧拐点</button><button type="button" data-opinion-cell="行业见底 / 08-15价格">部分验证</button><span class="matrix-consensus">观点分歧</span></div>
+            <div class="matrix-row" role="row"><strong>主流批价走势</strong><button type="button" data-opinion-cell="批价 / 04-22深度">等待企稳</button><button type="button" data-opinion-cell="批价 / 08-09点评">企稳</button><button type="button" data-opinion-cell="批价 / 08-15价格">茅五改善/国平</button><span class="matrix-consensus">部分确认</span></div>
+            <div class="matrix-row" role="row"><strong>渠道库存</strong><button type="button" data-opinion-cell="库存 / 04-22深度">开始去化</button><button type="button" data-opinion-cell="库存 / 08-09调研">1月-4月+</button><button type="button" data-opinion-cell="库存 / 08-15价格">价格不能验证</button><span class="matrix-consensus">仍然分化</span></div>
+            <div class="matrix-row" role="row"><strong>经销商主动补库</strong><button type="button" data-opinion-cell="补库 / 04-22深度">未来条件</button><button type="button" data-opinion-cell="补库 / 08-09调研">未统一确认</button><button type="button" data-opinion-cell="补库 / 08-15价格">价格部分改善</button><span class="matrix-consensus">待确认</span></div>
+          </div>
+          <div class="seller-block" id="seller-viewpoint-block" hidden></div>
+        </section>
+
+        <div class="opinion-bottom-grid">
+          <article class="panel timeline-panel">
+            <div class="panel-topline"><span class="eyebrow">VIEW TIMELINE</span><span class="status-tag demo">3个节点</span></div>
+            <h2>行业判断版本时间线</h2>
+            <ol class="view-timeline"><li><time>04-22</time><strong>磨底期</strong><small>国海深度报告</small></li><li><time>08-09</time><strong>右侧拐点已现</strong><small>周度点评/未独核</small></li><li><time>08-15</time><strong>价格部分验证</strong><small>Excel批价数据</small></li></ol>
+          </article>
+          <article class="panel verification-panel">
+            <div class="panel-topline"><span class="eyebrow">CLAIM VERIFICATION</span><span class="mono muted">1 / 3 PARTIAL</span></div>
+            <h2>观点兑现跟踪</h2>
+            <div class="verification-legend"><span>已验证</span><span>部分验证</span><span>待验证</span><span>已证伪</span></div>
+            <p class="empty-copy">价格信号部分验证；现金流与主动补库仍待确认。观点页不建立无条件的“专家排行榜”。</p>
+          </article>
+        </div>
+
+        <section class="section-block" aria-labelledby="target-title" id="market-target">
+          <div class="section-title-row">
+            <div><span class="section-index">A2</span><h2 id="target-title">目标价预测：机构评级与目标价</h2></div>
+            <span class="micro-note">DEMO 虚拟示例 · 待接入券商研报表</span>
+          </div>
+          <div class="panel is-demo-panel band-table-wrap">
+            <div class="panel-topline"><span class="eyebrow">PRICE TARGET</span><b class="track-state demo-badge">DEMO 模拟</b></div>
+            <table class="band-table">
+              <thead><tr><th scope="col">机构（虚拟）</th><th scope="col">日期</th><th scope="col">公司</th><th scope="col">评级</th><th scope="col">目标价</th><th scope="col">较现价空间</th><th scope="col">核心逻辑</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">示例证券A</th><td>2026-08-10</td><td>贵州茅台</td><td>买入</td><td>1,980元</td><td>+32%</td><td>批价企稳 + 直营占比提升</td></tr>
+                <tr><th scope="row">示例证券B</th><td>2026-08-05</td><td>贵州茅台</td><td>增持</td><td>1,860元</td><td>+24%</td><td>系列酒放量对冲飞天增速放缓</td></tr>
+                <tr><th scope="row">示例证券A</th><td>2026-07-28</td><td>五粮液</td><td>买入</td><td>165元</td><td>+38%</td><td>旺季重锚千元价格带</td></tr>
+                <tr><th scope="row">示例证券C</th><td>2026-07-20</td><td>五粮液</td><td>中性</td><td>132元</td><td>+10%</td><td>倒挂修复需等待中秋验证</td></tr>
+                <tr><th scope="row">示例证券B</th><td>2026-08-01</td><td>泸州老窖</td><td>增持</td><td>165元</td><td>+30%</td><td>去库充分后弹性更大</td></tr>
+                <tr><th scope="row">示例证券D</th><td>2026-07-15</td><td>泸州老窖</td><td>中性</td><td>128元</td><td>+1%</td><td>回款分化压制估值修复</td></tr>
+              </tbody>
+            </table>
+            <p class="blueprint-note">机构名称、目标价与空间均为 DEMO 虚拟示例，仅演示表结构；待接入券商研报表（朝阳永续 / Wind 一致预期）后替换，并保留报告日期与评级口径。</p>
+          </div>
+          <div class="seller-block" id="seller-target-block" hidden></div>
+        </section>
+
+        <section class="section-block" aria-labelledby="forecast-title" id="market-forecast">
+          <div class="section-title-row">
+            <div><span class="section-index">A3</span><h2 id="forecast-title">盈利和收入预测：一致预期</h2></div>
+            <span class="micro-note">DEMO 虚拟示例 · 待接入一致预期数据</span>
+          </div>
+          <div class="panel is-demo-panel band-table-wrap">
+            <div class="panel-topline"><span class="eyebrow">CONSENSUS FORECAST</span><b class="track-state demo-badge">DEMO 模拟</b></div>
+            <table class="band-table">
+              <thead><tr><th scope="col">公司</th><th scope="col">2026E 收入</th><th scope="col">同比</th><th scope="col">2026E 归母净利</th><th scope="col">2027E 收入</th><th scope="col">2027E 归母净利</th><th scope="col">预测机构数</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">贵州茅台</th><td>1,820亿</td><td>+6.5%</td><td>905亿</td><td>1,945亿</td><td>972亿</td><td>38家</td></tr>
+                <tr><th scope="row">五粮液</th><td>892亿</td><td>+3.1%</td><td>318亿</td><td>935亿</td><td>338亿</td><td>26家</td></tr>
+                <tr><th scope="row">泸州老窖</th><td>345亿</td><td>+4.2%</td><td>148亿</td><td>368亿</td><td>161亿</td><td>19家</td></tr>
+              </tbody>
+            </table>
+            <p class="blueprint-note">预测值均为 DEMO 虚拟示例；待接入一致预期数据源后，需标注预测截至日期、机构样本数与口径（调整后 / 报表口径）。</p>
+          </div>
+          <div class="seller-block" id="seller-forecast-block" hidden></div>
+        </section>
+
+        <div class="module-head" id="market-trading">
+          <div><span class="eyebrow">MODULE B · 市场交易分析</span><h2>市场交易分析：估值、持仓与资金行为</h2></div>
+          <span>估值 08-18 · 基金重仓 06-30 · 覆盖毛五泸+汾洋古六家 · 其余维度为 DEMO 虚拟</span>
+        </div>
+
+        <section class="section-block" aria-labelledby="interim-title">
+          <div class="section-title-row">
+            <div><span class="section-index">B0</span><h2 id="interim-title">2026中报速览：CR6 收入与利润</h2></div>
+            <span class="micro-note" id="interim-source-note">中报PPT S4 · Wind</span>
+          </div>
+          <div class="company-compare-scroll" tabindex="0" aria-label="中报六家速览表，可横向滑动">
+            <table class="band-table" id="interim-table">
+              <thead id="interim-thead"></thead>
+              <tbody id="interim-tbody"></tbody>
+            </table>
+          </div>
+          <p class="blueprint-note" id="interim-note"></p>
+        </section>
+
+        <section class="section-block" aria-labelledby="valuation-title">
+          <div class="section-title-row">
+            <div><span class="section-index">B1</span><h2 id="valuation-title">估值：PE / PB / 股息率</h2></div>
+            <span class="micro-note" id="valuation-note">本地估值库 ashare_stock_value</span>
+          </div>
+          <div class="tracking-grid" id="valuation-grid"></div>
+          <p class="blueprint-note">估值为本地库最新真实值（日期见卡内与右上标注）；毛五泸卡内同时保留国海报告 04-17 时点口径作对照，两个时点不混合计算。</p>
+        </section>
+
+        <section class="section-block" aria-labelledby="holding-title">
+          <div class="section-title-row">
+            <div><span class="section-index">B2</span><h2 id="holding-title">机构持仓情况：基金重仓</h2></div>
+            <span class="micro-note" id="holding-note">本地库 fund_keystock · 基金重仓口径</span>
+          </div>
+          <div class="tracking-grid" id="fundholding-grid"></div>
+          <p class="blueprint-note">重仓口径只覆盖进入基金前十大的持仓，不等于全部机构持仓；08-09 周度点评称“26Q2 食品饮料持仓环比近乎腰斩、筹码接近出清极点”，本地重仓数据方向与该判断一致，可互为验证。</p>
+        </section>
+
+        <section class="section-block" aria-labelledby="gujing-title">
+          <div class="section-title-row">
+            <div><span class="section-index">B3</span><h2 id="gujing-title">公司经营跟踪：古井贡酒（渠道口径）</h2></div>
+            <span class="micro-note">古井贡酒数据库-20260831 · 未独立核验</span>
+          </div>
+          <div class="events-fin-cards" id="gujing-kpis"></div>
+          <div class="gujing-grid">
+            <article class="panel">
+              <div class="panel-topline"><span class="eyebrow" id="gujing-mix-title">产品销售占比</span></div>
+              <table class="band-table" id="gujing-mix-table"><thead><tr><th scope="col">产品</th><th scope="col">26年1-8月</th><th scope="col">25年同期</th></tr></thead><tbody id="gujing-mix-tbody"></tbody></table>
+            </article>
+            <article class="panel">
+              <div class="panel-topline"><span class="eyebrow" id="gujing-price-title">市场实际价格体系</span></div>
+              <table class="band-table" id="gujing-price-table"><thead id="gujing-price-thead"></thead><tbody id="gujing-price-tbody"></tbody></table>
+              <p class="blueprint-note" id="gujing-price-note"></p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section-block" aria-labelledby="trading-demo-title">
+          <div class="section-title-row">
+            <div><span class="section-index">B4</span><h2 id="trading-demo-title">交易活跃度 / 大宗交易 / 北上资金 / 质押两融</h2></div>
+            <span class="micro-note">DEMO 虚拟示例 · 待接入行情与资金数据源</span>
+          </div>
+          <div class="market-demo-grid">
+            <div class="panel is-demo-panel">
+              <div class="panel-topline"><span class="eyebrow">TRADING ACTIVITY</span><b class="track-state demo-badge">DEMO 模拟</b></div>
+              <table class="band-table">
+                <thead><tr><th scope="col">公司</th><th scope="col">近20日日均成交额</th><th scope="col">换手率</th><th scope="col">量能环比</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">贵州茅台</th><td>约48亿</td><td>0.31%</td><td>+12%</td></tr>
+                  <tr><th scope="row">五粮液</th><td>约32亿</td><td>0.78%</td><td>+21%</td></tr>
+                  <tr><th scope="row">泸州老窖</th><td>约15亿</td><td>0.92%</td><td>+9%</td></tr>
+                </tbody>
+              </table>
+              <p class="blueprint-note">交易活跃度为虚拟示例；待接入日度成交额与换手率序列。</p>
+            </div>
+            <div class="panel is-demo-panel">
+              <div class="panel-topline"><span class="eyebrow">BLOCK TRADE</span><b class="track-state demo-badge">DEMO 模拟</b></div>
+              <table class="band-table">
+                <thead><tr><th scope="col">日期</th><th scope="col">公司</th><th scope="col">折溢价</th><th scope="col">成交额</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">08-14</th><td>贵州茅台</td><td>-4.2%</td><td>2.1亿</td></tr>
+                  <tr><th scope="row">08-08</th><td>五粮液</td><td>-6.8%</td><td>0.9亿</td></tr>
+                  <tr><th scope="row">07-30</th><td>泸州老窖</td><td>-5.1%</td><td>0.6亿</td></tr>
+                </tbody>
+              </table>
+              <p class="blueprint-note">大宗交易为虚拟示例；待接入交易所大宗交易披露数据。</p>
+            </div>
+            <div class="panel is-demo-panel">
+              <div class="panel-topline"><span class="eyebrow">NORTHBOUND</span><b class="track-state demo-badge">DEMO 模拟</b></div>
+              <table class="band-table">
+                <thead><tr><th scope="col">公司</th><th scope="col">持股占流通股</th><th scope="col">近一月变动</th><th scope="col">持股市值</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">贵州茅台</th><td>6.8%</td><td>+0.2pct</td><td>约1,150亿</td></tr>
+                  <tr><th scope="row">五粮液</th><td>4.9%</td><td>-0.1pct</td><td>约225亿</td></tr>
+                  <tr><th scope="row">泸州老窖</th><td>3.6%</td><td>+0.1pct</td><td>约72亿</td></tr>
+                </tbody>
+              </table>
+              <p class="blueprint-note">北上资金为虚拟示例；待接入互联互通持股数据。</p>
+            </div>
+            <div class="panel is-demo-panel">
+              <div class="panel-topline"><span class="eyebrow">PLEDGE &amp; MARGIN</span><b class="track-state demo-badge">DEMO 模拟</b></div>
+              <table class="band-table">
+                <thead><tr><th scope="col">公司</th><th scope="col">控股股东质押率</th><th scope="col">融资余额</th><th scope="col">融资买入占比</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">贵州茅台</th><td>0.0%</td><td>约168亿</td><td>8.4%</td></tr>
+                  <tr><th scope="row">五粮液</th><td>0.0%</td><td>约92亿</td><td>11.2%</td></tr>
+                  <tr><th scope="row">泸州老窖</th><td>0.0%</td><td>约38亿</td><td>9.6%</td></tr>
+                </tbody>
+              </table>
+              <p class="blueprint-note">质押与两融为虚拟示例；待接入中登质押与交易所融资融券数据。</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="module-head" id="market-media">
+          <div><span class="eyebrow">MODULE C · 媒体与信息源</span><h2>媒体与信息源：酒类与食品类跟踪源</h2></div>
+          <span>跟踪源导航 · 待接入抓取或人工录入</span>
+        </div>
+
+        <section class="section-block" aria-labelledby="media-sources-title">
+          <div class="section-title-row">
+            <div><span class="section-index">C1</span><h2 id="media-sources-title">行业媒体跟踪目录</h2></div>
+            <span class="micro-note" id="media-sources-note">仅作来源台账，不产生自动内容</span>
+          </div>
+          <div class="media-grid" id="media-grid"></div>
+          <p class="blueprint-note">用途分工：酒类号看渠道价格与厂商动作（微酒/酒业家/云酒头条偏行业新闻，茅粉事务所/茅台时空偏茅台圈层，名酒研究所/名酒观察偏深度评论）；食品类号看大消费与新品趋势；尼尔森/前瞻数据库为数据机构口径。接入后按「舆情跟踪」页行业观点口径分列，不与券商报告混排。</p>
+        </section>
+      </section>
+
+      <section class="page" id="page-sentiment" data-page="sentiment" aria-labelledby="sentiment-title" hidden>
+        <div class="page-heading">
+          <div>
+            <span class="page-kicker"><span class="mono">05</span> / SENTIMENT TRACKING</span>
+            <h1 id="sentiment-title">舆情跟踪：行业观点、高管声音与企业动态</h1>
+            <p>行业观点保留来源与日期；重要公告来自巨潮资讯；高管声音与企业新闻当前为 DEMO 示例，待接入真实舆情源。</p>
+          </div>
+          <div class="heading-meta"><span class="status-tag demo">公告已接入</span><strong class="mono">近三个月</strong></div>
+        </div>
+
+        <section class="section-block" aria-labelledby="industry-views-title">
+          <div class="section-title-row">
+            <div><span class="section-index">01</span><h2 id="industry-views-title">行业观点：报告与点评原文要点</h2></div>
+            <span class="micro-note">真实来源 · 保留日期与出处</span>
+          </div>
+          <div class="viewpoint-grid" id="viewpoint-cards"></div>
+          <div class="seller-block" id="seller-sentiment-block" hidden></div>
+          <div class="panel is-demo-panel">
+            <div class="panel-topline"><span class="eyebrow">INDUSTRY HOT TOPICS</span><b class="track-state demo-badge">DEMO 模拟</b></div>
+            <ul class="track-list">
+              <li><strong>中秋国庆备货前瞻（08-18 · 虚拟示例）</strong><span>渠道反馈分化，高端礼赠需求待观察；经销商打款意愿与批价走势是关键变量。</span></li>
+              <li><strong>白酒消费税改革讨论再起（08-12 · 虚拟示例）</strong><span>机构观点称短期影响有限，长期或加速行业集中度提升。</span></li>
+              <li><strong>多地餐饮消费回暖（08-05 · 虚拟示例）</strong><span>宴席场景恢复带动中端价位动销，区域酒受益更明显。</span></li>
+            </ul>
+            <p class="blueprint-note">行业热点条目为 DEMO 虚拟示例，待接入资讯源（云酒头条 / 酒业家 / 财经媒体）后替换，并保留发布时间与原链接。</p>
+          </div>
+        </section>
+
+        <section class="section-block" aria-labelledby="executive-voice-title">
+          <div class="section-title-row">
+            <div><span class="section-index">02</span><h2 id="executive-voice-title">高管声音：业绩会与调研纪要摘录</h2></div>
+            <span class="micro-note">DEMO 虚拟示例 · 待接入业绩说明会与调研纪要</span>
+          </div>
+          <div class="voice-grid">
+            <article class="panel is-demo-panel voice-card">
+              <div class="panel-topline"><span class="eyebrow">贵州茅台 · 管理层</span><b class="track-state demo-badge">DEMO 模拟</b></div>
+              <p class="voice-quote">“坚持稳字当头，统筹好量价关系，维护渠道合理利润，确保市场投放与真实需求匹配。”</p>
+              <footer class="micro-note">虚拟示例 · 2026-08 业绩说明会场景 · 待接入真实纪要后替换</footer>
+            </article>
+            <article class="panel is-demo-panel voice-card">
+              <div class="panel-topline"><span class="eyebrow">五粮液 · 管理层</span><b class="track-state demo-badge">DEMO 模拟</b></div>
+              <p class="voice-quote">“坚定千元价格带定位，优化经销商结构，提升回款质量与终端服务能力。”</p>
+              <footer class="micro-note">虚拟示例 · 2026-07 经销商座谈场景 · 待接入真实纪要后替换</footer>
+            </article>
+            <article class="panel is-demo-panel voice-card">
+              <div class="panel-topline"><span class="eyebrow">泸州老窖 · 管理层</span><b class="track-state demo-badge">DEMO 模拟</b></div>
+              <p class="voice-quote">“保持渠道去库存定力，以低度国窖与特曲系列承接大众价格带需求。”</p>
+              <footer class="micro-note">虚拟示例 · 2026-07 投资者交流场景 · 待接入真实纪要后替换</footer>
+            </article>
+          </div>
+        </section>
+
+        <section class="section-block" aria-labelledby="news-title">
+          <div class="section-title-row">
+            <div><span class="section-index">03</span><h2 id="news-title">企业新闻</h2></div>
+            <span class="micro-note">DEMO 虚拟示例 · 待接入新闻资讯源</span>
+          </div>
+          <div class="panel is-demo-panel">
+            <div class="panel-topline"><span class="eyebrow">COMPANY NEWS</span><b class="track-state demo-badge">DEMO 模拟</b></div>
+            <ul class="ann-list news-list">
+              <li><time>08-19</time><span class="ann-co">贵州茅台</span><span>i茅台上线中秋预约专场，覆盖飞天与系列酒（虚拟示例）</span></li>
+              <li><time>08-15</time><span class="ann-co">五粮液</span><span>启动终端网点数字化升级试点，首批覆盖华东四省（虚拟示例）</span></li>
+              <li><time>08-11</time><span class="ann-co">泸州老窖</span><span>国窖1573低度系列在华东市场铺货提速（虚拟示例）</span></li>
+              <li><time>08-08</time><span class="ann-co">山西汾酒</span><span>青花系列启动中秋品鉴会巡回（虚拟示例）</span></li>
+              <li><time>08-02</time><span class="ann-co">洋河股份</span><span>梦之蓝M6+开展宴席渠道专项推广（虚拟示例）</span></li>
+            </ul>
+            <p class="blueprint-note">企业新闻均为 DEMO 虚拟示例，仅演示列表形态；待接入新闻资讯源后替换，并区分公司自发披露与第三方报道。</p>
+          </div>
+        </section>
+
+        <section class="section-block" aria-labelledby="ann-title">
+          <div class="section-title-row">
+            <div><span class="section-index">04</span><h2 id="ann-title">重要公告等：上市公司公告</h2></div>
+            <span class="micro-note" id="ann-note">巨潮资讯 · 近三个月</span>
+          </div>
+          <div class="ann-filter" id="ann-filter" role="group" aria-label="按公司筛选公告">
+            <button class="is-active" type="button" data-ann-filter="all">全部</button>
+            <button type="button" data-ann-filter="600519">贵州茅台</button>
+            <button type="button" data-ann-filter="000858">五粮液</button>
+            <button type="button" data-ann-filter="000568">泸州老窖</button>
+          </div>
+          <ol class="ann-list panel" id="ann-list"></ol>
+        </section>
+      </section>
+
+      <section class="page" id="page-llm" data-page="llm" aria-labelledby="llm-title" hidden>
+        <div class="page-heading">
+          <div>
+            <span class="page-kicker"><span class="mono">06</span> / MODEL SETTINGS</span>
+            <h1 id="llm-title">模型配置：接入大模型</h1>
+            <p>填入兼容 OpenAI Chat Completions 协议的接口地址、API Key 与模型名，保存后「AI 研究员」将改用你配置的大模型作答。</p>
+          </div>
+          <div class="heading-meta">
+            <span>连接状态</span>
+            <strong class="mono" id="llm-status-label">未配置</strong>
+            <span class="status-tag pending" id="llm-status-tag">LOCAL MODE</span>
+          </div>
+        </div>
+
+        <section class="section-block" aria-labelledby="llm-form-title">
+          <div class="section-title-row">
+            <div><span class="section-index">01</span><h2 id="llm-form-title">接口配置</h2></div>
+            <span class="micro-note">配置仅保存在本机浏览器，不上传其他服务器</span>
+          </div>
+          <form class="llm-form panel" id="llm-form">
+            <div class="llm-presets" role="group" aria-label="常用服务商预设">
+              <span class="mono">PRESETS</span>
+              <button type="button" data-llm-preset="deepseek">DeepSeek</button>
+              <button type="button" data-llm-preset="moonshot">月之暗面 Kimi</button>
+              <button type="button" data-llm-preset="zhipu">智谱 GLM</button>
+              <button type="button" data-llm-preset="qwen">阿里百炼 通义</button>
+              <button type="button" data-llm-preset="openai">OpenAI</button>
+            </div>
+            <div class="llm-grid">
+              <label class="llm-field llm-field-wide">
+                <span>接口地址 Base URL<b>*</b></span>
+                <input id="llm-base-url" type="url" placeholder="https://api.deepseek.com/v1" autocomplete="off" spellcheck="false" required>
+                <small>需兼容 OpenAI Chat Completions 协议，请求会发送到 {接口地址}/chat/completions</small>
+              </label>
+              <label class="llm-field">
+                <span>模型名 Model<b>*</b></span>
+                <input id="llm-model" type="text" placeholder="deepseek-chat" autocomplete="off" spellcheck="false" required>
+              </label>
+              <label class="llm-field">
+                <span>温度 Temperature</span>
+                <input id="llm-temperature" type="number" min="0" max="2" step="0.1" placeholder="默认 0.3">
+              </label>
+              <label class="llm-field llm-field-wide">
+                <span>API Key<b>*</b></span>
+                <div class="llm-key-row">
+                  <input id="llm-api-key" type="password" placeholder="sk-..." autocomplete="off" spellcheck="false" required>
+                  <button class="text-button" type="button" id="llm-key-toggle">显示</button>
+                </div>
+                <small>Key 只写入本机浏览器 localStorage，不会发送到接口地址以外的服务器</small>
+              </label>
+              <label class="llm-field llm-field-wide">
+                <span>系统提示词 System Prompt（可选）</span>
+                <textarea id="llm-system-prompt" rows="3" placeholder="留空则使用内置白酒研究助理提示词"></textarea>
+              </label>
+            </div>
+            <div class="llm-actions">
+              <button class="secondary-button" type="button" id="llm-test">测试连接</button>
+              <button class="primary-small" type="submit">保存配置</button>
+              <button class="text-button" type="button" id="llm-clear">清除配置</button>
+              <span class="llm-test-result" id="llm-test-result" role="status" aria-live="polite"></span>
+            </div>
+          </form>
+        </section>
+
+        <section class="section-block" aria-labelledby="llm-note-title">
+          <div class="section-title-row">
+            <div><span class="section-index">02</span><h2 id="llm-note-title">使用说明</h2></div>
+          </div>
+          <ol class="llm-notes panel">
+            <li><b>生效方式</b><p>保存配置后，右侧「AI 研究员」面板的提问将发送到你配置的大模型；未配置或调用失败时，自动回退到本地资料规则回答。</p></li>
+            <li><b>隐私边界</b><p>提问内容会附带当前页面名称作为上下文发送到接口地址，请留意所接服务商的数据政策；本地价格与调研数据不会自动上传。</p></li>
+            <li><b>接口协议</b><p>需兼容 OpenAI Chat Completions：POST {接口地址}/chat/completions，请求头携带 Authorization: Bearer {API Key}。</p></li>
+          </ol>
+        </section>
+      </section>
+
+      <section class="page" id="page-upload" data-page="upload" aria-labelledby="upload-title" hidden>
+        <div class="page-heading">
+          <div>
+            <span class="page-kicker"><span class="mono">07</span> / SELLER INBOX</span>
+            <h1 id="upload-title">材料上传：卖方资料接入</h1>
+            <p>卖方按模块上传调研、报告与预测材料，大模型提取核心内容后进入待核验收件箱；人工采纳后自动更新到对应前端模块，与内置数据分列标注。材料仅保存在当前浏览器——卖方请先将材料发送给研究员，由研究员在本机上传；跨设备请用下方「数据备份」导出/导入。</p>
+          </div>
+          <div class="heading-meta">
+            <span>收件箱</span>
+            <strong class="mono" id="upload-inbox-count">0 条</strong>
+            <span class="status-tag demo">LLM EXTRACT</span>
+          </div>
+        </div>
+
+        <section class="section-block" aria-labelledby="upload-form-title">
+          <div class="section-title-row">
+            <div><span class="section-index">01</span><h2 id="upload-form-title">上传材料</h2></div>
+            <span class="micro-note" id="upload-llm-note">提取依赖模型配置页的大模型</span>
+          </div>
+          <form class="llm-form panel" id="upload-form">
+            <div class="llm-grid">
+              <label class="llm-field">
+                <span>目标模块<b>*</b></span>
+                <select id="upload-module">
+                  <option value="survey">调研情况 → 产业分析 D1</option>
+                  <option value="viewpoint">报告观点 → 资本市场 A1</option>
+                  <option value="target">目标价与评级 → 资本市场 A2</option>
+                  <option value="forecast">盈利和收入预测 → 资本市场 A3</option>
+                  <option value="sentiment">行业观点/高管声音/新闻 → 舆情跟踪</option>
+                </select>
+              </label>
+              <label class="llm-field">
+                <span>材料日期</span>
+                <input id="upload-date" type="date">
+              </label>
+              <label class="llm-field">
+                <span>机构（卖方）<b>*</b></span>
+                <input id="upload-org" type="text" placeholder="例如：XX证券研究所" required>
+              </label>
+              <label class="llm-field">
+                <span>分析师 / 联系人</span>
+                <input id="upload-analyst" type="text" placeholder="可选">
+              </label>
+              <label class="llm-field llm-field-wide">
+                <span>材料文件（PDF / DOCX / TXT / MD）</span>
+                <input id="upload-file" type="file" accept=".pdf,.docx,.txt,.md,.csv">
+                <small>纯文本本地直接读取；PDF/DOCX 解析需联网加载 CDN 组件；也可以不上传文件、直接在下方粘贴正文</small>
+              </label>
+              <label class="llm-field llm-field-wide">
+                <span>材料正文</span>
+                <textarea id="upload-text" rows="6" placeholder="上传文件后正文会自动解析到这里，也可以直接粘贴…" spellcheck="false"></textarea>
+              </label>
+            </div>
+            <div class="llm-actions">
+              <button class="secondary-button" type="button" id="upload-extract">大模型提取核心内容</button>
+              <button class="primary-small" type="submit">保存到收件箱</button>
+              <span class="llm-test-result" id="upload-extract-status" role="status" aria-live="polite"></span>
+            </div>
+            <div class="upload-extract-preview" id="upload-extract-preview" hidden>
+              <div class="panel-topline"><span class="eyebrow">EXTRACT PREVIEW</span><span class="micro-note">可编辑后保存；保存后仍待核验，需人工采纳才进入前端模块</span></div>
+              <textarea id="upload-extract-json" rows="10" spellcheck="false"></textarea>
+            </div>
+          </form>
+        </section>
+
+        <section class="section-block" aria-labelledby="inbox-title">
+          <div class="section-title-row">
+            <div><span class="section-index">02</span><h2 id="inbox-title">材料收件箱</h2></div>
+            <span class="micro-note">采纳后自动更新到对应模块；材料仅保存在本机浏览器</span>
+          </div>
+          <ol class="inbox-list" id="inbox-list"></ol>
+        </section>
+
+        <section class="section-block" aria-labelledby="upload-map-title">
+          <div class="section-title-row">
+            <div><span class="section-index">03</span><h2 id="upload-map-title">模块对接说明</h2></div>
+          </div>
+          <div class="company-compare-scroll" tabindex="0" aria-label="模块对接说明表，可横向滑动">
+            <table class="band-table survey-table">
+              <thead><tr><th scope="col">目标模块</th><th scope="col">适合上传的材料</th><th scope="col">大模型提取字段</th><th scope="col">采纳后展示位置</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">调研情况</th><td>渠道调研纪要、周度渠道反馈</td><td>调研基调、观察期、分公司库存/动销/回款/渠道政策/要点</td><td>产业分析 D1 渠道调研对照（下方追加）</td></tr>
+                <tr><th scope="row">报告观点</th><td>深度报告、周报、点评 PDF</td><td>报告标题、评级、核心判断、论据、风险、边际变化</td><td>资本市场 A1 共识与分歧矩阵（下方追加）</td></tr>
+                <tr><th scope="row">目标价与评级</th><td>个股报告、预测表</td><td>公司、评级、目标价、空间、核心逻辑</td><td>资本市场 A2 目标价预测（真实数据表）</td></tr>
+                <tr><th scope="row">盈利和收入预测</th><td>盈利预测表、模型摘要</td><td>公司、预测年份、收入/归母净利及同比</td><td>资本市场 A3 盈利和收入预测（真实数据表）</td></tr>
+                <tr><th scope="row">舆情观点</th><td>卖方日报、会议纪要、路演反馈</td><td>类型、发言人/主体、日期、要点、涉及公司、倾向</td><td>舆情跟踪 01 行业观点（下方追加）</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="blueprint-note">所有卖方材料遵循来源隔离原则：提取结果标注机构与材料日期，与内置数据分列展示，不进入汇总结论；采纳前请人工核对提取内容。材料原文与提取结果仅存储在当前浏览器 localStorage，不上传任何服务器。</p>
+        </section>
+
+        <section class="section-block" aria-labelledby="backup-title">
+          <div class="section-title-row">
+            <div><span class="section-index">04</span><h2 id="backup-title">数据备份与恢复</h2></div>
+            <span class="micro-note" id="storage-usage">本地存储用量 —</span>
+          </div>
+          <div class="llm-actions panel backup-actions">
+            <button class="secondary-button" type="button" id="backup-export">导出全部数据（JSON）</button>
+            <button class="secondary-button" type="button" id="backup-import-btn">导入恢复</button>
+            <input type="file" id="backup-import-input" accept=".json" hidden>
+            <span class="micro-note">包含模型配置、复盘记录、材料收件箱；清理浏览器或更换设备前请先导出</span>
+          </div>
         </section>
       </section>
     </main>
 
     <aside class="ai-panel" id="ai-panel" aria-label="AI 研究员" aria-hidden="true" inert>
       <div class="ai-head">
-        <div><span class="ai-orbit" aria-hidden="true"></span><strong>AI 研究员</strong><small id="ai-context">上下文：行业首页</small></div>
+        <div><span class="ai-orbit" aria-hidden="true"></span><strong>AI 研究员</strong><small id="ai-context">上下文：总揽</small></div>
+        <button class="text-button ai-settings-link" type="button" data-nav="llm">配置</button>
         <button class="icon-button" id="ai-close" type="button" aria-label="关闭 AI 研究员">×</button>
       </div>
-      <div class="ai-boundary"><strong>本地资料模式</strong><span>已连接价格Excel与研究材料；不访问实时行情。</span></div>
+      <div class="ai-boundary" id="ai-boundary"><strong>本地资料模式</strong><span>已连接价格Excel与研究材料；不访问实时行情。</span></div>
       <div class="ai-actions" role="group" aria-label="快捷研究动作">
         <button type="button" data-ai-action="explain">解释逻辑</button>
         <button type="button" data-ai-action="counter">寻找反证</button>
@@ -1066,12 +1824,17 @@
     </aside>
 
     <nav class="mobile-nav" aria-label="移动端导航">
-      <button class="is-active" type="button" data-nav="home"><span>01</span>总览</button>
-      <button type="button" data-nav="chain"><span>02</span>框架</button>
-      <button type="button" data-nav="data"><span>03</span>数据</button>
-      <button type="button" data-nav="opinions"><span>04</span>观点</button>
-      <button type="button" data-nav="company"><span>05</span>公司</button>
+      <button class="is-active" type="button" data-nav="home"><span>01</span>总揽</button>
+      <button type="button" data-nav="industry"><span>02</span>产业</button>
+      <button type="button" data-nav="compare"><span>03</span>比较</button>
+      <button type="button" data-nav="market"><span>04</span>市场</button>
+      <button type="button" data-nav="sentiment"><span>05</span>舆情</button>
+      <button type="button" id="mobile-more-toggle" aria-expanded="false" aria-controls="mobile-more-menu"><span>+</span>更多</button>
     </nav>
+    <div class="mobile-more-menu" id="mobile-more-menu" hidden>
+      <button type="button" data-nav="llm"><span>06</span>模型配置</button>
+      <button type="button" data-nav="upload"><span>07</span>材料上传</button>
+    </div>
   </div>
 
   <div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
@@ -1113,9 +1876,13 @@
   </section>
 
   <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
-  <script src="data/baijiu-data.js?v=20260821.9" defer></script>
-  <script src="data/research-data.js?v=20260821.9" defer></script>
-  <script src="data/local-data.js?v=20260821.9" defer></script>
-  <script src="app.js?v=20260821.9" defer></script>
+  <script src="data/baijiu-data.js?v=20260904.1" defer></script>
+  <script src="data/research-data.js?v=20260904.1" defer></script>
+  <script src="data/local-data.js?v=20260904.1" defer></script>
+  <script src="data/review-data.js?v=20260904.1" defer></script>
+  <script src="data/events-data.js?v=20260904.1" defer></script>
+  <script src="data/industry-data.js?v=20260904.1" defer></script>
+  <script src="data/company-deep.js?v=20260904.1" defer></script>
+  <script src="app.js?v=20260904.3" defer></script>
 </body>
 </html>

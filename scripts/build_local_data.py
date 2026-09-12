@@ -19,6 +19,9 @@ COMPANIES = {
     "maotai": {"code": "600519", "name": "贵州茅台"},
     "wuliangye": {"code": "000858", "name": "五粮液"},
     "guojiao": {"code": "000568", "name": "泸州老窖"},
+    "fenjiu": {"code": "600809", "name": "山西汾酒"},
+    "yanghe": {"code": "002304", "name": "洋河股份"},
+    "gujing": {"code": "000596", "name": "古井贡酒"},
 }
 
 # A股上市白酒公司（总览表用；珍酒李渡为港股，待接入）
@@ -33,7 +36,7 @@ MACRO_REAL = [
     ("gdp", "macro_gdp", "GDP(不变价):累计同比:季", "GDP 不变价累计同比", "%", "季度"),
     ("cpi", "macro_cpi", "CPI:当期同比:月", "CPI 当月同比", "%", "月度"),
     ("m2", "macro_money_supply", "货币和准货币(M2):同比:月", "M2 同比", "%", "月度"),
-    ("ppi", "macro_ppi", "PPI:当期同比:月", "PPI 当月同比", "%", "月度"),
+    ("ppi", "macro_ppi", "PPI:全部工业品:当期同比:月", "PPI 当月同比", "%", "月度"),
     ("fai", "macro_fixed_asset_investment", "固定资产投资额(不含农户):累计同比:月", "固定资产投资累计同比", "%", "月度"),
 ]
 
@@ -72,33 +75,38 @@ def extract_macro() -> list[dict]:
 
 
 def simulate_macro_demo() -> list[dict]:
-    """本地库缺口指标：社零、地产，固定种子随机游走（DEMO）。"""
-    rng = random.Random(20260821)
+    """本地库缺口指标：统计局已核验值（部分序列），完整月度序列待接入 iFinD/统计局批量接口。
+
+    数值来自国家统计局 2026-08-17 发布稿（社零/餐饮/地产）与消费者信心指数月度发布
+    （东方财富数据中心整理，统计局口径）。不再使用随机模拟；序列仅含已核验月份。
+    """
     specs = [
-        ("retail", "社零当月同比（模拟）", 4.6, 0.25, "月度"),
-        ("estate", "房地产开发投资累计同比（模拟）", -10.4, 0.3, "月度"),
+        ("retail", "社零总额当月同比", "%", "月度", "国家统计局 2026-08-17发布 · 序列待接入",
+         [("2026-06-30", 1.0), ("2026-07-31", 0.6)]),
+        ("catering", "餐饮收入当月同比", "%", "月度", "国家统计局 2026-08-17发布 · 序列待接入",
+         [("2026-06-30", 1.2), ("2026-07-31", 1.4)]),
+        ("estate", "房地产开发投资累计同比", "%", "月度", "国家统计局 2026-08-17发布 · 序列待接入",
+         [("2026-06-30", -18.0), ("2026-07-31", -19.2)]),
+        ("confidence", "消费者信心指数", "点", "月度", "国家统计局口径（东方财富整理）· 序列待接入",
+         [("2026-01-31", 90.6), ("2026-02-28", 91.6), ("2026-03-31", 90.0),
+          ("2026-04-30", 89.0), ("2026-05-31", 89.9), ("2026-06-30", 89.4),
+          ("2026-07-31", 89.2)]),
     ]
     out = []
-    for key, label, start, step, freq in specs:
-        series, value = [], start
-        for i in range(14):
-            month = (7 + i - 1) % 12 + 1
-            year = 2025 + (7 + i - 1) // 12
-            value = round(value + rng.uniform(-step, step), 2)
-            series.append({"date": f"{year}-{month:02d}-01", "value": value})
-        # 让终点落在 2026-07
-        series[-1]["date"] = "2026-07-01"
+    for key, label, unit, freq, source, points in specs:
+        series = [{"date": d, "value": v} for d, v in points]
         out.append({
             "key": key,
             "name": label,
-            "unit": "%",
+            "unit": unit,
             "freq": freq,
             "asOf": series[-1]["date"],
             "latest": series[-1]["value"],
-            "prev": series[-2]["value"],
+            "prev": series[-2]["value"] if len(series) > 1 else None,
             "series": series,
-            "source": "DEMO 随机模拟，待官方数据替换",
-            "demo": True,
+            "source": source,
+            "demo": False,
+            "partial": True,
         })
     return out
 
@@ -279,6 +287,38 @@ def load_announcements() -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+KLINE_SINCE = "2023-01-01"
+LIQUOR_INDEX = {"code": "399997", "name": "中证白酒指数"}
+
+
+def build_kline() -> dict:
+    """复盘模块K线：中证白酒指数 + 三家个股日线（开高低收，2023年以来）。"""
+    def to_rows(df: pd.DataFrame) -> list[list]:
+        return [
+            [d.strftime("%Y-%m-%d"), round(float(o), 2), round(float(h), 2), round(float(lo), 2), round(float(c), 2)]
+            for d, o, h, lo, c in zip(df.date, df.open, df.high, df.low, df.close)
+        ]
+
+    stocks = pd.read_parquet(
+        LD / "ashare_stock_price.parquet",
+        columns=["stock_code", "date", "open", "high", "low", "close"],
+        filters=[("stock_code", "in", [v["code"] for v in COMPANIES.values()])],
+    )
+    stocks = stocks[stocks.date >= pd.Timestamp(KLINE_SINCE)].sort_values("date")
+    idx = pd.read_parquet(
+        LD / "ashare_index_price.parquet",
+        columns=["index_code", "date", "open", "high", "low", "close"],
+        filters=[("index_code", "==", LIQUOR_INDEX["code"])],
+    )
+    idx = idx[idx.date >= pd.Timestamp(KLINE_SINCE)].sort_values("date")
+
+    out: dict = {"since": KLINE_SINCE, "industry": {**LIQUOR_INDEX, "rows": to_rows(idx)}}
+    for key, meta in COMPANIES.items():
+        out[key] = {"code": meta["code"], "name": meta["name"],
+                    "rows": to_rows(stocks[stocks.stock_code == meta["code"]])}
+    return out
+
+
 def main() -> None:
     macro = extract_macro() + simulate_macro_demo()
     inc = load_quarters()
@@ -300,6 +340,7 @@ def main() -> None:
         "fundHolding": build_fund_holding(),
         "regionDemo": build_region_demo(),
         "announcements": load_announcements(),
+        "kline": build_kline(),
     }
     js = "window.WHITE_LIQUOR_LOCAL = " + json.dumps(payload, ensure_ascii=False, indent=2) + ";\n"
     OUT.write_text(js, encoding="utf-8")
@@ -314,6 +355,7 @@ def main() -> None:
     print("  valuation:", payload["valuation"]["companies"])
     print("  fundHolding:", payload["fundHolding"]["companies"])
     print("  announcements:", len(payload["announcements"].get("items", [])))
+    print("  kline:", {k: len(v["rows"]) for k, v in payload["kline"].items() if isinstance(v, dict)})
 
 
 if __name__ == "__main__":
