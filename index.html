@@ -199,8 +199,8 @@
                     <div class="tree-node"><strong>分析师观点跟踪</strong><b class="track-state is-partial">部分</b></div>
                     <ul class="tree-leaves">
                       <li><span>报告观点汇总</span><b class="track-state is-full">观点矩阵</b></li>
-                      <li><span>目标价预测</span><b class="track-state demo-badge">DEMO 虚拟</b></li>
-                      <li><span>盈利和收入预测</span><b class="track-state demo-badge">DEMO 虚拟</b></li>
+                      <li><span>目标价预测</span><b class="track-state is-full">JYDB</b></li>
+                      <li><span>盈利和收入预测</span><b class="track-state is-full">JYDB</b></li>
                     </ul>
                   </li>
                   <li>
@@ -208,7 +208,7 @@
                     <ul class="tree-leaves">
                       <li><span>估值</span><b class="track-state is-full">08-18</b></li>
                       <li><span>机构持仓情况</span><b class="track-state is-full">重仓06-30</b></li>
-                      <li><span>交易活跃度 / 大宗交易</span><b class="track-state demo-badge">DEMO 虚拟</b></li>
+                      <li><span>交易活跃度 / 大宗交易</span><b class="track-state is-partial">活跃度JYDB/大宗DEMO</b></li>
                       <li><span>北上资金 / 质押和两融</span><b class="track-state demo-badge">DEMO 虚拟</b></li>
                     </ul>
                   </li>
@@ -1357,46 +1357,30 @@
           </article>
         </div>
 
+        <section class="section-block" aria-labelledby="reports-title">
+          <div class="section-title-row">
+            <div><span class="section-index">A1+</span><h2 id="reports-title">最新研报：六家公司与白酒行业</h2></div>
+            <span class="micro-note" id="reports-note">JYDB C_RR_ResearchReport · 近75天</span>
+          </div>
+          <ol class="report-list" id="report-list"></ol>
+          <p class="blueprint-note">研报元数据来自聚源库（标题/机构/日期），不含原文与评级细节；与上方观点矩阵的已读观点分列。</p>
+        </section>
+
         <section class="section-block" aria-labelledby="target-title" id="market-target">
           <div class="section-title-row">
             <div><span class="section-index">A2</span><h2 id="target-title">目标价预测：机构评级与目标价</h2></div>
-            <span class="micro-note">DEMO 虚拟示例 · 待接入券商研报表</span>
+            <span class="micro-note" id="target-note">待接入券商研报表</span>
           </div>
-          <div class="panel is-demo-panel band-table-wrap">
-            <div class="panel-topline"><span class="eyebrow">PRICE TARGET</span><b class="track-state demo-badge">DEMO 模拟</b></div>
-            <table class="band-table">
-              <thead><tr><th scope="col">机构（虚拟）</th><th scope="col">日期</th><th scope="col">公司</th><th scope="col">评级</th><th scope="col">目标价</th><th scope="col">较现价空间</th><th scope="col">核心逻辑</th></tr></thead>
-              <tbody>
-                <tr><th scope="row">示例证券A</th><td>2026-08-10</td><td>贵州茅台</td><td>买入</td><td>1,980元</td><td>+32%</td><td>批价企稳 + 直营占比提升</td></tr>
-                <tr><th scope="row">示例证券B</th><td>2026-08-05</td><td>贵州茅台</td><td>增持</td><td>1,860元</td><td>+24%</td><td>系列酒放量对冲飞天增速放缓</td></tr>
-                <tr><th scope="row">示例证券A</th><td>2026-07-28</td><td>五粮液</td><td>买入</td><td>165元</td><td>+38%</td><td>旺季重锚千元价格带</td></tr>
-                <tr><th scope="row">示例证券C</th><td>2026-07-20</td><td>五粮液</td><td>中性</td><td>132元</td><td>+10%</td><td>倒挂修复需等待中秋验证</td></tr>
-                <tr><th scope="row">示例证券B</th><td>2026-08-01</td><td>泸州老窖</td><td>增持</td><td>165元</td><td>+30%</td><td>去库充分后弹性更大</td></tr>
-                <tr><th scope="row">示例证券D</th><td>2026-07-15</td><td>泸州老窖</td><td>中性</td><td>128元</td><td>+1%</td><td>回款分化压制估值修复</td></tr>
-              </tbody>
-            </table>
-            <p class="blueprint-note">机构名称、目标价与空间均为 DEMO 虚拟示例，仅演示表结构；待接入券商研报表（朝阳永续 / Wind 一致预期）后替换，并保留报告日期与评级口径。</p>
-          </div>
+          <div id="target-price-panel"></div>
           <div class="seller-block" id="seller-target-block" hidden></div>
         </section>
 
         <section class="section-block" aria-labelledby="forecast-title" id="market-forecast">
           <div class="section-title-row">
             <div><span class="section-index">A3</span><h2 id="forecast-title">盈利和收入预测：一致预期</h2></div>
-            <span class="micro-note">DEMO 虚拟示例 · 待接入一致预期数据</span>
+            <span class="micro-note" id="forecast-note">待接入一致预期数据</span>
           </div>
-          <div class="panel is-demo-panel band-table-wrap">
-            <div class="panel-topline"><span class="eyebrow">CONSENSUS FORECAST</span><b class="track-state demo-badge">DEMO 模拟</b></div>
-            <table class="band-table">
-              <thead><tr><th scope="col">公司</th><th scope="col">2026E 收入</th><th scope="col">同比</th><th scope="col">2026E 归母净利</th><th scope="col">2027E 收入</th><th scope="col">2027E 归母净利</th><th scope="col">预测机构数</th></tr></thead>
-              <tbody>
-                <tr><th scope="row">贵州茅台</th><td>1,820亿</td><td>+6.5%</td><td>905亿</td><td>1,945亿</td><td>972亿</td><td>38家</td></tr>
-                <tr><th scope="row">五粮液</th><td>892亿</td><td>+3.1%</td><td>318亿</td><td>935亿</td><td>338亿</td><td>26家</td></tr>
-                <tr><th scope="row">泸州老窖</th><td>345亿</td><td>+4.2%</td><td>148亿</td><td>368亿</td><td>161亿</td><td>19家</td></tr>
-              </tbody>
-            </table>
-            <p class="blueprint-note">预测值均为 DEMO 虚拟示例；待接入一致预期数据源后，需标注预测截至日期、机构样本数与口径（调整后 / 报表口径）。</p>
-          </div>
+          <div id="forecast-panel"></div>
           <div class="seller-block" id="seller-forecast-block" hidden></div>
         </section>
 
@@ -1459,20 +1443,12 @@
         <section class="section-block" aria-labelledby="trading-demo-title">
           <div class="section-title-row">
             <div><span class="section-index">B4</span><h2 id="trading-demo-title">交易活跃度 / 大宗交易 / 北上资金 / 质押两融</h2></div>
-            <span class="micro-note">DEMO 虚拟示例 · 待接入行情与资金数据源</span>
+            <span class="micro-note">交易活跃度已接 JYDB 真实值 · 大宗/北上/质押仍为 DEMO 虚拟</span>
           </div>
           <div class="market-demo-grid">
-            <div class="panel is-demo-panel">
-              <div class="panel-topline"><span class="eyebrow">TRADING ACTIVITY</span><b class="track-state demo-badge">DEMO 模拟</b></div>
-              <table class="band-table">
-                <thead><tr><th scope="col">公司</th><th scope="col">近20日日均成交额</th><th scope="col">换手率</th><th scope="col">量能环比</th></tr></thead>
-                <tbody>
-                  <tr><th scope="row">贵州茅台</th><td>约48亿</td><td>0.31%</td><td>+12%</td></tr>
-                  <tr><th scope="row">五粮液</th><td>约32亿</td><td>0.78%</td><td>+21%</td></tr>
-                  <tr><th scope="row">泸州老窖</th><td>约15亿</td><td>0.92%</td><td>+9%</td></tr>
-                </tbody>
-              </table>
-              <p class="blueprint-note">交易活跃度为虚拟示例；待接入日度成交额与换手率序列。</p>
+            <div class="panel" id="trading-activity-panel">
+              <div class="panel-topline"><span class="eyebrow">TRADING ACTIVITY</span><b class="track-state is-full" id="trading-activity-badge">JYDB</b></div>
+              <div id="trading-activity-body"></div>
             </div>
             <div class="panel is-demo-panel">
               <div class="panel-topline"><span class="eyebrow">BLOCK TRADE</span><b class="track-state demo-badge">DEMO 模拟</b></div>

@@ -1,6 +1,7 @@
 window.WHITE_LIQUOR_LOCAL = {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-21",
+  "generatedAt": "2026-09-13",
+  "dataSource": "JYDB优先，本地parquet回退",
   "macro": [
     {
       "key": "gdp",
@@ -1613,42 +1614,42 @@ window.WHITE_LIQUOR_LOCAL = {
   "fundHolding": {
     "period": "2026-06-30",
     "prevPeriod": "2026-03-31",
-    "source": "本地库 fund_keystock（基金重仓股）",
+    "source": "JYDB mf_keystockportfolio（基金重仓股）",
     "companies": {
       "maotai": {
-        "funds": 846,
-        "marketValue": 332.1,
-        "prevFunds": 1183,
-        "prevMarketValue": 628.3,
-        "mvChange": -0.4715
+        "funds": 987,
+        "marketValue": 472.6,
+        "prevFunds": 1352,
+        "prevMarketValue": 944.4,
+        "mvChange": -0.4996
       },
       "wuliangye": {
-        "funds": 63,
-        "marketValue": 45.5,
-        "prevFunds": 206,
-        "prevMarketValue": 135.4,
-        "mvChange": -0.6639
+        "funds": 72,
+        "marketValue": 114.0,
+        "prevFunds": 221,
+        "prevMarketValue": 237.6,
+        "mvChange": -0.5202
       },
       "guojiao": {
-        "funds": 85,
-        "marketValue": 65.7,
-        "prevFunds": 114,
-        "prevMarketValue": 112.9,
-        "mvChange": -0.4182
+        "funds": 90,
+        "marketValue": 117.1,
+        "prevFunds": 119,
+        "prevMarketValue": 177.3,
+        "mvChange": -0.3396
       },
       "fenjiu": {
-        "funds": 95,
-        "marketValue": 68.0,
-        "prevFunds": 118,
-        "prevMarketValue": 120.8,
-        "mvChange": -0.4372
+        "funds": 98,
+        "marketValue": 115.6,
+        "prevFunds": 123,
+        "prevMarketValue": 182.7,
+        "mvChange": -0.3673
       },
       "yanghe": {
-        "funds": 29,
-        "marketValue": 15.4,
-        "prevFunds": 37,
-        "prevMarketValue": 20.2,
-        "mvChange": -0.2367
+        "funds": 30,
+        "marketValue": 40.1,
+        "prevFunds": 38,
+        "prevMarketValue": 51.3,
+        "mvChange": -0.2193
       },
       "gujing": {
         "funds": 24,
@@ -14664,6 +14665,27 @@ window.WHITE_LIQUOR_LOCAL = {
           1323.0,
           1309.05,
           1309.3
+        ],
+        [
+          "2026-09-09",
+          1305.01,
+          1309.3,
+          1286.68,
+          1290.88
+        ],
+        [
+          "2026-09-10",
+          1291.0,
+          1294.99,
+          1282.0,
+          1285.13
+        ],
+        [
+          "2026-09-11",
+          1285.15,
+          1286.15,
+          1263.01,
+          1275.16
         ]
       ]
     },
@@ -20921,6 +20943,27 @@ window.WHITE_LIQUOR_LOCAL = {
           72.06,
           71.24,
           71.65
+        ],
+        [
+          "2026-09-09",
+          71.64,
+          71.64,
+          70.95,
+          71.16
+        ],
+        [
+          "2026-09-10",
+          71.08,
+          71.19,
+          70.4,
+          70.48
+        ],
+        [
+          "2026-09-11",
+          70.3,
+          70.42,
+          69.6,
+          69.75
         ]
       ]
     },
@@ -27178,6 +27221,27 @@ window.WHITE_LIQUOR_LOCAL = {
           79.56,
           77.78,
           77.78
+        ],
+        [
+          "2026-09-09",
+          77.65,
+          77.78,
+          76.69,
+          76.9
+        ],
+        [
+          "2026-09-10",
+          77.0,
+          77.1,
+          74.6,
+          74.81
+        ],
+        [
+          "2026-09-11",
+          74.7,
+          74.7,
+          73.5,
+          73.63
         ]
       ]
     },
@@ -33435,6 +33499,27 @@ window.WHITE_LIQUOR_LOCAL = {
           123.96,
           121.81,
           122.2
+        ],
+        [
+          "2026-09-09",
+          121.92,
+          122.02,
+          118.7,
+          119.02
+        ],
+        [
+          "2026-09-10",
+          119.02,
+          119.99,
+          115.8,
+          116.06
+        ],
+        [
+          "2026-09-11",
+          116.06,
+          116.07,
+          113.51,
+          114.18
         ]
       ]
     },
@@ -39692,6 +39777,27 @@ window.WHITE_LIQUOR_LOCAL = {
           39.88,
           39.39,
           39.68
+        ],
+        [
+          "2026-09-09",
+          39.61,
+          39.62,
+          39.1,
+          39.12
+        ],
+        [
+          "2026-09-10",
+          39.09,
+          39.19,
+          38.4,
+          38.48
+        ],
+        [
+          "2026-09-11",
+          38.39,
+          38.39,
+          37.88,
+          38.07
         ]
       ]
     },
@@ -45949,8 +46055,1835 @@ window.WHITE_LIQUOR_LOCAL = {
           101.99,
           99.02,
           101.0
+        ],
+        [
+          "2026-09-09",
+          99.98,
+          100.0,
+          97.31,
+          98.21
+        ],
+        [
+          "2026-09-10",
+          97.67,
+          98.2,
+          94.0,
+          94.35
+        ],
+        [
+          "2026-09-11",
+          94.0,
+          94.27,
+          91.76,
+          92.12
         ]
       ]
+    },
+    "source": "JYDB QT_DailyQuote（个股）+ 本地库 ashare_index_price（指数）"
+  },
+  "forecast": {
+    "source": "JYDB C_EX_ProForStat 一致预期（机构均值）",
+    "companies": {
+      "maotai": {
+        "asOf": "2026-09-13",
+        "years": [
+          {
+            "year": "2026",
+            "epsAvg": 67.34,
+            "npAvgYi": 841.9,
+            "revenueAvgYi": 1766.7,
+            "npOrgs": 43,
+            "revOrgs": 35
+          },
+          {
+            "year": "2027",
+            "epsAvg": 71.39,
+            "npAvgYi": 892.4,
+            "revenueAvgYi": 1860.6,
+            "npOrgs": 42,
+            "revOrgs": 35
+          },
+          {
+            "year": "2028",
+            "epsAvg": 75.51,
+            "npAvgYi": 943.9,
+            "revenueAvgYi": 1959.1,
+            "npOrgs": 39,
+            "revOrgs": 33
+          }
+        ],
+        "base2025": {
+          "revenue": 1720.5,
+          "netProfit": 823.2,
+          "source": "本地库 2025 四季加总"
+        }
+      },
+      "wuliangye": {
+        "asOf": "2026-09-13",
+        "years": [
+          {
+            "year": "2026",
+            "epsAvg": 4.22,
+            "npAvgYi": 163.9,
+            "revenueAvgYi": 487.9,
+            "npOrgs": 16,
+            "revOrgs": 14
+          },
+          {
+            "year": "2027",
+            "epsAvg": 4.67,
+            "npAvgYi": 181.2,
+            "revenueAvgYi": 528.7,
+            "npOrgs": 15,
+            "revOrgs": 14
+          },
+          {
+            "year": "2028",
+            "epsAvg": 4.86,
+            "npAvgYi": 188.6,
+            "revenueAvgYi": 550.3,
+            "npOrgs": 12,
+            "revOrgs": 11
+          }
+        ],
+        "base2025": {
+          "revenue": 603.8,
+          "netProfit": 194.0,
+          "source": "本地库 2025 四季加总"
+        }
+      },
+      "guojiao": {
+        "asOf": "2026-09-13",
+        "years": [
+          {
+            "year": "2026",
+            "epsAvg": 5.17,
+            "npAvgYi": 76.2,
+            "revenueAvgYi": 191.3,
+            "npOrgs": 30,
+            "revOrgs": 28
+          },
+          {
+            "year": "2027",
+            "epsAvg": 5.54,
+            "npAvgYi": 81.6,
+            "revenueAvgYi": 202.3,
+            "npOrgs": 29,
+            "revOrgs": 28
+          },
+          {
+            "year": "2028",
+            "epsAvg": 6.03,
+            "npAvgYi": 88.7,
+            "revenueAvgYi": 217.2,
+            "npOrgs": 27,
+            "revOrgs": 26
+          }
+        ],
+        "base2025": {
+          "revenue": 257.2,
+          "netProfit": 108.3,
+          "source": "本地库 2025 四季加总"
+        }
+      },
+      "fenjiu": {
+        "asOf": "2026-09-13",
+        "years": [
+          {
+            "year": "2026",
+            "epsAvg": 8.1,
+            "npAvgYi": 98.8,
+            "revenueAvgYi": 333.7,
+            "npOrgs": 26,
+            "revOrgs": 22
+          },
+          {
+            "year": "2027",
+            "epsAvg": 8.78,
+            "npAvgYi": 107.1,
+            "revenueAvgYi": 353.6,
+            "npOrgs": 25,
+            "revOrgs": 22
+          },
+          {
+            "year": "2028",
+            "epsAvg": 9.63,
+            "npAvgYi": 117.4,
+            "revenueAvgYi": 380.0,
+            "npOrgs": 22,
+            "revOrgs": 21
+          }
+        ],
+        "base2025": {
+          "revenue": 387.1,
+          "netProfit": 122.5,
+          "source": "本地库 2025 四季加总"
+        }
+      },
+      "yanghe": {
+        "asOf": "2026-09-13",
+        "years": [
+          {
+            "year": "2026",
+            "epsAvg": 1.35,
+            "npAvgYi": 20.3,
+            "revenueAvgYi": 153.4,
+            "npOrgs": 14,
+            "revOrgs": 14
+          },
+          {
+            "year": "2027",
+            "epsAvg": 1.53,
+            "npAvgYi": 23.0,
+            "revenueAvgYi": 161.9,
+            "npOrgs": 13,
+            "revOrgs": 14
+          },
+          {
+            "year": "2028",
+            "epsAvg": 1.8,
+            "npAvgYi": 27.2,
+            "revenueAvgYi": 171.3,
+            "npOrgs": 12,
+            "revOrgs": 12
+          }
+        ],
+        "base2025": {
+          "revenue": 192.1,
+          "netProfit": 22.1,
+          "source": "本地库 2025 四季加总"
+        }
+      },
+      "gujing": {
+        "asOf": "2026-09-13",
+        "years": [
+          {
+            "year": "2026",
+            "epsAvg": 5.61,
+            "npAvgYi": 29.6,
+            "revenueAvgYi": 156.6,
+            "npOrgs": 22,
+            "revOrgs": 19
+          },
+          {
+            "year": "2027",
+            "epsAvg": 6.24,
+            "npAvgYi": 33.0,
+            "revenueAvgYi": 167.9,
+            "npOrgs": 21,
+            "revOrgs": 19
+          },
+          {
+            "year": "2028",
+            "epsAvg": 6.97,
+            "npAvgYi": 36.9,
+            "revenueAvgYi": 181.3,
+            "npOrgs": 18,
+            "revOrgs": 17
+          }
+        ],
+        "base2025": {
+          "revenue": 188.3,
+          "netProfit": 35.5,
+          "source": "本地库 2025 四季加总"
+        }
+      }
     }
-  }
+  },
+  "targetPrice": {
+    "source": "JYDB C_EX_TargetPrice 目标价统计",
+    "companies": {
+      "maotai": {
+        "asOf": "2026-09-12",
+        "windows": [
+          {
+            "period": 30,
+            "avg": 1661.26,
+            "max": 2030.0,
+            "min": 1430.0,
+            "median": 1647.05,
+            "orgs": 9,
+            "researchers": 31
+          },
+          {
+            "period": 90,
+            "avg": 1661.26,
+            "max": 2030.0,
+            "min": 1430.0,
+            "median": 1647.05,
+            "orgs": 9,
+            "researchers": 35
+          },
+          {
+            "period": 180,
+            "avg": 1685.91,
+            "max": 2030.0,
+            "min": 1430.0,
+            "median": 1683.5,
+            "orgs": 13,
+            "researchers": 45
+          }
+        ]
+      },
+      "wuliangye": {
+        "asOf": "2026-09-12",
+        "windows": [
+          {
+            "period": 30,
+            "avg": 91.5,
+            "max": 91.5,
+            "min": 91.5,
+            "median": 91.5,
+            "orgs": 1,
+            "researchers": 3
+          },
+          {
+            "period": 90,
+            "avg": 91.5,
+            "max": 91.5,
+            "min": 91.5,
+            "median": 91.5,
+            "orgs": 1,
+            "researchers": 3
+          },
+          {
+            "period": 180,
+            "avg": 118.41,
+            "max": 149.16,
+            "min": 91.5,
+            "median": 121.87,
+            "orgs": 5,
+            "researchers": 16
+          }
+        ]
+      },
+      "guojiao": {
+        "asOf": "2026-09-12",
+        "windows": [
+          {
+            "period": 30,
+            "avg": 105.36,
+            "max": 122.3,
+            "min": 86.02,
+            "median": 105.0,
+            "orgs": 5,
+            "researchers": 15
+          },
+          {
+            "period": 90,
+            "avg": 105.36,
+            "max": 122.3,
+            "min": 86.02,
+            "median": 105.0,
+            "orgs": 5,
+            "researchers": 26
+          },
+          {
+            "period": 180,
+            "avg": 110.33,
+            "max": 133.0,
+            "min": 86.02,
+            "median": 112.5,
+            "orgs": 7,
+            "researchers": 35
+          }
+        ]
+      },
+      "fenjiu": {
+        "asOf": "2026-09-12",
+        "windows": [
+          {
+            "period": 30,
+            "avg": 171.42,
+            "max": 190.0,
+            "min": 149.53,
+            "median": 172.4,
+            "orgs": 6,
+            "researchers": 26
+          },
+          {
+            "period": 90,
+            "avg": 171.42,
+            "max": 190.0,
+            "min": 149.53,
+            "median": 172.4,
+            "orgs": 6,
+            "researchers": 30
+          },
+          {
+            "period": 180,
+            "avg": 169.8,
+            "max": 190.0,
+            "min": 149.53,
+            "median": 169.0,
+            "orgs": 7,
+            "researchers": 35
+          }
+        ]
+      },
+      "yanghe": {
+        "asOf": "2026-09-12",
+        "windows": [
+          {
+            "period": 30,
+            "avg": 48.62,
+            "max": 53.5,
+            "min": 42.0,
+            "median": 49.5,
+            "orgs": 4,
+            "researchers": 11
+          },
+          {
+            "period": 90,
+            "avg": 48.62,
+            "max": 53.5,
+            "min": 42.0,
+            "median": 49.5,
+            "orgs": 4,
+            "researchers": 11
+          },
+          {
+            "period": 180,
+            "avg": 48.62,
+            "max": 53.5,
+            "min": 42.0,
+            "median": 49.5,
+            "orgs": 4,
+            "researchers": 14
+          }
+        ]
+      },
+      "gujing": {
+        "asOf": "2026-09-12",
+        "windows": [
+          {
+            "period": 30,
+            "avg": 120.39,
+            "max": 131.6,
+            "min": 108.46,
+            "median": 119.0,
+            "orgs": 6,
+            "researchers": 20
+          },
+          {
+            "period": 90,
+            "avg": 120.39,
+            "max": 131.6,
+            "min": 108.46,
+            "median": 119.0,
+            "orgs": 6,
+            "researchers": 30
+          },
+          {
+            "period": 180,
+            "avg": 119.69,
+            "max": 131.6,
+            "min": 108.46,
+            "median": 118.0,
+            "orgs": 7,
+            "researchers": 38
+          }
+        ]
+      }
+    }
+  },
+  "trading": {
+    "source": "JYDB QT_DailyQuote（成交额）",
+    "companies": {
+      "guojiao": [
+        {
+          "date": "2026-07-30",
+          "close": 90.54,
+          "turnoverValueYi": 17.93
+        },
+        {
+          "date": "2026-07-31",
+          "close": 90.93,
+          "turnoverValueYi": 13.59
+        },
+        {
+          "date": "2026-08-03",
+          "close": 90.39,
+          "turnoverValueYi": 8.39
+        },
+        {
+          "date": "2026-08-04",
+          "close": 89.3,
+          "turnoverValueYi": 10.08
+        },
+        {
+          "date": "2026-08-05",
+          "close": 87.52,
+          "turnoverValueYi": 11.4
+        },
+        {
+          "date": "2026-08-06",
+          "close": 87.01,
+          "turnoverValueYi": 9.14
+        },
+        {
+          "date": "2026-08-07",
+          "close": 88.64,
+          "turnoverValueYi": 11.28
+        },
+        {
+          "date": "2026-08-10",
+          "close": 90.75,
+          "turnoverValueYi": 12.18
+        },
+        {
+          "date": "2026-08-11",
+          "close": 90.18,
+          "turnoverValueYi": 7.37
+        },
+        {
+          "date": "2026-08-12",
+          "close": 91.09,
+          "turnoverValueYi": 11.33
+        },
+        {
+          "date": "2026-08-13",
+          "close": 91.78,
+          "turnoverValueYi": 10.31
+        },
+        {
+          "date": "2026-08-14",
+          "close": 89.42,
+          "turnoverValueYi": 7.96
+        },
+        {
+          "date": "2026-08-17",
+          "close": 86.35,
+          "turnoverValueYi": 14.53
+        },
+        {
+          "date": "2026-08-18",
+          "close": 86.62,
+          "turnoverValueYi": 6.1
+        },
+        {
+          "date": "2026-08-19",
+          "close": 84.5,
+          "turnoverValueYi": 8.74
+        },
+        {
+          "date": "2026-08-20",
+          "close": 86.11,
+          "turnoverValueYi": 6.81
+        },
+        {
+          "date": "2026-08-21",
+          "close": 85.2,
+          "turnoverValueYi": 4.85
+        },
+        {
+          "date": "2026-08-24",
+          "close": 85.51,
+          "turnoverValueYi": 8.25
+        },
+        {
+          "date": "2026-08-25",
+          "close": 84.73,
+          "turnoverValueYi": 7.47
+        },
+        {
+          "date": "2026-08-26",
+          "close": 82.72,
+          "turnoverValueYi": 13.17
+        },
+        {
+          "date": "2026-08-27",
+          "close": 81.93,
+          "turnoverValueYi": 9.02
+        },
+        {
+          "date": "2026-08-28",
+          "close": 78.44,
+          "turnoverValueYi": 7.91
+        },
+        {
+          "date": "2026-08-31",
+          "close": 77.0,
+          "turnoverValueYi": 8.08
+        },
+        {
+          "date": "2026-09-01",
+          "close": 78.68,
+          "turnoverValueYi": 11.03
+        },
+        {
+          "date": "2026-09-02",
+          "close": 77.82,
+          "turnoverValueYi": 3.96
+        },
+        {
+          "date": "2026-09-03",
+          "close": 76.0,
+          "turnoverValueYi": 8.61
+        },
+        {
+          "date": "2026-09-04",
+          "close": 79.92,
+          "turnoverValueYi": 14.66
+        },
+        {
+          "date": "2026-09-07",
+          "close": 79.3,
+          "turnoverValueYi": 6.1
+        },
+        {
+          "date": "2026-09-08",
+          "close": 77.78,
+          "turnoverValueYi": 7.01
+        },
+        {
+          "date": "2026-09-09",
+          "close": 76.9,
+          "turnoverValueYi": 4.68
+        },
+        {
+          "date": "2026-09-10",
+          "close": 74.81,
+          "turnoverValueYi": 9.04
+        },
+        {
+          "date": "2026-09-11",
+          "close": 73.63,
+          "turnoverValueYi": 5.63
+        }
+      ],
+      "gujing": [
+        {
+          "date": "2026-07-30",
+          "close": 92.59,
+          "turnoverValueYi": 11.32
+        },
+        {
+          "date": "2026-07-31",
+          "close": 94.95,
+          "turnoverValueYi": 7.58
+        },
+        {
+          "date": "2026-08-03",
+          "close": 93.49,
+          "turnoverValueYi": 5.04
+        },
+        {
+          "date": "2026-08-04",
+          "close": 91.44,
+          "turnoverValueYi": 4.82
+        },
+        {
+          "date": "2026-08-05",
+          "close": 90.0,
+          "turnoverValueYi": 7.1
+        },
+        {
+          "date": "2026-08-06",
+          "close": 90.15,
+          "turnoverValueYi": 6.73
+        },
+        {
+          "date": "2026-08-07",
+          "close": 91.69,
+          "turnoverValueYi": 7.2
+        },
+        {
+          "date": "2026-08-10",
+          "close": 96.57,
+          "turnoverValueYi": 10.18
+        },
+        {
+          "date": "2026-08-11",
+          "close": 94.87,
+          "turnoverValueYi": 5.88
+        },
+        {
+          "date": "2026-08-12",
+          "close": 99.18,
+          "turnoverValueYi": 9.97
+        },
+        {
+          "date": "2026-08-13",
+          "close": 100.42,
+          "turnoverValueYi": 11.55
+        },
+        {
+          "date": "2026-08-14",
+          "close": 99.36,
+          "turnoverValueYi": 6.22
+        },
+        {
+          "date": "2026-08-17",
+          "close": 95.04,
+          "turnoverValueYi": 8.81
+        },
+        {
+          "date": "2026-08-18",
+          "close": 96.3,
+          "turnoverValueYi": 5.58
+        },
+        {
+          "date": "2026-08-19",
+          "close": 93.0,
+          "turnoverValueYi": 3.87
+        },
+        {
+          "date": "2026-08-20",
+          "close": 92.42,
+          "turnoverValueYi": 2.93
+        },
+        {
+          "date": "2026-08-21",
+          "close": 90.65,
+          "turnoverValueYi": 3.19
+        },
+        {
+          "date": "2026-08-24",
+          "close": 90.65,
+          "turnoverValueYi": 3.78
+        },
+        {
+          "date": "2026-08-25",
+          "close": 90.86,
+          "turnoverValueYi": 2.54
+        },
+        {
+          "date": "2026-08-26",
+          "close": 92.18,
+          "turnoverValueYi": 2.89
+        },
+        {
+          "date": "2026-08-27",
+          "close": 92.17,
+          "turnoverValueYi": 2.54
+        },
+        {
+          "date": "2026-08-28",
+          "close": 93.9,
+          "turnoverValueYi": 3.55
+        },
+        {
+          "date": "2026-08-31",
+          "close": 91.71,
+          "turnoverValueYi": 5.04
+        },
+        {
+          "date": "2026-09-01",
+          "close": 100.88,
+          "turnoverValueYi": 7.61
+        },
+        {
+          "date": "2026-09-02",
+          "close": 97.73,
+          "turnoverValueYi": 6.58
+        },
+        {
+          "date": "2026-09-03",
+          "close": 96.76,
+          "turnoverValueYi": 3.41
+        },
+        {
+          "date": "2026-09-04",
+          "close": 101.17,
+          "turnoverValueYi": 6.98
+        },
+        {
+          "date": "2026-09-07",
+          "close": 101.0,
+          "turnoverValueYi": 4.74
+        },
+        {
+          "date": "2026-09-08",
+          "close": 101.0,
+          "turnoverValueYi": 3.99
+        },
+        {
+          "date": "2026-09-09",
+          "close": 98.21,
+          "turnoverValueYi": 3.52
+        },
+        {
+          "date": "2026-09-10",
+          "close": 94.35,
+          "turnoverValueYi": 3.33
+        },
+        {
+          "date": "2026-09-11",
+          "close": 92.12,
+          "turnoverValueYi": 2.5
+        }
+      ],
+      "wuliangye": [
+        {
+          "date": "2026-07-30",
+          "close": 78.56,
+          "turnoverValueYi": 56.81
+        },
+        {
+          "date": "2026-07-31",
+          "close": 78.0,
+          "turnoverValueYi": 38.83
+        },
+        {
+          "date": "2026-08-03",
+          "close": 78.06,
+          "turnoverValueYi": 21.8
+        },
+        {
+          "date": "2026-08-04",
+          "close": 76.88,
+          "turnoverValueYi": 27.2
+        },
+        {
+          "date": "2026-08-05",
+          "close": 75.5,
+          "turnoverValueYi": 32.75
+        },
+        {
+          "date": "2026-08-06",
+          "close": 74.48,
+          "turnoverValueYi": 30.33
+        },
+        {
+          "date": "2026-08-07",
+          "close": 75.11,
+          "turnoverValueYi": 26.92
+        },
+        {
+          "date": "2026-08-10",
+          "close": 76.19,
+          "turnoverValueYi": 34.31
+        },
+        {
+          "date": "2026-08-11",
+          "close": 75.0,
+          "turnoverValueYi": 25.39
+        },
+        {
+          "date": "2026-08-12",
+          "close": 75.28,
+          "turnoverValueYi": 23.56
+        },
+        {
+          "date": "2026-08-13",
+          "close": 75.12,
+          "turnoverValueYi": 24.55
+        },
+        {
+          "date": "2026-08-14",
+          "close": 73.75,
+          "turnoverValueYi": 26.7
+        },
+        {
+          "date": "2026-08-17",
+          "close": 72.55,
+          "turnoverValueYi": 24.0
+        },
+        {
+          "date": "2026-08-18",
+          "close": 72.56,
+          "turnoverValueYi": 13.95
+        },
+        {
+          "date": "2026-08-19",
+          "close": 71.89,
+          "turnoverValueYi": 17.09
+        },
+        {
+          "date": "2026-08-20",
+          "close": 72.09,
+          "turnoverValueYi": 11.57
+        },
+        {
+          "date": "2026-08-21",
+          "close": 71.19,
+          "turnoverValueYi": 14.05
+        },
+        {
+          "date": "2026-08-24",
+          "close": 71.48,
+          "turnoverValueYi": 15.19
+        },
+        {
+          "date": "2026-08-25",
+          "close": 71.52,
+          "turnoverValueYi": 12.88
+        },
+        {
+          "date": "2026-08-26",
+          "close": 71.9,
+          "turnoverValueYi": 14.13
+        },
+        {
+          "date": "2026-08-27",
+          "close": 71.12,
+          "turnoverValueYi": 22.82
+        },
+        {
+          "date": "2026-08-28",
+          "close": 71.51,
+          "turnoverValueYi": 16.43
+        },
+        {
+          "date": "2026-08-31",
+          "close": 71.27,
+          "turnoverValueYi": 17.96
+        },
+        {
+          "date": "2026-09-01",
+          "close": 71.83,
+          "turnoverValueYi": 21.64
+        },
+        {
+          "date": "2026-09-02",
+          "close": 70.82,
+          "turnoverValueYi": 18.64
+        },
+        {
+          "date": "2026-09-03",
+          "close": 70.68,
+          "turnoverValueYi": 12.74
+        },
+        {
+          "date": "2026-09-04",
+          "close": 71.98,
+          "turnoverValueYi": 32.41
+        },
+        {
+          "date": "2026-09-07",
+          "close": 71.46,
+          "turnoverValueYi": 18.71
+        },
+        {
+          "date": "2026-09-08",
+          "close": 71.65,
+          "turnoverValueYi": 14.13
+        },
+        {
+          "date": "2026-09-09",
+          "close": 71.16,
+          "turnoverValueYi": 12.71
+        },
+        {
+          "date": "2026-09-10",
+          "close": 70.48,
+          "turnoverValueYi": 15.75
+        },
+        {
+          "date": "2026-09-11",
+          "close": 69.75,
+          "turnoverValueYi": 16.15
+        }
+      ],
+      "maotai": [
+        {
+          "date": "2026-07-30",
+          "close": 1361.76,
+          "turnoverValueYi": 97.12
+        },
+        {
+          "date": "2026-07-31",
+          "close": 1350.6,
+          "turnoverValueYi": 73.73
+        },
+        {
+          "date": "2026-08-03",
+          "close": 1358.98,
+          "turnoverValueYi": 48.99
+        },
+        {
+          "date": "2026-08-04",
+          "close": 1328.36,
+          "turnoverValueYi": 50.04
+        },
+        {
+          "date": "2026-08-05",
+          "close": 1306.45,
+          "turnoverValueYi": 56.01
+        },
+        {
+          "date": "2026-08-06",
+          "close": 1308.55,
+          "turnoverValueYi": 33.26
+        },
+        {
+          "date": "2026-08-07",
+          "close": 1309.22,
+          "turnoverValueYi": 32.67
+        },
+        {
+          "date": "2026-08-10",
+          "close": 1348.86,
+          "turnoverValueYi": 84.28
+        },
+        {
+          "date": "2026-08-11",
+          "close": 1346.5,
+          "turnoverValueYi": 36.4
+        },
+        {
+          "date": "2026-08-12",
+          "close": 1343.0,
+          "turnoverValueYi": 47.18
+        },
+        {
+          "date": "2026-08-13",
+          "close": 1355.29,
+          "turnoverValueYi": 43.76
+        },
+        {
+          "date": "2026-08-14",
+          "close": 1341.99,
+          "turnoverValueYi": 40.24
+        },
+        {
+          "date": "2026-08-17",
+          "close": 1293.09,
+          "turnoverValueYi": 101.15
+        },
+        {
+          "date": "2026-08-18",
+          "close": 1297.99,
+          "turnoverValueYi": 50.07
+        },
+        {
+          "date": "2026-08-19",
+          "close": 1307.88,
+          "turnoverValueYi": 48.77
+        },
+        {
+          "date": "2026-08-20",
+          "close": 1291.5,
+          "turnoverValueYi": 32.8
+        },
+        {
+          "date": "2026-08-21",
+          "close": 1272.83,
+          "turnoverValueYi": 42.78
+        },
+        {
+          "date": "2026-08-24",
+          "close": 1304.66,
+          "turnoverValueYi": 63.0
+        },
+        {
+          "date": "2026-08-25",
+          "close": 1304.0,
+          "turnoverValueYi": 27.58
+        },
+        {
+          "date": "2026-08-26",
+          "close": 1302.8,
+          "turnoverValueYi": 28.39
+        },
+        {
+          "date": "2026-08-27",
+          "close": 1292.3,
+          "turnoverValueYi": 32.04
+        },
+        {
+          "date": "2026-08-28",
+          "close": 1297.4,
+          "turnoverValueYi": 20.86
+        },
+        {
+          "date": "2026-08-31",
+          "close": 1299.52,
+          "turnoverValueYi": 30.03
+        },
+        {
+          "date": "2026-09-01",
+          "close": 1299.56,
+          "turnoverValueYi": 42.42
+        },
+        {
+          "date": "2026-09-02",
+          "close": 1297.5,
+          "turnoverValueYi": 26.34
+        },
+        {
+          "date": "2026-09-03",
+          "close": 1298.88,
+          "turnoverValueYi": 23.05
+        },
+        {
+          "date": "2026-09-04",
+          "close": 1330.0,
+          "turnoverValueYi": 60.23
+        },
+        {
+          "date": "2026-09-07",
+          "close": 1316.01,
+          "turnoverValueYi": 33.36
+        },
+        {
+          "date": "2026-09-08",
+          "close": 1309.3,
+          "turnoverValueYi": 23.03
+        },
+        {
+          "date": "2026-09-09",
+          "close": 1290.88,
+          "turnoverValueYi": 41.69
+        },
+        {
+          "date": "2026-09-10",
+          "close": 1285.13,
+          "turnoverValueYi": 24.29
+        },
+        {
+          "date": "2026-09-11",
+          "close": 1275.16,
+          "turnoverValueYi": 44.31
+        }
+      ],
+      "fenjiu": [
+        {
+          "date": "2026-07-30",
+          "close": 135.96,
+          "turnoverValueYi": 25.54
+        },
+        {
+          "date": "2026-07-31",
+          "close": 127.24,
+          "turnoverValueYi": 21.66
+        },
+        {
+          "date": "2026-08-03",
+          "close": 123.75,
+          "turnoverValueYi": 13.19
+        },
+        {
+          "date": "2026-08-04",
+          "close": 121.85,
+          "turnoverValueYi": 15.27
+        },
+        {
+          "date": "2026-08-05",
+          "close": 121.01,
+          "turnoverValueYi": 12.62
+        },
+        {
+          "date": "2026-08-06",
+          "close": 119.6,
+          "turnoverValueYi": 10.42
+        },
+        {
+          "date": "2026-08-07",
+          "close": 120.22,
+          "turnoverValueYi": 9.8
+        },
+        {
+          "date": "2026-08-10",
+          "close": 123.1,
+          "turnoverValueYi": 14.55
+        },
+        {
+          "date": "2026-08-11",
+          "close": 120.72,
+          "turnoverValueYi": 9.68
+        },
+        {
+          "date": "2026-08-12",
+          "close": 122.32,
+          "turnoverValueYi": 10.63
+        },
+        {
+          "date": "2026-08-13",
+          "close": 126.55,
+          "turnoverValueYi": 18.94
+        },
+        {
+          "date": "2026-08-14",
+          "close": 123.52,
+          "turnoverValueYi": 8.59
+        },
+        {
+          "date": "2026-08-17",
+          "close": 118.94,
+          "turnoverValueYi": 13.4
+        },
+        {
+          "date": "2026-08-18",
+          "close": 120.52,
+          "turnoverValueYi": 7.12
+        },
+        {
+          "date": "2026-08-19",
+          "close": 119.3,
+          "turnoverValueYi": 6.8
+        },
+        {
+          "date": "2026-08-20",
+          "close": 118.5,
+          "turnoverValueYi": 4.82
+        },
+        {
+          "date": "2026-08-21",
+          "close": 116.55,
+          "turnoverValueYi": 5.27
+        },
+        {
+          "date": "2026-08-24",
+          "close": 117.1,
+          "turnoverValueYi": 7.16
+        },
+        {
+          "date": "2026-08-25",
+          "close": 116.66,
+          "turnoverValueYi": 4.47
+        },
+        {
+          "date": "2026-08-26",
+          "close": 117.09,
+          "turnoverValueYi": 3.96
+        },
+        {
+          "date": "2026-08-27",
+          "close": 116.39,
+          "turnoverValueYi": 3.81
+        },
+        {
+          "date": "2026-08-28",
+          "close": 119.03,
+          "turnoverValueYi": 5.99
+        },
+        {
+          "date": "2026-08-31",
+          "close": 116.76,
+          "turnoverValueYi": 8.73
+        },
+        {
+          "date": "2026-09-01",
+          "close": 120.67,
+          "turnoverValueYi": 12.17
+        },
+        {
+          "date": "2026-09-02",
+          "close": 118.28,
+          "turnoverValueYi": 6.33
+        },
+        {
+          "date": "2026-09-03",
+          "close": 116.96,
+          "turnoverValueYi": 5.48
+        },
+        {
+          "date": "2026-09-04",
+          "close": 122.56,
+          "turnoverValueYi": 16.78
+        },
+        {
+          "date": "2026-09-07",
+          "close": 123.05,
+          "turnoverValueYi": 8.14
+        },
+        {
+          "date": "2026-09-08",
+          "close": 122.2,
+          "turnoverValueYi": 5.79
+        },
+        {
+          "date": "2026-09-09",
+          "close": 119.02,
+          "turnoverValueYi": 6.32
+        },
+        {
+          "date": "2026-09-10",
+          "close": 116.06,
+          "turnoverValueYi": 6.98
+        },
+        {
+          "date": "2026-09-11",
+          "close": 114.18,
+          "turnoverValueYi": 5.97
+        }
+      ],
+      "yanghe": [
+        {
+          "date": "2026-07-30",
+          "close": 42.44,
+          "turnoverValueYi": 7.67
+        },
+        {
+          "date": "2026-07-31",
+          "close": 42.9,
+          "turnoverValueYi": 4.68
+        },
+        {
+          "date": "2026-08-03",
+          "close": 42.63,
+          "turnoverValueYi": 3.13
+        },
+        {
+          "date": "2026-08-04",
+          "close": 41.92,
+          "turnoverValueYi": 3.05
+        },
+        {
+          "date": "2026-08-05",
+          "close": 41.29,
+          "turnoverValueYi": 3.32
+        },
+        {
+          "date": "2026-08-06",
+          "close": 40.88,
+          "turnoverValueYi": 3.14
+        },
+        {
+          "date": "2026-08-07",
+          "close": 40.84,
+          "turnoverValueYi": 3.03
+        },
+        {
+          "date": "2026-08-10",
+          "close": 41.57,
+          "turnoverValueYi": 3.95
+        },
+        {
+          "date": "2026-08-11",
+          "close": 41.1,
+          "turnoverValueYi": 2.43
+        },
+        {
+          "date": "2026-08-12",
+          "close": 41.62,
+          "turnoverValueYi": 3.5
+        },
+        {
+          "date": "2026-08-13",
+          "close": 41.57,
+          "turnoverValueYi": 2.97
+        },
+        {
+          "date": "2026-08-14",
+          "close": 40.58,
+          "turnoverValueYi": 2.49
+        },
+        {
+          "date": "2026-08-17",
+          "close": 39.82,
+          "turnoverValueYi": 2.87
+        },
+        {
+          "date": "2026-08-18",
+          "close": 39.65,
+          "turnoverValueYi": 1.73
+        },
+        {
+          "date": "2026-08-19",
+          "close": 39.02,
+          "turnoverValueYi": 1.75
+        },
+        {
+          "date": "2026-08-20",
+          "close": 39.41,
+          "turnoverValueYi": 1.62
+        },
+        {
+          "date": "2026-08-21",
+          "close": 38.83,
+          "turnoverValueYi": 1.45
+        },
+        {
+          "date": "2026-08-24",
+          "close": 39.05,
+          "turnoverValueYi": 1.63
+        },
+        {
+          "date": "2026-08-25",
+          "close": 39.43,
+          "turnoverValueYi": 1.35
+        },
+        {
+          "date": "2026-08-26",
+          "close": 39.91,
+          "turnoverValueYi": 1.79
+        },
+        {
+          "date": "2026-08-27",
+          "close": 38.88,
+          "turnoverValueYi": 3.33
+        },
+        {
+          "date": "2026-08-28",
+          "close": 39.13,
+          "turnoverValueYi": 1.99
+        },
+        {
+          "date": "2026-08-31",
+          "close": 38.64,
+          "turnoverValueYi": 2.07
+        },
+        {
+          "date": "2026-09-01",
+          "close": 39.46,
+          "turnoverValueYi": 2.73
+        },
+        {
+          "date": "2026-09-02",
+          "close": 38.85,
+          "turnoverValueYi": 1.61
+        },
+        {
+          "date": "2026-09-03",
+          "close": 38.75,
+          "turnoverValueYi": 1.34
+        },
+        {
+          "date": "2026-09-04",
+          "close": 39.59,
+          "turnoverValueYi": 3.17
+        },
+        {
+          "date": "2026-09-07",
+          "close": 39.5,
+          "turnoverValueYi": 1.66
+        },
+        {
+          "date": "2026-09-08",
+          "close": 39.68,
+          "turnoverValueYi": 1.5
+        },
+        {
+          "date": "2026-09-09",
+          "close": 39.12,
+          "turnoverValueYi": 1.78
+        },
+        {
+          "date": "2026-09-10",
+          "close": 38.48,
+          "turnoverValueYi": 2.35
+        },
+        {
+          "date": "2026-09-11",
+          "close": 38.07,
+          "turnoverValueYi": 1.64
+        }
+      ]
+    }
+  },
+  "researchReports": [
+    {
+      "date": "2026-09-12",
+      "org": "中泰证券",
+      "title": "白酒与软饮料板块2026年中报总结：分化加剧 头部恒强",
+      "depth": 12,
+      "pages": 10
+    },
+    {
+      "date": "2026-09-11",
+      "org": "申港证券",
+      "title": "食品饮料行业研究周报：白酒关注旺季备货和批价表现 黄酒推进结构升级和扩渠道",
+      "depth": 59,
+      "pages": 9
+    },
+    {
+      "date": "2026-09-11",
+      "org": "国泰海通证券",
+      "title": "白酒行业周期研究：白酒底部显现",
+      "depth": 7,
+      "pages": 19
+    },
+    {
+      "date": "2026-09-10",
+      "org": "金融街证券",
+      "title": "食品饮料行业9月ETF策略：8月板块回调 消费修复仍待观察",
+      "depth": 18,
+      "pages": 16
+    },
+    {
+      "date": "2026-09-10",
+      "org": "万联证券",
+      "title": "食品饮料行业1H2026业绩综述：业绩边际改善 结构分化",
+      "depth": 12,
+      "pages": 18
+    },
+    {
+      "date": "2026-09-10",
+      "org": "东方证券",
+      "title": "食品饮料行业：行业景气延续 关注涨价品种",
+      "depth": 1,
+      "pages": 3
+    },
+    {
+      "date": "2026-09-10",
+      "org": "东方证券",
+      "title": "食品饮料行业：慢水行舟 静待潮起",
+      "depth": 1,
+      "pages": 3
+    },
+    {
+      "date": "2026-09-10",
+      "org": "中信证券经纪(香港)有限公司",
+      "title": "中国消费行业：中国食品饮料月报第10期",
+      "depth": 14,
+      "pages": 3
+    },
+    {
+      "date": "2026-09-09",
+      "org": "国泰海通证券",
+      "title": "五粮液(000858)2026年半年报点评：夯实基础 蓄势待发",
+      "depth": 3,
+      "pages": 4
+    },
+    {
+      "date": "2026-09-08",
+      "org": "平安证券",
+      "title": "食品饮料行业餐饮链2026年中报总结：静待需求改善 龙头展现经营韧性",
+      "depth": 12,
+      "pages": 9
+    },
+    {
+      "date": "2026-09-08",
+      "org": "国泰海通证券",
+      "title": "食品饮料行业板块2026半年报总结：出清提速 底部渐明",
+      "depth": 12,
+      "pages": 36
+    },
+    {
+      "date": "2026-09-08",
+      "org": "国信证券",
+      "title": "食品饮料行业投资策略2026年中报总结：需求延续弱复苏 供给端出清加快",
+      "depth": 16,
+      "pages": 33
+    },
+    {
+      "date": "2026-09-08",
+      "org": "华泰证券",
+      "title": "食品饮料行业动态点评：海外业绩综述 分化中寻韧性",
+      "depth": 7,
+      "pages": 16
+    },
+    {
+      "date": "2026-09-08",
+      "org": "东方财富证券",
+      "title": "食品饮料行业2026半年报业绩总结：否已极 泰将来",
+      "depth": 12,
+      "pages": 16
+    },
+    {
+      "date": "2026-09-08",
+      "org": "红塔证券",
+      "title": "食品饮料行业：2026Q2白酒承压 大众品分化",
+      "depth": 13,
+      "pages": 10
+    },
+    {
+      "date": "2026-09-08",
+      "org": "西部证券",
+      "title": "食品饮料专题：底部布局超跌成长股",
+      "depth": 7,
+      "pages": 16
+    },
+    {
+      "date": "2026-09-08",
+      "org": "西部证券",
+      "title": "顺鑫农业(000860)近况点评：业绩短期承压 白酒业务持续调整",
+      "depth": 3,
+      "pages": 3
+    },
+    {
+      "date": "2026-09-08",
+      "org": "长江证券",
+      "title": "泸州老窖(000568)2026年中报业绩点评：加速出清 调整蓄力",
+      "depth": 3,
+      "pages": 6
+    },
+    {
+      "date": "2026-09-08",
+      "org": "浙商证券",
+      "title": "山西汾酒(600809)：26Q2积极出清 合同负债同比向好",
+      "depth": 3,
+      "pages": 3
+    },
+    {
+      "date": "2026-09-08",
+      "org": "浙商证券",
+      "title": "古井贡酒(000596)：Q2持续去库加速出清 H2有望改善",
+      "depth": 4,
+      "pages": 3
+    },
+    {
+      "date": "2026-09-08",
+      "org": "浙商证券",
+      "title": "五粮液(000858)：Q2收入符合预期 核心大单品表现稳固",
+      "depth": 3,
+      "pages": 3
+    },
+    {
+      "date": "2026-09-07",
+      "org": "国盛证券",
+      "title": "食品饮料行业点评：新酒水 新叙事 新势力",
+      "depth": 1,
+      "pages": 3
+    },
+    {
+      "date": "2026-09-07",
+      "org": "中信建投证券",
+      "title": "食品饮料行业周报：继续推荐茅台和区域酒 看好零售变革机会",
+      "depth": 59,
+      "pages": 21
+    },
+    {
+      "date": "2026-09-07",
+      "org": "爱建证券有限责任公司",
+      "title": "食品饮料行业周报：山西汾酒降速调整 新品与场景培育积蓄势能",
+      "depth": 59,
+      "pages": 5
+    },
+    {
+      "date": "2026-09-07",
+      "org": "平安证券",
+      "title": "食品饮料行业周报：中秋国庆旺季临近 白酒需求有望持续回升",
+      "depth": 59,
+      "pages": 12
+    },
+    {
+      "date": "2026-09-07",
+      "org": "西南证券",
+      "title": "泸州老窖(000568)：主动控量加速渠道出清 Q2盈利弹性承压",
+      "depth": 3,
+      "pages": 5
+    },
+    {
+      "date": "2026-09-07",
+      "org": "中信建投证券",
+      "title": "古井贡酒(000596)：被低估的徽酒龙头 筑底反转业绩有望超预期",
+      "depth": 1,
+      "pages": 6
+    },
+    {
+      "date": "2026-09-06",
+      "org": "中信建投证券",
+      "title": "食品饮料行业深度报告：日本乳制品发展启示录：健康化为基 功能性为矛",
+      "depth": 7,
+      "pages": 32
+    },
+    {
+      "date": "2026-09-06",
+      "org": "浙商证券",
+      "title": "食品饮料行业周观点：酒类涨幅居前 关注双节催化",
+      "depth": 59,
+      "pages": 16
+    },
+    {
+      "date": "2026-09-06",
+      "org": "国盛证券",
+      "title": "食品饮料行业周观点：白酒中秋价格抬头 食品关注结构机会",
+      "depth": 59,
+      "pages": 3
+    },
+    {
+      "date": "2026-09-06",
+      "org": "国金证券",
+      "title": "食品饮料行业周报：白酒价盘平稳向好 持续推荐预期修复下的板块配置",
+      "depth": 59,
+      "pages": 10
+    },
+    {
+      "date": "2026-09-06",
+      "org": "湘财证券",
+      "title": "食品饮料行业周报：政策支持消费扩容 行业分化延续",
+      "depth": 59,
+      "pages": 14
+    },
+    {
+      "date": "2026-09-06",
+      "org": "方正证券",
+      "title": "食品饮料行业专题报告26H1中报总结：白酒风险集中释放 重视黄酒高端化",
+      "depth": 12,
+      "pages": 20
+    },
+    {
+      "date": "2026-09-06",
+      "org": "开源证券",
+      "title": "食品饮料周报：市场风格轮动 板块修复弹性充足",
+      "depth": 59,
+      "pages": 11
+    },
+    {
+      "date": "2026-09-06",
+      "org": "浙商证券",
+      "title": "泸州老窖(000568)：Q2加大出清力度 静待后续改善",
+      "depth": 3,
+      "pages": 3
+    },
+    {
+      "date": "2026-09-05",
+      "org": "上海申银万国证券研究所有限公司",
+      "title": "食品饮料行业周报：中秋旺季将确认千元价格带价格底部",
+      "depth": 59,
+      "pages": 15
+    },
+    {
+      "date": "2026-09-05",
+      "org": "国信证券",
+      "title": "金融工程日报：沪指高开低走 农业白酒表现强势、AI硬件承压",
+      "depth": 40,
+      "pages": 16
+    },
+    {
+      "date": "2026-09-05",
+      "org": "浙商证券",
+      "title": "洋河股份(002304)：需求偏弱+省内竞争加剧 仍处深度出清阶段",
+      "depth": 3,
+      "pages": 3
+    },
+    {
+      "date": "2026-09-05",
+      "org": "国海证券",
+      "title": "山西汾酒(600809)：Q2延续出清 全国化势能仍在",
+      "depth": 3,
+      "pages": 5
+    },
+    {
+      "date": "2026-09-05",
+      "org": "国海证券",
+      "title": "古井贡酒(000596)：主动大幅出清 去库纾压再出发",
+      "depth": 3,
+      "pages": 5
+    },
+    {
+      "date": "2026-09-04",
+      "org": "国泰海通证券",
+      "title": "风格及行业观点月报(2026.09)：两行业轮动推荐均含非银金融、食品饮料",
+      "depth": 40,
+      "pages": 7
+    },
+    {
+      "date": "2026-09-04",
+      "org": "长江证券",
+      "title": "洋河股份(002304)2026年中报点评：延续出清 蓄力前行",
+      "depth": 3,
+      "pages": 6
+    },
+    {
+      "date": "2026-09-04",
+      "org": "长城证券",
+      "title": "山西汾酒(600809)：Q2主动调整蓄力 省外彰显韧性",
+      "depth": 3,
+      "pages": 3
+    },
+    {
+      "date": "2026-09-03",
+      "org": "中国银河证券",
+      "title": "食品饮料行业26H1业绩总结：分化中不乏结构性亮点",
+      "depth": 12,
+      "pages": 11
+    },
+    {
+      "date": "2026-09-03",
+      "org": "国泰海通证券",
+      "title": "食品饮料行业2026年秋季投资策略：底部显现 价值凸显",
+      "depth": 17,
+      "pages": 69
+    },
+    {
+      "date": "2026-09-03",
+      "org": "国泰海通证券",
+      "title": "白酒行业更新报告：楼市新政落地 关注顺周期行业",
+      "depth": 1,
+      "pages": 4
+    },
+    {
+      "date": "2026-09-03",
+      "org": "国海证券",
+      "title": "白酒行业2026年中报总结：报表加速出清 供需拐点渐现",
+      "depth": 12,
+      "pages": 17
+    },
+    {
+      "date": "2026-09-03",
+      "org": "中信建投证券",
+      "title": "白酒行业2026H1财报总结：财报落地宜布局 优选茅台+区域酒",
+      "depth": 12,
+      "pages": 19
+    },
+    {
+      "date": "2026-09-03",
+      "org": "光大证券",
+      "title": "白酒板块2026年中报总结：报表出清 局部分化",
+      "depth": 12,
+      "pages": 5
+    },
+    {
+      "date": "2026-09-03",
+      "org": "国信证券",
+      "title": "泸州老窖(000568)：2026Q2主动调整加深 中高档酒仍在出清",
+      "depth": 3,
+      "pages": 6
+    },
+    {
+      "date": "2026-09-03",
+      "org": "长江证券",
+      "title": "山西汾酒(600809)2026年中报点评：调整蓄力 结构改善",
+      "depth": 3,
+      "pages": 6
+    },
+    {
+      "date": "2026-09-03",
+      "org": "中泰证券",
+      "title": "山西汾酒(600809)：汾酒基本盘稳固 省内表现优于省外",
+      "depth": 3,
+      "pages": 3
+    },
+    {
+      "date": "2026-09-03",
+      "org": "开源证券",
+      "title": "山西汾酒(600809)：主动降速调整 长期发展潜力仍足",
+      "depth": 3,
+      "pages": 4
+    },
+    {
+      "date": "2026-09-03",
+      "org": "国信证券",
+      "title": "山西汾酒(600809)：2026上半年收入同比下降12% 进一步释放经营压力",
+      "depth": 3,
+      "pages": 6
+    },
+    {
+      "date": "2026-09-02",
+      "org": "国盛证券",
+      "title": "食品饮料行业白酒26H1&26Q2业绩总结：周期底部 加速出清",
+      "depth": 12,
+      "pages": 5
+    },
+    {
+      "date": "2026-09-02",
+      "org": "国盛证券",
+      "title": "食品饮料行业大众品26H1&26Q2总结：结构分化 云开月明",
+      "depth": 12,
+      "pages": 13
+    },
+    {
+      "date": "2026-09-02",
+      "org": "国金证券",
+      "title": "食品饮料行业专题研究报告：酒类中报总结：白酒出清加速 多雨需求影响啤酒兑现",
+      "depth": 7,
+      "pages": 29
+    },
+    {
+      "date": "2026-09-02",
+      "org": "南京证券",
+      "title": "食品饮料行业：7月社零同比增长0.6% 白酒中报持续分化",
+      "depth": 12,
+      "pages": 8
+    },
+    {
+      "date": "2026-09-02",
+      "org": "上海申银万国证券研究所有限公司",
+      "title": "白酒2026年中报总结：26Q2基本面全面承压 经营压力加速释放",
+      "depth": 12,
+      "pages": 14
+    },
+    {
+      "date": "2026-09-02",
+      "org": "东方证券",
+      "title": "洋河股份(002304)：深度调整延续 仍处于转型阶段",
+      "depth": 3,
+      "pages": 5
+    }
+  ]
 };

@@ -8,6 +8,7 @@
 import json
 import os
 import random
+import time
 from pathlib import Path
 
 import pandas as pd
@@ -328,20 +329,56 @@ def main() -> None:
                               columns=["stock_code", "end_date", "total_operating_revenue", "operating_revenue", "operating_cost", "np_parent_company_owners"])
     val_all = pd.read_parquet(LD / "ashare_stock_value.parquet", columns=["stock_code", "date", "pe_ttm", "dv"])
     fk_all = pd.read_parquet(LD / "fund_keystock.parquet", columns=["date", "stock_code", "market_value"])
+
+    # JYDB（JyPy 连接的聚源数据库）优先：行情/重仓/一致预期/目标价/交易活跃度/研报
+    jydb = None
+    try:
+        import jydb_source
+        jydb = jydb_source.fetch_all()
+    except Exception as e:  # noqa: BLE001
+        print(f"  jydb 模块不可用: {type(e).__name__} {e}")
+
+    kline = build_kline()
+    if jydb and jydb.get("kline"):
+        for key, block in jydb["kline"].items():
+            if key in kline and block.get("rows"):
+                kline[key]["rows"] = block["rows"]
+        kline_source = "JYDB QT_DailyQuote（个股）+ 本地库 ashare_index_price（指数）"
+    else:
+        kline_source = "本地库 ashare_stock_price / ashare_index_price"
+    kline["source"] = kline_source
+
+    fund_holding = (jydb or {}).get("fundHolding") or build_fund_holding()
+
     payload = {
         "schemaVersion": 2,
-        "generatedAt": "2026-08-21",
+        "generatedAt": time.strftime("%Y-%m-%d"),
+        "dataSource": "JYDB优先，本地parquet回退",
         "macro": macro,
         "companyQuarterly": build_quarterly(inc, bal, cf),
         "quarterlySource": "本地库 ashare_stock_income_q / balance / cashflow_q（单季度口径，合并报表，去重取最新版本）",
         "extraMetrics": build_extra_metrics(inc, bal),
         "listedOverview": build_listed_overview(inc_all, val_all, fk_all),
         "valuation": build_valuation(),
-        "fundHolding": build_fund_holding(),
+        "fundHolding": fund_holding,
         "regionDemo": build_region_demo(),
         "announcements": load_announcements(),
-        "kline": build_kline(),
+        "kline": kline,
+        "forecast": (jydb or {}).get("forecast"),
+        "targetPrice": (jydb or {}).get("targetPrice"),
+        "trading": (jydb or {}).get("trading"),
+        "researchReports": (jydb or {}).get("researchReports"),
     }
+    # 一致预期的同比基准：用本地财报库 2025 年四个单季加总（与一致预期分列，口径为报表口径）
+    if payload["forecast"] and payload["forecast"].get("companies"):
+        for key, fc in payload["forecast"]["companies"].items():
+            quarters = payload["companyQuarterly"].get(key, {}).get("quarters", [])
+            q2025 = [q for q in quarters if q["date"].startswith("2025")]
+            if len(q2025) == 4:
+                rev = sum(q["revenue"] for q in q2025 if q.get("revenue"))
+                np_ = sum(q["netProfit"] for q in q2025 if q.get("netProfit"))
+                fc["base2025"] = {"revenue": round(rev, 1), "netProfit": round(np_, 1), "source": "本地库 2025 四季加总"}
+    js = "window.WHITE_LIQUOR_LOCAL = " + json.dumps(payload, ensure_ascii=False, indent=2) + ";\n"
     js = "window.WHITE_LIQUOR_LOCAL = " + json.dumps(payload, ensure_ascii=False, indent=2) + ";\n"
     OUT.write_text(js, encoding="utf-8")
     print(f"written {OUT} ({len(js)} bytes)")

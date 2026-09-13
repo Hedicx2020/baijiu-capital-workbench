@@ -580,6 +580,149 @@
     if (note) note.textContent = m.note || "";
   }
 
+  /* ===== JYDB 数据块：目标价 / 一致预期 / 交易活跃度 / 最新研报 ===== */
+  function klineLastClose(key) {
+    const rows = localData.kline?.[key]?.rows;
+    return rows?.length ? rows[rows.length - 1][4] : null;
+  }
+
+  function renderTargetPrice() {
+    const panel = document.getElementById("target-price-panel");
+    const note = document.getElementById("target-note");
+    if (!panel) return;
+    const data = localData.targetPrice;
+    if (!data?.companies || !Object.keys(data.companies).length) {
+      panel.innerHTML = `<div class="panel is-demo-panel"><div class="panel-topline"><span class="eyebrow">PRICE TARGET</span><b class="track-state demo-badge">待接入</b></div>
+        <p class="blueprint-note">目标价统计暂未接入；接入 JYDB C_EX_TargetPrice 后此处展示各机构目标价均值/区间与覆盖机构数。</p></div>`;
+      if (note) note.textContent = "待接入券商目标价统计";
+      return;
+    }
+    const rows = [];
+    marketCompanyOrder.forEach(key => {
+      const c = data.companies[key];
+      if (!c) return;
+      const price = klineLastClose(key);
+      c.windows.forEach(w => {
+        const space = Number.isFinite(price) && Number.isFinite(w.avg) ? w.avg / price - 1 : null;
+        rows.push({ key, w, price, space, asOf: c.asOf });
+      });
+    });
+    panel.innerHTML = `<div class="panel band-table-wrap">
+      <div class="panel-topline"><span class="eyebrow">PRICE TARGET</span><b class="track-state is-full">JYDB</b></div>
+      <table class="band-table">
+        <thead><tr><th scope="col">公司</th><th scope="col">统计窗口</th><th scope="col">目标价均值</th><th scope="col">最高</th><th scope="col">最低</th><th scope="col">中位数</th><th scope="col">覆盖机构</th><th scope="col">较现价空间</th><th scope="col">统计日</th></tr></thead>
+        <tbody>${rows.map(r => `<tr>
+          <th scope="row">${escapeHtml(marketCompanyName(r.key))}</th>
+          <td>近${r.w.period}日</td>
+          <td><strong>${formatNumberSafe(r.w.avg, 0)}元</strong></td>
+          <td>${formatNumberSafe(r.w.max, 0)}元</td>
+          <td>${formatNumberSafe(r.w.min, 0)}元</td>
+          <td>${formatNumberSafe(r.w.median, 0)}元</td>
+          <td>${r.w.orgs ?? "—"}家 / ${r.w.researchers ?? "—"}人</td>
+          <td class="${r.space !== null && r.space < 0 ? "neg" : ""}">${r.space !== null ? formatPct(r.space) : "—"}</td>
+          <td class="mono">${escapeHtml(r.asOf)}</td>
+        </tr>`).join("")}</tbody>
+      </table>
+      <p class="blueprint-note">${escapeHtml(data.source || "JYDB C_EX_TargetPrice")}；较现价空间=目标价均值/最新收盘价-1（收盘价为K线最近交易日）；30/90/180日为滚动统计窗口，机构数为窗口内给出目标价的机构数量。</p>
+    </div>`;
+    if (note) note.textContent = `${data.source || "JYDB"} · 统计日 ${Object.values(data.companies)[0]?.asOf || "—"}`;
+  }
+
+  function renderForecast() {
+    const panel = document.getElementById("forecast-panel");
+    const note = document.getElementById("forecast-note");
+    if (!panel) return;
+    const data = localData.forecast;
+    if (!data?.companies || !Object.keys(data.companies).length) {
+      panel.innerHTML = `<div class="panel is-demo-panel"><div class="panel-topline"><span class="eyebrow">CONSENSUS FORECAST</span><b class="track-state demo-badge">待接入</b></div>
+        <p class="blueprint-note">一致预期暂未接入；接入 JYDB C_EX_ProForStat 后此处展示 2026E-2028E 收入/净利/EPS 机构均值与样本数。</p></div>`;
+      if (note) note.textContent = "待接入一致预期数据";
+      return;
+    }
+    const rows = [];
+    marketCompanyOrder.forEach(key => {
+      const c = data.companies[key];
+      if (!c) return;
+      c.years.forEach(y => {
+        const revYoy = c.base2025?.revenue && Number.isFinite(y.revenueAvgYi) ? y.revenueAvgYi / c.base2025.revenue - 1 : null;
+        const npYoy = c.base2025?.netProfit && Number.isFinite(y.npAvgYi) ? y.npAvgYi / c.base2025.netProfit - 1 : null;
+        rows.push({ key, y, revYoy, npYoy, asOf: c.asOf });
+      });
+    });
+    panel.innerHTML = `<div class="panel band-table-wrap">
+      <div class="panel-topline"><span class="eyebrow">CONSENSUS FORECAST</span><b class="track-state is-full">JYDB</b></div>
+      <table class="band-table">
+        <thead><tr><th scope="col">公司</th><th scope="col">预测年度</th><th scope="col">营业收入均值</th><th scope="col">较2025实际</th><th scope="col">归母净利均值</th><th scope="col">较2025实际</th><th scope="col">EPS 均值</th><th scope="col">机构样本</th><th scope="col">统计日</th></tr></thead>
+        <tbody>${rows.map(r => `<tr>
+          <th scope="row">${escapeHtml(marketCompanyName(r.key))}${r.key === "wuliangye" ? '<sup class="neg">*</sup>' : ""}</th>
+          <td class="mono">${escapeHtml(r.y.year)}E</td>
+          <td><strong>${formatNumberSafe(r.y.revenueAvgYi, 0)}亿</strong></td>
+          <td class="${r.revYoy !== null && r.revYoy < 0 ? "neg" : ""}">${r.revYoy !== null ? formatPct(r.revYoy) : "—"}</td>
+          <td><strong>${formatNumberSafe(r.y.npAvgYi, 0)}亿</strong></td>
+          <td class="${r.npYoy !== null && r.npYoy < 0 ? "neg" : ""}">${r.npYoy !== null ? formatPct(r.npYoy) : "—"}</td>
+          <td>${formatNumberSafe(r.y.epsAvg, 2)}元</td>
+          <td>${r.y.npOrgs ?? "—"}家</td>
+          <td class="mono">${escapeHtml(r.asOf)}</td>
+        </tr>`).join("")}</tbody>
+      </table>
+      <p class="blueprint-note">${escapeHtml(data.source || "JYDB C_EX_ProForStat")}；金额为机构预测算术均值（聚源口径，收入/净利由万元/元换算为亿元）；「较2025实际」=一致预期/本地库2025四季加总-1，两口径分列可核对。*五粮液2025年报表追溯调整（平台公司监管商品重分类），同比跨口径仅供参考。预测属机构观点汇总，不构成投资建议。</p>
+    </div>`;
+    if (note) note.textContent = `${data.source || "JYDB"} · 统计日 ${Object.values(data.companies)[0]?.asOf || "—"}`;
+  }
+
+  function renderTradingActivity() {
+    const bodyEl = document.getElementById("trading-activity-body");
+    if (!bodyEl) return;
+    const data = localData.trading;
+    if (!data?.companies || !Object.keys(data.companies).length) {
+      bodyEl.innerHTML = `<table class="band-table"><thead><tr><th scope="col">公司</th><th scope="col">近20日日均成交额</th><th scope="col">近20日涨跌幅</th></tr></thead>
+        <tbody><tr><td colspan="3">待接入日度成交数据（JYDB QT_DailyQuote）</td></tr></tbody></table>`;
+      return;
+    }
+    const rows = marketCompanyOrder.map(key => {
+      const days = data.companies[key] || [];
+      if (!days.length) return null;
+      const last20 = days.slice(-20);
+      const avgTurnover = last20.reduce((s, d) => s + (d.turnoverValueYi || 0), 0) / last20.length;
+      const latest = days[days.length - 1];
+      const firstClose = last20.find(d => Number.isFinite(d.close))?.close;
+      const chg20 = Number.isFinite(firstClose) && Number.isFinite(latest.close) ? latest.close / firstClose - 1 : null;
+      const lastTurnover = latest.turnoverValueYi;
+      return { key, avgTurnover, lastTurnover, chg20, asOf: latest.date };
+    }).filter(Boolean);
+    bodyEl.innerHTML = `<table class="band-table">
+      <thead><tr><th scope="col">公司</th><th scope="col">近20日日均成交额</th><th scope="col">最新单日成交额</th><th scope="col">近20日涨跌幅</th><th scope="col">截至</th></tr></thead>
+      <tbody>${rows.map(r => `<tr>
+        <th scope="row">${escapeHtml(marketCompanyName(r.key))}</th>
+        <td>${formatNumber(r.avgTurnover, 1)}亿</td>
+        <td>${formatNumberSafe(r.lastTurnover, 1)}亿</td>
+        <td class="${r.chg20 !== null && r.chg20 < 0 ? "neg" : ""}">${r.chg20 !== null ? formatPct(r.chg20) : "—"}</td>
+        <td class="mono">${escapeHtml(r.asOf)}</td>
+      </tr>`).join("")}</tbody>
+    </table>
+    <p class="blueprint-note">${escapeHtml(data.source || "JYDB QT_DailyQuote")}；换手率待接入自由流通股本后补充（镜像库 QT_Performance 止步 2023-05，不可用）。</p>`;
+    const badge = document.getElementById("trading-activity-badge");
+    if (badge) badge.textContent = `JYDB · ${rows[0]?.asOf || ""}`;
+  }
+
+  function renderResearchReports() {
+    const list = document.getElementById("report-list");
+    if (!list) return;
+    const items = localData.researchReports || [];
+    if (!items.length) {
+      list.innerHTML = `<li class="ann-empty">暂无研报元数据（JYDB C_RR_ResearchReport 未接入或近期无记录）</li>`;
+      return;
+    }
+    list.innerHTML = items.map(r => `<li class="report-item">
+      <time class="mono">${escapeHtml(r.date || "")}</time>
+      <span class="report-org">${escapeHtml(r.org || "")}</span>
+      <strong>${escapeHtml(r.title || "")}</strong>
+      ${r.pages ? `<small>${r.pages}页</small>` : ""}
+    </li>`).join("");
+    const note = document.getElementById("reports-note");
+    if (note) note.textContent = `JYDB C_RR_ResearchReport · 近75天 · ${items.length}条`;
+  }
+
   /* ===== 产业比较页：茅台独家拆分 ===== */
   function renderMaotaiSplit() {
     const ms = deepData.maotaiSplit || {};
@@ -1625,8 +1768,8 @@
     "data-boundary": {
       title: "数据来源与研究边界",
       kicker: "DATA CONTRACT",
-      html: drawerSection("已接入的本地资料", "<ul><li>价格Excel：日度截至2026-08-15，月度三价体系截至2026-08，系列酒周度截至08-02</li><li>本地数据库（~/local_data）：宏观GDP/CPI/M2/PPI/固投（截至03-31/04-30）、三家公司季度财报（茅Q2'26、五泸Q1'26）、估值（08-18）、基金重仓（06-30）</li><li>网页初步想法DOCX：产品需求（高频前置、宏观/行业数据获取口径）+ 渠道调研周表，观察期2026-08-03至08-09，未独立核验</li><li>国海深度报告：报告日2026-04-22，含历史事实、报告观点与预测</li><li>国海白酒中报总结PPT：报告日2026-09，总揽页大事记、收入利润复盘与供需拟合的主要来源；其中26H2/27年推演、估值修复两阶段为报告预测，不作为事实</li><li>2023研究框架PPT（华创）：历史框架档案，方法论复用，数值为2022-2023年口径</li><li>茅台数字化汇报PPT：跟踪体系蓝图，用于定义完整跟踪范围与网页接入状态</li></ul>") +
-        drawerSection("DEMO 模拟数据", "<p>三家公司区域收入结构为固定种子随机模拟，仅用于演示交互，页面统一标注“DEMO 模拟”，待官方数据替换。社零、餐饮收入、房地产开发投资、消费者信心已替换为国家统计局2026-08-17发布的核验值（部分序列，完整月度序列待接入）。</p>") +
+      html: drawerSection("已接入的本地资料", "<ul><li>价格Excel：日度截至2026-08-15，月度三价体系截至2026-08，系列酒周度截至08-02</li><li>本地数据库（~/local_data）：宏观GDP/CPI/M2/PPI/固投（截至03-31/04-30）、三家公司季度财报（茅Q2'26、五泸Q1'26）、估值（08-18）、基金重仓（06-30）</li><li>网页初步想法DOCX：产品需求（高频前置、宏观/行业数据获取口径）+ 渠道调研周表，观察期2026-08-03至08-09，未独立核验</li><li>国海深度报告：报告日2026-04-22，含历史事实、报告观点与预测</li><li>国海白酒中报总结PPT：报告日2026-09，总揽页大事记、收入利润复盘与供需拟合的主要来源；其中26H2/27年推演、估值修复两阶段为报告预测，不作为事实</li><li>JYDB（JyPy 聚源库，TLS）：行情/基金重仓/一致预期/目标价/交易活跃度/最新研报，统计日期随构建更新；本地 parquet 为其同步缓存与回退</li><li>2023研究框架PPT（华创）：历史框架档案，方法论复用，数值为2022-2023年口径</li><li>茅台数字化汇报PPT：跟踪体系蓝图，用于定义完整跟踪范围与网页接入状态</li></ul>") +
+        drawerSection("DEMO 模拟数据", "<p>目标价预测、一致预期、交易活跃度已切换为 JYDB 真实值；剩余 DEMO：三家公司区域收入结构为固定种子随机模拟，仅用于演示交互，页面统一标注“DEMO 模拟”，待官方数据替换。社零、餐饮收入、房地产开发投资、消费者信心已替换为国家统计局2026-08-17发布的核验值（部分序列，完整月度序列待接入）。</p>") +
         drawerSection("公告信息", "<p>三家公司近三个月公告共 62 条，来自巨潮资讯网（元数据，含 PDF 链接）；通过 scripts/fetch_announcements.py 增量更新。</p>") +
         drawerSection("不能混用的口径", "<p>DOCX周度文字表与嵌入折线端点冲突；网页价格统一采用更新至08-15的Excel，系列酒采用08-02周度列；DOCX中的精品/生肖/十五年/1935价格属调研文字口径，与Excel分列。2023框架PPT中的批价、回款、库存（如普五批价约940元、回款约75%）为2022-2023年口径，与2026年当前值不可比，仅作历史对照。报告观点、渠道观察和AI综合判断分别标注。</p>") +
         drawerSection("使用限制", `<div class="drawer-callout">本页不是实时行情，不构成投资建议；市值、PE、股息率等报告值均保留原报告日期。</div>`)
@@ -3077,6 +3220,10 @@
   renderGujingTracking();
   renderMediaSources();
   renderMaotaiSplit();
+  renderTargetPrice();
+  renderForecast();
+  renderTradingActivity();
+  renderResearchReports();
   renderViewpoints();
   setPage(pageMeta[initialPage] ? initialPage : "home", false);
   fillLlmForm(loadLlmConfig());
